@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conflicto EE.UU.–Irán</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --ink: #0d0d0d;
+  --cream: #f5f0e8;
+  --red: #c0392b;
+  --gold: #d4a017;
+  --muted: #6b6256;
+  --card-bg: rgba(13,13,13,0.88);
+  --card-border: rgba(212,160,23,0.5);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  height: 100%;
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--ink);
+  overflow-x: hidden;
+  /* FIX: asegurar scroll normal */
+  overflow-y: auto;
+}
+
+/* ── MAP ── */
+#map {
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh; width: 100vw;
+  z-index: 1;
+  /* FIX: el mapa no debe capturar eventos de scroll */
+  pointer-events: none;
+}
+
+/* Restaurar pointer-events solo para los controles del mapa */
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom {
+  pointer-events: auto;
+}
+
+.leaflet-container {
+  filter: contrast(1.15) brightness(0.75) saturate(0.8);
+  /* FIX: deshabilitar interacción directa en el contenedor */
+  pointer-events: none !important;
+}
+
+/* ── SCROLL WRAPPER ── */
+#scroll-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── HERO ── */
+#hero {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+#hero.hidden { opacity: 0; pointer-events: none; }
+
+.hero-eyebrow {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(48px, 7vw, 96px);
+  color: var(--cream);
+  text-align: center;
+  line-height: 1.0;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.8);
+  max-width: 800px;
+}
+
+.hero-title span { color: var(--red); }
+
+.hero-sub {
+  margin-top: 24px;
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(245,240,232,0.6);
+  text-align: center;
+}
+
+.hero-scroll {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245,240,232,0.4);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.1); }
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 100;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* ── CHAPTER COUNTER ── */
+#chapter-counter {
+  position: fixed;
+  top: 32px; right: 32px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: auto;
+}
+
+#chapter-counter.visible { opacity: 1; }
+
+.counter-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(245,240,232,0.25);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.counter-dot.active {
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+  transform: scale(1.5);
+}
+
+/* ── SCROLL SECTIONS ── */
+section {
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+  /* FIX: sections deben permitir scroll pero no bloquear con contenido */
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+/* ── CARDS ── */
+.card {
+  /* FIX: las cards sí deben recibir clics */
+  pointer-events: auto;
+  position: absolute;
+  left: 48px;
+  top: 50%;
+  width: 400px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 0;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05);
+  opacity: 0;
+  transform: translateY(calc(-50% + 20px));
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  overflow: hidden;
+}
+
+.card.active {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.card-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid rgba(212,160,23,0.2);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.card-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.card-icon.iran { background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.5); }
+.card-icon.usa  { background: rgba(30,80,160,0.2); border: 1px solid rgba(30,80,160,0.5); }
+.card-icon.oil  { background: rgba(212,160,23,0.2); border: 1px solid rgba(212,160,23,0.5); }
+.card-icon.warn { background: rgba(192,57,43,0.3); border: 1px solid rgba(192,57,43,0.7); }
+
+.card-chapter {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 21px;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.card-body {
+  padding: 20px 24px 24px;
+}
+
+.card-text {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(245,240,232,0.8);
+}
+
+.card-text strong {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.stat-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.stat-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: rgba(245,240,232,0.7);
+  line-height: 1.3;
+}
+
+.stat-pill .val {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--cream);
+  font-weight: 700;
+}
+
+.base-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.base-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(245,240,232,0.7);
+}
+
+.base-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #4a90d9;
+  box-shadow: 0 0 6px #4a90d9;
+  flex-shrink: 0;
+}
+
+.legend {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(245,240,232,0.7);
+}
+
+.legend-line {
+  width: 30px; height: 3px;
+  border-radius: 2px;
+}
+
+.alert-bar {
+  background: rgba(192,57,43,0.15);
+  border-top: 1px solid rgba(192,57,43,0.3);
+  padding: 14px 24px;
+  font-size: 13px;
+  color: rgba(245,240,232,0.6);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alert-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: blink 1.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: 4px !important;
+  color: var(--cream) !important;
+  backdrop-filter: blur(16px);
+}
+.leaflet-popup-tip { background: #0d0d0d !important; }
+.leaflet-popup-content { font-family: 'Source Serif 4', serif; font-size: 14px; }
+
+@media (max-width: 600px) {
+  .card { left: 16px; right: 16px; width: auto; }
+  .hero-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="chapter-counter"></div>
+<div id="map"></div>
+
+<!-- HERO (fixed, fuera del scroll wrapper) -->
+<div id="hero">
+  <div class="hero-eyebrow">Análisis Geopolítico · Medio Oriente</div>
+  <h1 class="hero-title">EE.UU.<span> vs </span>Irán</h1>
+  <p class="hero-sub">Una tensión que moldea el orden mundial</p>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Desplaza para explorar
+  </div>
+</div>
+
+<!-- SCROLL WRAPPER: este div es el que crea el espacio para scrollear -->
+<div id="scroll-wrapper">
+
+  <!-- SPACER hero -->
+  <section data-step="0" style="height:100vh;"></section>
+
+  <!-- STEP 1 -->
+  <section data-step="1">
+    <div class="card" id="card-1">
+      <div class="card-header">
+        <div class="card-icon iran">🇮🇷</div>
+        <div>
+          <div class="card-chapter">Capítulo I</div>
+          <div class="card-title">Irán y su posición estratégica</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Irán ocupa el corazón geográfico de Medio Oriente, con fronteras en el <strong>Caspio, el Golfo Pérsico y el Golfo de Omán</strong>. Su territorio controla accesos terrestres a Asia Central y el Cáucaso.
+        </p>
+        <div class="stat-row">
+          <div class="stat-pill"><span class="val">83M</span>habitantes</div>
+          <div class="stat-pill"><span class="val">4°</span>reservas de petróleo</div>
+          <div class="stat-pill"><span class="val">1,648 km²</span>frontera costera</div>
+        </div>
+      </div>
+      <div class="alert-bar">
+        <div class="alert-dot"></div>
+        Régimen bajo sanciones internacionales desde 1979
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section data-step="2">
+    <div class="card" id="card-2">
+      <div class="card-header">
+        <div class="card-icon usa">🏴</div>
+        <div>
+          <div class="card-chapter">Capítulo II</div>
+          <div class="card-title">El cerco militar de EE.UU.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Washington mantiene <strong>más de 35,000 efectivos</strong> desplegados en bases que rodean Irán. Una presencia que funciona como mecanismo de disuasión y proyección de fuerza.
+        </p>
+        <div class="base-list">
+          <div class="base-item"><div class="base-dot"></div>Al Udeid Air Base — Qatar · 10,000 efectivos</div>
+          <div class="base-item"><div class="base-dot"></div>Camp Arifjan — Kuwait · 13,000 efectivos</div>
+          <div class="base-item"><div class="base-dot"></div>Ain al-Asad — Iraq · 2,000 efectivos</div>
+          <div class="base-item"><div class="base-dot"></div>NSA Bahrain — 5ª Flota Naval</div>
+          <div class="base-item"><div class="base-dot"></div>Al Dhafra — Emiratos Árabes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section data-step="3">
+    <div class="card" id="card-3">
+      <div class="card-header">
+        <div class="card-icon oil">⛽</div>
+        <div>
+          <div class="card-chapter">Capítulo III</div>
+          <div class="card-title">Rutas petroleras globales</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          El Golfo Pérsico concentra el <strong>30% del petróleo marítimo mundial</strong>. Cualquier perturbación en estas rutas desencadena efectos inmediatos en los mercados energéticos globales.
+        </p>
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-line" style="background:#f39c12;"></div>
+            Ruta Asia-Pacífico (43% del flujo)
+          </div>
+          <div class="legend-item">
+            <div class="legend-line" style="background:#e74c3c;"></div>
+            Ruta Europa-Mediterráneo (28%)
+          </div>
+          <div class="legend-item">
+            <div class="legend-line" style="background:#3498db;"></div>
+            Ruta Norteamérica (18%)
+          </div>
+        </div>
+      </div>
+      <div class="alert-bar">
+        <div class="alert-dot"></div>
+        21 millones de barriles diarios transitan el Golfo
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section data-step="4">
+    <div class="card" id="card-4">
+      <div class="card-header">
+        <div class="card-icon warn">⚡</div>
+        <div>
+          <div class="card-chapter">Capítulo IV</div>
+          <div class="card-title">El Estrecho de Ormuz</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Con apenas <strong>33 km de ancho</strong> en su punto más estrecho, Ormuz es el cuello de botella energético del planeta. Irán ha amenazado en múltiples ocasiones con bloquearlo como respuesta a sanciones.
+        </p>
+        <div class="stat-row">
+          <div class="stat-pill"><span class="val">33 km</span>ancho mínimo</div>
+          <div class="stat-pill"><span class="val">~20%</span>del gas mundial</div>
+          <div class="stat-pill"><span class="val">+17</span>países afectados</div>
+        </div>
+      </div>
+      <div class="alert-bar">
+        <div class="alert-dot"></div>
+        Punto crítico de máxima tensión geopolítica
+      </div>
+    </div>
+  </section>
+
+  <!-- trailing space -->
+  <section data-step="0" style="height:50vh;"></section>
+
+</div><!-- /#scroll-wrapper -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+
+/* ── MAP INIT ── */
+var map = L.map('map', {
+  zoomControl: false,
+  attributionControl: false,
+  scrollWheelZoom: false,
+  dragging: false,
+  doubleClickZoom: false,
+  touchZoom: false,
+  keyboard: false,
+  tap: false
+}).setView([28, 50], 4);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  { attribution: '© OpenStreetMap & CartoDB', maxZoom: 18 }).addTo(map);
+
+/* ── LAYERS ── */
+var iranPoly = L.circle([32, 53], {
+  color: '#c0392b', weight: 2,
+  fillColor: '#c0392b', fillOpacity: 0.2,
+  radius: 780000
+});
+
+var neighbors = L.layerGroup([
+  L.circle([29, 48], { color:'#888', weight:1, fillColor:'#555', fillOpacity:0.12, radius:360000 }),
+  L.circle([34, 43], { color:'#888', weight:1, fillColor:'#555', fillOpacity:0.12, radius:430000 }),
+  L.circle([33, 66], { color:'#888', weight:1, fillColor:'#555', fillOpacity:0.12, radius:650000 }),
+  L.circle([38, 59], { color:'#888', weight:1, fillColor:'#555', fillOpacity:0.12, radius:480000 }),
+  L.circle([40, 48], { color:'#888', weight:1, fillColor:'#555', fillOpacity:0.12, radius:300000 })
+]);
+
+function makeLabel(latlng, text) {
+  return L.marker(latlng, {
+    icon: L.divIcon({
+      className: '',
+      html: `<div style="color:rgba(245,240,232,0.55);font-family:'Source Serif 4',serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;text-shadow:0 1px 4px #000;white-space:nowrap;">${text}</div>`,
+      iconAnchor: [40, 8]
+    }),
+    interactive: false
+  });
+}
+
+var countryLabels = L.layerGroup([
+  makeLabel([32, 53], 'IRÁN'),
+  makeLabel([29, 47], 'KUWAIT'),
+  makeLabel([25, 51], 'QATAR'),
+  makeLabel([24, 54], 'E.A.U.'),
+  makeLabel([26, 50], 'BAHREIN'),
+  makeLabel([23, 58], 'OMÁN'),
+  makeLabel([33, 44], 'IRAK'),
+  makeLabel([24, 45], 'ARABIA S.'),
+  makeLabel([32, 36], 'JORDANIA'),
+]);
+
+function baseMarker(latlng, label, country) {
+  return L.marker(latlng, {
+    icon: L.divIcon({
+      className: '',
+      html: `<div style="
+        background:rgba(30,80,160,0.9);
+        border:2px solid rgba(100,150,255,0.9);
+        border-radius:3px;
+        width:14px;height:14px;
+        box-shadow:0 0 10px rgba(80,130,255,0.7),0 0 20px rgba(80,130,255,0.3);
+      "></div>`,
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    })
+  }).bindPopup(`<b style="color:#d4a017;">${label}</b><br><span style="opacity:0.7;font-size:12px;">${country}</span>`);
+}
+
+var bases = L.layerGroup([
+  baseMarker([25.11, 51.31], 'Al Udeid Air Base', 'Qatar'),
+  baseMarker([29.23, 47.45], 'Camp Arifjan', 'Kuwait'),
+  baseMarker([33.79, 42.44], 'Ain al-Asad', 'Iraq'),
+  baseMarker([26.08, 50.56], 'NSA Bahrain · 5ª Flota', 'Bahrain'),
+  baseMarker([24.25, 54.65], 'Al Dhafra Air Base', 'Emiratos Árabes'),
+  baseMarker([30.44, 47.78], 'Camp Buehring', 'Kuwait'),
+]);
+
+var baseRanges = L.layerGroup([
+  L.circle([25.11,51.31], { color:'rgba(80,130,255,0.3)', weight:1, fillColor:'rgba(80,130,255,0.05)', radius:500000, interactive:false }),
+  L.circle([29.23,47.45], { color:'rgba(80,130,255,0.3)', weight:1, fillColor:'rgba(80,130,255,0.05)', radius:400000, interactive:false }),
+  L.circle([33.79,42.44], { color:'rgba(80,130,255,0.3)', weight:1, fillColor:'rgba(80,130,255,0.05)', radius:450000, interactive:false }),
+]);
+
+var routeAsia = L.polyline([
+  [26.5,56.5],[22,60],[17,63],[12,67],[6,72],[1,78],[-5,82]
+], { color:'#f39c12', weight:4, opacity:0.85, dashArray:'8,4' });
+
+var routeEurope = L.polyline([
+  [26.5,56.5],[24,54],[20,50],[15,45],[10,40],[5,35],[2,30],[0,25],[-3,18]
+], { color:'#e74c3c', weight:4, opacity:0.85, dashArray:'8,4' });
+
+var routeAmerica = L.polyline([
+  [26.5,56.5],[22,52],[18,48],[14,40],[10,30],[5,20],[0,10],[-5,0]
+], { color:'#3498db', weight:4, opacity:0.85, dashArray:'8,4' });
+
+var routes = L.layerGroup([routeAsia, routeEurope, routeAmerica]);
+
+var hormuzCircle = L.circleMarker([26.5, 56.3], {
+  radius: 14, color:'#c0392b', weight: 2,
+  fillColor:'#c0392b', fillOpacity: 0.8
+}).bindPopup('<b style="color:#d4a017;">Estrecho de Ormuz</b><br><span style="opacity:0.7;font-size:12px;">33 km · 20% del petróleo mundial</span>');
+
+var hormuzPulse = L.circle([26.5, 56.3], {
+  color:'#c0392b', weight:1, fillColor:'#c0392b', fillOpacity:0.1,
+  radius:200000, interactive:false
+});
+
+var hormuzLabel = L.marker([26.5, 56.3], {
+  icon: L.divIcon({
+    className: '',
+    html: `<div style="color:#e74c3c;font-family:'Playfair Display',serif;font-weight:700;font-size:13px;text-shadow:0 2px 8px #000;white-space:nowrap;margin-left:20px;margin-top:-6px;">Estrecho de Ormuz</div>`,
+    iconSize: [180, 20],
+    iconAnchor: [0, 10]
+  }),
+  interactive: false
+});
+
+var hormuz = L.layerGroup([hormuzCircle, hormuzPulse, hormuzLabel]);
+
+/* ── STATE ── */
+var currentStep = -1;
+var allLayers = [iranPoly, neighbors, countryLabels, bases, baseRanges, routes, hormuz];
+
+function clearAll() {
+  allLayers.forEach(l => { if (map.hasLayer(l)) map.removeLayer(l); });
+}
+
+function updateMap(step) {
+  if (step === currentStep) return;
+  currentStep = step;
+  clearAll();
+
+  if (step === 0) {
+    map.flyTo([28, 50], 3, { duration: 1.6 });
+  }
+  if (step === 1) {
+    map.addLayer(neighbors);
+    map.addLayer(iranPoly);
+    map.addLayer(countryLabels);
+    map.flyTo([32, 53], 5, { duration: 1.6 });
+  }
+  if (step === 2) {
+    map.addLayer(iranPoly);
+    map.addLayer(bases);
+    map.addLayer(baseRanges);
+    map.addLayer(countryLabels);
+    map.flyTo([30, 50], 4.5, { duration: 1.6 });
+  }
+  if (step === 3) {
+    map.addLayer(iranPoly);
+    map.addLayer(routes);
+    map.flyTo([18, 60], 3.5, { duration: 1.8 });
+  }
+  if (step === 4) {
+    map.addLayer(iranPoly);
+    map.addLayer(hormuz);
+    map.flyTo([26.5, 56.5], 7, { duration: 1.8 });
+  }
+}
+
+/* ── SCROLL LOGIC ── */
+const sections = document.querySelectorAll('section[data-step]');
+const hero = document.getElementById('hero');
+const progressBar = document.getElementById('progress-bar');
+const chapterCounter = document.getElementById('chapter-counter');
+const cards = document.querySelectorAll('.card');
+const STEPS = 4;
+
+for (let i = 1; i <= STEPS; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'counter-dot';
+  dot.dataset.step = i;
+  dot.addEventListener('click', () => {
+    const target = document.querySelector(`section[data-step="${i}"]`);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+  chapterCounter.appendChild(dot);
+}
+
+function setActiveCard(step) {
+  cards.forEach(c => c.classList.remove('active'));
+  if (step >= 1 && step <= STEPS) {
+    const card = document.getElementById(`card-${step}`);
+    if (card) card.classList.add('active');
+  }
+}
+
+function updateCounter(step) {
+  document.querySelectorAll('.counter-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i + 1 === step);
+  });
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const step = parseInt(entry.target.dataset.step);
+    const pct = step === 0 ? 0 : (step / STEPS) * 100;
+    progressBar.style.width = pct + '%';
+
+    if (step === 0) {
+      hero.classList.remove('hidden');
+      chapterCounter.classList.remove('visible');
+    } else {
+      hero.classList.add('hidden');
+      chapterCounter.classList.add('visible');
+    }
+
+    updateMap(step);
+    setActiveCard(step);
+    updateCounter(step);
+  });
+}, { threshold: 0.55 });
+
+sections.forEach(s => observer.observe(s));
+
+updateMap(0);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+Node Centrality (Degree):
+IRGC-Quds Force: 14
+United States: 10
+Israel: 10
+Iran: 7
+Hezbollah: 5
+Houthis: 5
+Kataib Hezbollah: 4
+Saudi Arabia: 3
+Hamas: 3
+Syria: 3
+United Arab Emirates: 3
+Islamic Resistance in Iraq: 3
+Russia: 2
+Palestinian Islamic Jihad: 2
+Asaib Ahl al-Haq: 1
+Fatemiyoun: 1
+Bahrain: 1
+Morocco: 1
+Iraq: 1
+Saraya al-Mukhtar: 1
+Promised Day Brigade: 1
+Red Sea Shipping: 1
+Harakat Hezbollah al Nujaba: 1
+Badr Organization: 1
+Kataib Sayyid al Shuhada: 1
+Zaynabiyoun Brigade: 1
