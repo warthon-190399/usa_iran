@@ -1,10 +1,14 @@
+/* ════════════════════════════════════════════
+   SISTEMA DE DISEÑO — EE.UU. vs Irán
+   ════════════════════════════════════════════ */
+
 :root {
-  --ink: #0d0d0d;
-  --cream: #f5f0e8;
-  --red: #c0392b;
-  --gold: #d4a017;
-  --muted: #6b6256;
-  --card-bg: rgba(13,13,13,0.88);
+  --ink:         #0d0d0d;
+  --cream:       #f5f0e8;
+  --red:         #c0392b;
+  --gold:        #d4a017;
+  --muted:       #6b6256;
+  --card-bg:     rgba(13,13,13,0.88);
   --card-border: rgba(212,160,23,0.5);
 }
 
@@ -15,7 +19,6 @@ html, body {
   font-family: 'Source Serif 4', Georgia, serif;
   background: var(--ink);
   overflow-x: hidden;
-  /* FIX: asegurar scroll normal */
   overflow-y: auto;
 }
 
@@ -25,11 +28,9 @@ html, body {
   top: 0; left: 0;
   height: 100vh; width: 100vw;
   z-index: 1;
-  /* FIX: el mapa no debe capturar eventos de scroll */
   pointer-events: none;
 }
 
-/* Restaurar pointer-events solo para los controles del mapa */
 .leaflet-pane,
 .leaflet-top,
 .leaflet-bottom {
@@ -38,16 +39,14 @@ html, body {
 
 .leaflet-container {
   filter: contrast(1.15) brightness(0.75) saturate(0.8);
-  /* FIX: deshabilitar interacción directa en el contenedor */
   pointer-events: none !important;
 }
 
-/*   ── SCROLL WRAPPER ── */
+/* ── SCROLL WRAPPER ── */
 #scroll-wrapper {
   position: relative;
   z-index: 2;
 }
-
 
 /* ── HERO ── */
 #hero {
@@ -118,7 +117,7 @@ html, body {
 
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.3; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.1); }
+  50%       { opacity: 1;   transform: scaleY(1.1); }
 }
 
 /* ── PROGRESS BAR ── */
@@ -166,15 +165,17 @@ section {
   height: 100vh;
   position: relative;
   z-index: 2;
-  /* FIX: sections deben permitir scroll pero no bloquear con contenido */
   pointer-events: none;
   display: flex;
   align-items: center;
 }
 
-/* ── CARDS ── */
+section.trail {
+  height: 40vh;
+}
+
+/* ── CARDS (capítulos 1-4) ── */
 .card {
-  /* FIX: las cards sí deben recibir clics */
   pointer-events: auto;
   position: absolute;
   left: 48px;
@@ -216,9 +217,9 @@ section {
 }
 
 .card-icon.iran { background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.5); }
-.card-icon.usa  { background: rgba(30,80,160,0.2); border: 1px solid rgba(30,80,160,0.5); }
+.card-icon.usa  { background: rgba(30,80,160,0.2);  border: 1px solid rgba(30,80,160,0.5); }
 .card-icon.oil  { background: rgba(212,160,23,0.2); border: 1px solid rgba(212,160,23,0.5); }
-.card-icon.warn { background: rgba(192,57,43,0.3); border: 1px solid rgba(192,57,43,0.7); }
+.card-icon.warn { background: rgba(192,57,43,0.3);  border: 1px solid rgba(192,57,43,0.7); }
 
 .card-chapter {
   font-family: 'Source Serif 4', serif;
@@ -255,6 +256,7 @@ section {
   font-weight: 400;
 }
 
+/* Stat pills */
 .stat-row {
   display: flex;
   gap: 10px;
@@ -280,6 +282,7 @@ section {
   font-weight: 700;
 }
 
+/* Bases */
 .base-list {
   margin-top: 16px;
   display: flex;
@@ -303,6 +306,7 @@ section {
   flex-shrink: 0;
 }
 
+/* Legend (rutas) */
 .legend {
   margin-top: 16px;
   display: flex;
@@ -323,6 +327,7 @@ section {
   border-radius: 2px;
 }
 
+/* Alert bar */
 .alert-bar {
   background: rgba(192,57,43,0.15);
   border-top: 1px solid rgba(192,57,43,0.3);
@@ -344,9 +349,10 @@ section {
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.2; }
+  50%       { opacity: 0.2; }
 }
 
+/* ── LEAFLET POPUPS ── */
 .leaflet-popup-content-wrapper {
   background: var(--card-bg) !important;
   border: 1px solid var(--card-border) !important;
@@ -357,7 +363,211 @@ section {
 .leaflet-popup-tip { background: #0d0d0d !important; }
 .leaflet-popup-content { font-family: 'Source Serif 4', serif; font-size: 14px; }
 
+
+/* ════════════════════════════════════════════
+   CAPÍTULO V — SECCIÓN GRAFO
+   ════════════════════════════════════════════ */
+
+#graph-section {
+  /* Sección independiente: sale del mapa fijo, tiene su propio fondo */
+  height: auto;
+  min-height: 100vh;
+  pointer-events: auto;
+  display: flex;
+  align-items: stretch;
+
+  background:
+    radial-gradient(ellipse 80% 60% at 65% 50%, rgba(192,57,43,0.07) 0%, transparent 70%),
+    linear-gradient(180deg, #0d0d0d 0%, #100b06 50%, #0d0d0d 100%);
+
+  /* Separador superior: línea dorada */
+  border-top: 1px solid rgba(212,160,23,0.25);
+}
+
+/* Layout: dos columnas */
+.graph-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ── Columna editorial ── */
+.graph-editorial {
+  padding: 80px 40px 60px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(212,160,23,0.12);
+}
+
+.graph-eyebrow {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.graph-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(28px, 3.2vw, 44px);
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.graph-title em {
+  color: var(--red);
+  font-style: italic;
+}
+
+.graph-body {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(245,240,232,0.7);
+  margin-bottom: 14px;
+}
+
+.graph-body strong {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* Leyenda del grafo */
+.graph-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.graph-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(245,240,232,0.55);
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+}
+
+.graph-hint {
+  margin-top: 28px;
+  font-size: 11px;
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  color: rgba(245,240,232,0.3);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+/* ── Canvas del grafo ── */
+.graph-canvas-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+#graph-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: block;
+}
+
+/* ── Tooltip del grafo ── */
+#graph-tooltip {
+  position: absolute;
+  z-index: 50;
+  pointer-events: none;
+  background: rgba(13,13,13,0.96);
+  border: 1px solid rgba(212,160,23,0.4);
+  border-radius: 3px;
+  padding: 12px 16px;
+  min-width: 200px;
+  max-width: 260px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+#graph-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tt-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--cream);
+  margin-bottom: 2px;
+}
+
+.tt-type {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.tt-rels {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.tt-row {
+  font-size: 11px;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  color: rgba(245,240,232,0.6);
+  line-height: 1.5;
+}
+
+.tt-row em {
+  color: rgba(245,240,232,0.9);
+  font-style: normal;
+}
+
+.tt-row span {
+  color: var(--gold);
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+.tt-out { border-left: 2px solid rgba(192,57,43,0.5); padding-left: 6px; }
+.tt-in  { border-left: 2px solid rgba(46,204,113,0.5); padding-left: 6px; }
+
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .graph-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  .graph-editorial {
+    padding: 48px 24px 32px;
+    border-right: none;
+    border-bottom: 1px solid rgba(212,160,23,0.12);
+  }
+  #graph-svg { min-height: 70vh; }
+}
+
 @media (max-width: 600px) {
   .card { left: 16px; right: 16px; width: auto; }
   .hero-title { font-size: 36px; }
+  .graph-editorial { padding: 36px 20px 24px; }
 }
