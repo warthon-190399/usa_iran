@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/timeline.css">
 </head>
 
 <body>
@@ -155,6 +156,266 @@
       </div>
     </div>
   </section>
+
+<!-- ═══════════════════════════════════════════════════════
+       TIMELINE SECTION — Entre mapa (step 4) y grafo (step 5)
+       ═══════════════════════════════════════════════════════ -->
+  <section data-step="0" id="timeline-section">
+
+    <div class="timeline-layout">
+
+      <!-- Columna izquierda: sticky con año / evento activo -->
+      <div class="timeline-sticky-col">
+        <div class="timeline-sticky-inner" id="timeline-sticky">
+          <div class="tl-eyebrow">Cronología</div>
+          <div class="tl-active-year" id="tl-year">1979</div>
+          <div class="tl-active-event" id="tl-event">La revolución que cambió el Medio Oriente</div>
+          <div class="tl-progress-track">
+            <div class="tl-progress-fill" id="tl-progress"></div>
+          </div>
+          <div class="tl-dots" id="tl-dots">
+            <!-- Generado por JS -->
+          </div>
+          <div class="tl-counter" id="tl-counter">1 / 5</div>
+        </div>
+      </div>
+
+      <!-- Columna derecha: scroll de escenas -->
+      <div class="timeline-scroll-col" id="timeline-scroll-col">
+
+        <!-- ESCENA 1 -->
+        <div class="tl-scene" data-tl="0">
+          <div class="tl-scene-inner">
+            <div class="tl-tag">Escena 1 · El punto de ruptura</div>
+            <h3 class="tl-scene-title">La revolución que cambió la relación con Occidente</h3>
+            <div class="tl-event-badge">Iranian Revolution · 1979</div>
+            <div class="tl-body">
+              <p>
+                Durante más de dos décadas, el sha Mohammad Reza Pahlaví gobernó Irán como
+                un aliado estratégico de Washington. La <strong>CIA había participado en 1953
+                en el golpe que lo restauró en el poder</strong>, y a cambio, Teherán garantizaba
+                estabilidad regional, flujo petrolero y una posición pro-occidental en plena
+                Guerra Fría.
+              </p>
+              <p>
+                Todo eso colapsó en febrero de 1979. Una revolución popular liderada por el
+                ayatolá Ruhollah Khomeini derrocó al sha y proclamó la <strong>República Islámica de Irán</strong>.
+                El nuevo régimen convirtió a Estados Unidos —al que llamaba el <em>"Gran Satán"</em>—
+                en su principal adversario ideológico y estratégico.
+              </p>
+              <p>
+                El impacto fue inmediato: Washington perdió su principal socio en el Golfo Pérsico,
+                acceso privilegiado al petróleo iraní y décadas de inversión en inteligencia regional.
+                Para Irán, la revolución fue el inicio de un proyecto de poder que buscaría
+                expandirse a través de aliados y milicias por todo el Medio Oriente.
+              </p>
+            </div>
+            <div class="tl-data-row">
+              <div class="tl-data-pill">
+                <span class="tdp-val">38 días</span>
+                <span class="tdp-label">duró la ofensiva revolucionaria</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">1953</span>
+                <span class="tdp-label">golpe de la CIA que precedió la ruptura</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">45 años</span>
+                <span class="tdp-label">sin relaciones diplomáticas formales</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCENA 2 -->
+        <div class="tl-scene" data-tl="1">
+          <div class="tl-scene-inner">
+            <div class="tl-tag">Escena 2 · La crisis que rompió la diplomacia</div>
+            <h3 class="tl-scene-title">444 días que sellaron la enemistad</h3>
+            <div class="tl-event-badge">Iran Hostage Crisis · 1979–1981</div>
+            <div class="tl-body">
+              <p>
+                El 4 de noviembre de 1979, centenares de estudiantes iraníes asaltaron la embajada
+                estadounidense en Teherán. Tomaron como rehenes a <strong>52 diplomáticos y personal
+                consular</strong>. El detonante inmediato fue la decisión de Washington de admitir al
+                sha en suelo estadounidense para recibir tratamiento médico.
+              </p>
+              <p>
+                Lo que siguió fue una crisis de 444 días que humilló a la administración Carter,
+                frustró un rescate militar fallido —la operación <em>Eagle Claw</em> terminó en desastre
+                en el desierto iraní con ocho soldados muertos— y <strong>terminó con las relaciones
+                diplomáticas entre ambos países de forma definitiva</strong>.
+              </p>
+              <p>
+                Los rehenes fueron liberados el 20 de enero de 1981, minutos después de que Ronald
+                Reagan prestara juramento como presidente. La sincronización fue interpretada como
+                un mensaje político deliberado de Teherán a Washington.
+                Desde entonces, ningún embajador estadounidense ha pisado suelo iraní.
+              </p>
+            </div>
+            <div class="tl-data-row">
+              <div class="tl-data-pill">
+                <span class="tdp-val">52</span>
+                <span class="tdp-label">diplomáticos retenidos</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">444</span>
+                <span class="tdp-label">días de cautiverio</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">8 muertos</span>
+                <span class="tdp-label">en el rescate fallido Eagle Claw</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCENA 3 -->
+        <div class="tl-scene" data-tl="2">
+          <div class="tl-scene-inner">
+            <div class="tl-tag">Escena 3 · El forjado de una potencia regional</div>
+            <h3 class="tl-scene-title">La guerra que construyó el modelo iraní</h3>
+            <div class="tl-event-badge">Iran–Iraq War · 1980–1988</div>
+            <div class="tl-body">
+              <p>
+                En septiembre de 1980, Saddam Hussein invadió Irán con el respaldo tácito de
+                Washington, que veía en Irak un contrapeso al nuevo régimen islamista. Estados
+                Unidos proporcionó a Bagdad <strong>inteligencia satelital, créditos y precursores
+                químicos</strong> que serían usados contra tropas iraníes.
+              </p>
+              <p>
+                La guerra duró ocho años y costó entre 500,000 y un millón de vidas. Irán la libró
+                con una combinación de movilización masiva, milicias voluntarias y una doctrina
+                de "guerra de desgaste" que marcó su pensamiento estratégico posterior. Fue entonces
+                cuando Teherán comenzó a desarrollar el modelo de <strong>proxy warfare</strong>:
+                apoyar milicias aliadas en países vecinos como extensión de su propio poder.
+              </p>
+              <p>
+                Al final del conflicto, Irán no había ganado territorialmente, pero había construido
+                la infraestructura ideológica y militar que hoy articula su influencia desde el
+                Líbano hasta Yemen. La <strong>Fuerza Quds del IRGC</strong>, creada en este período,
+                sería el instrumento central de esa proyección de poder.
+              </p>
+            </div>
+            <div class="tl-data-row">
+              <div class="tl-data-pill">
+                <span class="tdp-val">~1M</span>
+                <span class="tdp-label">bajas estimadas en ambos bandos</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">8 años</span>
+                <span class="tdp-label">el conflicto más largo del siglo XX</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">Fuerza Quds</span>
+                <span class="tdp-label">creada durante este período</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCENA 4 -->
+        <div class="tl-scene" data-tl="3">
+          <div class="tl-scene-inner">
+            <div class="tl-tag">Escena 4 · El intento de distensión</div>
+            <h3 class="tl-scene-title">El acuerdo que prometió un nuevo capítulo</h3>
+            <div class="tl-event-badge">JCPOA · 2015</div>
+            <div class="tl-body">
+              <p>
+                Después de años de sanciones internacionales y tensiones crecientes por el programa
+                nuclear iraní, el 14 de julio de 2015 se firmó en Viena el <em>Joint Comprehensive
+                Plan of Action</em>. Irán se comprometía a <strong>reducir su capacidad de enriquecimiento
+                de uranio y aceptar inspecciones internacionales</strong> a cambio del levantamiento
+                progresivo de sanciones.
+              </p>
+              <p>
+                El acuerdo, negociado bajo la administración Obama con la participación del
+                grupo P5+1 —los cinco miembros permanentes del Consejo de Seguridad más Alemania—,
+                fue celebrado como un logro diplomático histórico. La economía iraní recibió
+                un impulso inmediato: el petróleo volvió a fluir hacia Europa y se liberaron
+                activos congelados por <strong>más de 100,000 millones de dólares</strong>.
+              </p>
+              <p>
+                Pero el acuerdo no sobrevivió al cambio político en Washington. En mayo de 2018,
+                la administración Trump se retiró unilateralmente del JCPOA y reimplantó
+                sanciones máximas. Irán respondió gradualmente reactivando su programa nuclear.
+                En 2024, la Agencia Internacional de Energía Atómica confirmó que Teherán
+                <strong>enriquecía uranio al 60%</strong>, a un paso técnico del grado armamentístico.
+              </p>
+            </div>
+            <div class="tl-data-row">
+              <div class="tl-data-pill">
+                <span class="tdp-val">+$100B</span>
+                <span class="tdp-label">activos descongelados</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">2018</span>
+                <span class="tdp-label">retirada unilateral de EE.UU.</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">60%</span>
+                <span class="tdp-label">enriquecimiento de uranio en 2024</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCENA 5 -->
+        <div class="tl-scene" data-tl="4">
+          <div class="tl-scene-inner">
+            <div class="tl-tag">Escena 5 · El retorno de la confrontación directa</div>
+            <h3 class="tl-scene-title">El asesinato que casi desató una guerra</h3>
+            <div class="tl-event-badge">Assassination of Qasem Soleimani · 2020</div>
+            <div class="tl-body">
+              <p>
+                En la madrugada del 3 de enero de 2020, un dron MQ-9 Reaper del ejército
+                estadounidense lanzó un misil sobre un convoy en el aeropuerto de Bagdad.
+                Entre los muertos estaba el general Qasem Soleimani, comandante de la
+                Fuerza Quds del IRGC y <strong>el arquitecto más influyente de la estrategia
+                regional iraní durante dos décadas</strong>.
+              </p>
+              <p>
+                Soleimani había construido y coordinado la red de milicias que hoy constituye
+                el "Eje de Resistencia" iraní: Hezbollah en el Líbano, las milicias chiíes en
+                Irak, los Houthis en Yemen, Hamas y la Yihad Islámica en Gaza. Su eliminación
+                fue el acto más agresivo de Washington contra un oficial iraní en la historia
+                del conflicto bilateral.
+              </p>
+              <p>
+                La respuesta de Irán llegó cinco días después: un bombardeo con misiles balísticos
+                sobre bases estadounidenses en Irak que dejó a <strong>más de 100 soldados con
+                lesiones cerebrales traumáticas</strong>. El mundo contuvo el aliento ante la
+                posibilidad de una guerra abierta. No ocurrió —ninguno de los dos lados quería
+                la escalada total— pero el episodio demostró que el conflicto había entrado en
+                una nueva fase de confrontación directa sin mediaciones.
+              </p>
+            </div>
+            <div class="tl-data-row">
+              <div class="tl-data-pill">
+                <span class="tdp-val">3 ene 2020</span>
+                <span class="tdp-label">ataque en el aeropuerto de Bagdad</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">+100</span>
+                <span class="tdp-label">soldados con lesiones cerebrales</span>
+              </div>
+              <div class="tl-data-pill">
+                <span class="tdp-val">20 años</span>
+                <span class="tdp-label">de operaciones dirigidas por Soleimani</span>
+              </div>
+            </div>
+            <div class="tl-footnote">
+              ↓ La red de influencia que Soleimani construyó sigue operativa —
+              el siguiente capítulo la documenta en detalle.
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.timeline-scroll-col -->
+    </div><!-- /.timeline-layout -->
+
+  </section>
+
 
   <!-- ═══════════════════════════════════════════
        STEP 5 — GRAPH SECTION (fuera del mapa)

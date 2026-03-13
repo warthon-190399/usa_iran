@@ -1,0 +1,306 @@
+/* ════════════════════════════════════════════
+   TIMELINE SECTION — Capítulo histórico
+   ════════════════════════════════════════════ */
+
+#timeline-section {
+  height: auto;
+  min-height: 100vh;
+  pointer-events: auto;
+  display: block;   /* override flex del section genérico */
+  position: relative;
+  z-index: 10;
+
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 30%, rgba(192,57,43,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 70%, rgba(212,160,23,0.04) 0%, transparent 55%),
+    linear-gradient(180deg, #0d0d0d 0%, #0c0905 40%, #0d0d0d 100%);
+
+  border-top:    1px solid rgba(212,160,23,0.18);
+  border-bottom: 1px solid rgba(212,160,23,0.18);
+}
+
+/* ── Layout: sticky col + scroll col ── */
+.timeline-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  width: 100%;
+  min-height: 100vh;
+  align-items: start;
+}
+
+/* ── Sticky column ── */
+.timeline-sticky-col {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 32px 0 48px;
+  border-right: 1px solid rgba(212,160,23,0.10);
+  pointer-events: none;
+}
+
+.timeline-sticky-inner {
+  width: 100%;
+}
+
+.tl-eyebrow {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.tl-active-year {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(52px, 5vw, 80px);
+  color: var(--cream);
+  line-height: 1.0;
+  margin-bottom: 12px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.02em;
+}
+
+.tl-active-event {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(245,240,232,0.55);
+  line-height: 1.5;
+  min-height: 40px;
+  margin-bottom: 28px;
+  transition: all 0.4s ease;
+}
+
+/* Progress track */
+.tl-progress-track {
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.tl-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  border-radius: 1px;
+  width: 20%;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dots nav */
+.tl-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tl-dot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.tl-dot:hover { opacity: 0.7; }
+
+.tl-dot.active { opacity: 1; }
+
+.tl-dot-pip {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.tl-dot.active .tl-dot-pip {
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 8px var(--gold);
+}
+
+.tl-dot-label {
+  font-family: 'Source Serif 4', serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(245,240,232,0.7);
+  letter-spacing: 0.05em;
+}
+
+.tl-counter {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  color: rgba(245,240,232,0.2);
+  letter-spacing: 0.15em;
+}
+
+/* ── Scroll column ── */
+.timeline-scroll-col {
+  padding: 0;
+}
+
+/* ── Individual scenes ── */
+.tl-scene {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 60px 80px 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  opacity: 0.35;
+  transition: opacity 0.6s ease;
+}
+
+.tl-scene.active {
+  opacity: 1;
+}
+
+.tl-scene-inner {
+  max-width: 620px;
+}
+
+.tl-tag {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.tl-scene-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(22px, 2.4vw, 32px);
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.tl-event-badge {
+  display: inline-block;
+  background: rgba(192,57,43,0.12);
+  border: 1px solid rgba(192,57,43,0.35);
+  border-radius: 2px;
+  padding: 5px 12px;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(245,240,232,0.6);
+  margin-bottom: 24px;
+}
+
+.tl-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.tl-body p {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(245,240,232,0.75);
+}
+
+.tl-body p strong {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.tl-body p em {
+  color: rgba(245,240,232,0.9);
+  font-style: italic;
+}
+
+/* Data pills */
+.tl-data-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+.tl-data-pill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 2px;
+  padding: 9px 14px;
+  min-width: 90px;
+}
+
+.tdp-val {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+
+.tdp-label {
+  display: block;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 11px;
+  color: rgba(245,240,232,0.45);
+  line-height: 1.3;
+}
+
+/* Footnote en última escena */
+.tl-footnote {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(212,160,23,0.15);
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(212,160,23,0.55);
+  line-height: 1.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .timeline-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-sticky-col {
+    position: relative;
+    height: auto;
+    padding: 48px 24px 24px;
+    border-right: none;
+    border-bottom: 1px solid rgba(212,160,23,0.10);
+  }
+
+  .tl-active-year { font-size: 48px; }
+
+  .tl-scene {
+    padding: 56px 24px;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .tl-scene { padding: 40px 16px; }
+  .tl-scene-title { font-size: 20px; }
+}
