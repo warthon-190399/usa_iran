@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/timeline.css">
+<link rel="stylesheet" href="styles/economic.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 
 <body>
@@ -167,7 +169,7 @@
       <!-- Columna izquierda: sticky con año / evento activo -->
       <div class="timeline-sticky-col">
         <div class="timeline-sticky-inner" id="timeline-sticky">
-          <div class="tl-eyebrow">Cronología</div>
+          <div class="tl-eyebrow">Cronología · 1979–2020</div>
           <div class="tl-active-year" id="tl-year">1979</div>
           <div class="tl-active-event" id="tl-event">La revolución que cambió el Medio Oriente</div>
           <div class="tl-progress-track">
@@ -177,6 +179,12 @@
             <!-- Generado por JS -->
           </div>
           <div class="tl-counter" id="tl-counter">1 / 5</div>
+
+          <!-- Imagen activa en sticky -->
+          <div class="tl-sticky-image-wrap" id="tl-sticky-image">
+            <img src="images/cap_1_1.jpg" alt="" class="tl-sticky-img" id="tl-sticky-img-el">
+            <div class="tl-sticky-img-caption" id="tl-sticky-img-caption">El ayatolá Ruhollah Khomeini, líder de la revolución iraní de 1979</div>
+          </div>
         </div>
       </div>
 
@@ -189,6 +197,23 @@
             <div class="tl-tag">Escena 1 · El punto de ruptura</div>
             <h3 class="tl-scene-title">La revolución que cambió la relación con Occidente</h3>
             <div class="tl-event-badge">Iranian Revolution · 1979</div>
+
+            <!-- Galería de imágenes de escena -->
+            <div class="tl-scene-gallery">
+              <div class="tl-gallery-main" data-scene="0" data-img="0">
+                <img src="images/cap_1_1.jpg" alt="El ayatolá Khomeini" class="tl-gallery-img active" data-idx="0">
+                <img src="images/cap_1_2.jpg" alt="Masas revolucionarias en Teherán" class="tl-gallery-img" data-idx="1">
+                <div class="tl-gallery-overlay">
+                  <div class="tl-gallery-caption" id="tl-gallery-caption-0">El ayatolá Khomeini, figura central de la revolución islámica</div>
+                  <div class="tl-gallery-nav">
+                    <button class="tl-gal-btn tl-gal-prev" data-scene="0">‹</button>
+                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                    <button class="tl-gal-btn tl-gal-next" data-scene="0">›</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="tl-body">
               <p>
                 Durante más de dos décadas, el sha Mohammad Reza Pahlaví gobernó Irán como
@@ -233,6 +258,22 @@
             <div class="tl-tag">Escena 2 · La crisis que rompió la diplomacia</div>
             <h3 class="tl-scene-title">444 días que sellaron la enemistad</h3>
             <div class="tl-event-badge">Iran Hostage Crisis · 1979–1981</div>
+
+            <div class="tl-scene-gallery">
+              <div class="tl-gallery-main" data-scene="1" data-img="0">
+                <img src="images/cap_2_1.jpg" alt="Helicóptero destruido en Operación Eagle Claw" class="tl-gallery-img active" data-idx="0">
+                <img src="images/cap_2_2.jpg" alt="Rehenes liberados abordan avión" class="tl-gallery-img" data-idx="1">
+                <div class="tl-gallery-overlay">
+                  <div class="tl-gallery-caption" id="tl-gallery-caption-1">Restos del helicóptero en la Operación Eagle Claw, el rescate fallido</div>
+                  <div class="tl-gallery-nav">
+                    <button class="tl-gal-btn tl-gal-prev" data-scene="1">‹</button>
+                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                    <button class="tl-gal-btn tl-gal-next" data-scene="1">›</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="tl-body">
               <p>
                 El 4 de noviembre de 1979, centenares de estudiantes iraníes asaltaron la embajada
@@ -276,6 +317,22 @@
             <div class="tl-tag">Escena 3 · El forjado de una potencia regional</div>
             <h3 class="tl-scene-title">La guerra que construyó el modelo iraní</h3>
             <div class="tl-event-badge">Iran–Iraq War · 1980–1988</div>
+
+            <div class="tl-scene-gallery">
+              <div class="tl-gallery-main" data-scene="2" data-img="0">
+                <img src="images/cap_3_1.jpg" alt="Saddam Hussein con militares iraquíes" class="tl-gallery-img active" data-idx="0">
+                <img src="images/cap_3_2.jpg" alt="Tanque frente a pozos petroleros en llamas" class="tl-gallery-img" data-idx="1">
+                <div class="tl-gallery-overlay">
+                  <div class="tl-gallery-caption" id="tl-gallery-caption-2">Saddam Hussein junto a su estado mayor durante la guerra Irán–Irak</div>
+                  <div class="tl-gallery-nav">
+                    <button class="tl-gal-btn tl-gal-prev" data-scene="2">‹</button>
+                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                    <button class="tl-gal-btn tl-gal-next" data-scene="2">›</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="tl-body">
               <p>
                 En septiembre de 1980, Saddam Hussein invadió Irán con el respaldo tácito de
@@ -320,6 +377,22 @@
             <div class="tl-tag">Escena 4 · El intento de distensión</div>
             <h3 class="tl-scene-title">El acuerdo que prometió un nuevo capítulo</h3>
             <div class="tl-event-badge">JCPOA · 2015</div>
+
+            <div class="tl-scene-gallery">
+              <div class="tl-gallery-main" data-scene="3" data-img="0">
+                <img src="images/cap_4_1.jpg" alt="Diplomáticos en la firma del JCPOA en Viena" class="tl-gallery-img active" data-idx="0">
+                <img src="images/cap_4_2.jpg" alt="Apretón de manos en las negociaciones nucleares" class="tl-gallery-img" data-idx="1">
+                <div class="tl-gallery-overlay">
+                  <div class="tl-gallery-caption" id="tl-gallery-caption-3">Los cancilleres del P5+1 e Irán en la firma del JCPOA, Viena 2015</div>
+                  <div class="tl-gallery-nav">
+                    <button class="tl-gal-btn tl-gal-prev" data-scene="3">‹</button>
+                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                    <button class="tl-gal-btn tl-gal-next" data-scene="3">›</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="tl-body">
               <p>
                 Después de años de sanciones internacionales y tensiones crecientes por el programa
@@ -366,6 +439,23 @@
             <div class="tl-tag">Escena 5 · El retorno de la confrontación directa</div>
             <h3 class="tl-scene-title">El asesinato que casi desató una guerra</h3>
             <div class="tl-event-badge">Assassination of Qasem Soleimani · 2020</div>
+
+            <!-- Galería escena 5 -->
+            <div class="tl-scene-gallery">
+              <div class="tl-gallery-main" data-scene="4" data-img="0">
+                <img src="images/cap_5_1.jpg" alt="Soleimani, líder de las fuerzas iraníes en Irak" class="tl-gallery-img active" data-idx="0">
+                <img src="images/cap_5_2.jpg" alt="El asesinato de Soleimani desencadenó una crisis geopolítica" class="tl-gallery-img" data-idx="1">
+                <div class="tl-gallery-overlay">
+                  <div class="tl-gallery-caption" id="tl-gallery-caption-4">Soleimani, líder de las fuerzas iraníes en Irak</div>
+                  <div class="tl-gallery-nav">
+                    <button class="tl-gal-btn tl-gal-prev" data-scene="4">‹</button>
+                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                    <button class="tl-gal-btn tl-gal-next" data-scene="4">›</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="tl-body">
               <p>
                 En la madrugada del 3 de enero de 2020, un dron MQ-9 Reaper del ejército
@@ -494,13 +584,161 @@
     </div>
 
   </section>
+ 
+<!-- ═══════════════════════════════════════════════════════
+       ECONOMIC IMPACT SECTION — Impacto económico global
+       Va antes del grafo (step 5), después del timeline
+       ═══════════════════════════════════════════════════════ -->
+  <section data-step="6" id="economic-section">
 
-  <section data-step="0" class="trail"></section>
+    <!-- Encabezado de sección -->
+    <div class="eco-header">
+      <div class="eco-eyebrow">Capítulo VI · Impacto Global</div>
+      <h2 class="eco-title">El precio del <em>conflicto</em></h2>
+      <p class="eco-subtitle">Cada escalada entre Washington y Teherán se convierte en una perturbación económica que se propaga por los mercados globales de energía, comercio y divisas.</p>
+    </div>
+
+    <!-- BLOQUE 1: Gráfico del petróleo -->
+    <div class="eco-block" id="eco-oil-block">
+      <div class="eco-block-label">01 · El petróleo como arma</div>
+      <h3 class="eco-block-title">Cada crisis, un pico en el precio del barril</h3>
+      <p class="eco-block-desc">El precio del crudo Brent desde 1970 registra con precisión cada momento de tensión en el Golfo Pérsico. Las líneas verticales marcan los eventos clave de este conflicto.</p>
+      <div class="eco-chart-wrap">
+        <canvas id="oil-chart"></canvas>
+        <div class="eco-chart-annotations" id="oil-annotations">
+          <!-- Generado por JS -->
+        </div>
+      </div>
+      <div class="eco-chart-note">Precio ajustado a dólares de 2024. Fuente: BP Statistical Review, EIA.</div>
+    </div>
+
+    <!-- BLOQUE 2: Contadores -->
+    <div class="eco-block" id="eco-counters-block">
+      <div class="eco-block-label">02 · El costo de las sanciones</div>
+      <h3 class="eco-block-title">Cifras que definen la magnitud</h3>
+      <div class="eco-counters-grid">
+
+        <div class="eco-counter-card" data-target="1900" data-suffix="B" data-prefix="$" data-decimals="0">
+          <div class="ecc-value"><span class="ecc-num">0</span><span class="ecc-unit">B</span></div>
+          <div class="ecc-label">pérdidas acumuladas en comercio global vinculadas a sanciones sobre Irán</div>
+          <div class="ecc-source">FMI / Council on Foreign Relations</div>
+        </div>
+
+        <div class="eco-counter-card" data-target="60" data-suffix="%" data-prefix="" data-decimals="0">
+          <div class="ecc-value"><span class="ecc-num">0</span><span class="ecc-unit">%</span></div>
+          <div class="ecc-label">caída del rial iraní en 12 meses tras la retirada unilateral del JCPOA en 2018</div>
+          <div class="ecc-source">Banco Central de Irán / Reuters</div>
+        </div>
+
+        <div class="eco-counter-card" data-target="83" data-suffix="%" data-prefix="" data-decimals="0">
+          <div class="ecc-value"><span class="ecc-num">0</span><span class="ecc-unit">%</span></div>
+          <div class="ecc-label">reducción en exportaciones de petróleo iraní: de 2.5M a 0.4M barriles diarios bajo sanciones máximas</div>
+          <div class="ecc-source">OPEC / EIA 2019–2020</div>
+        </div>
+
+        <div class="eco-counter-card" data-target="21" data-suffix="M" data-prefix="" data-decimals="0">
+          <div class="ecc-value"><span class="ecc-num">0</span><span class="ecc-unit">M</span></div>
+          <div class="ecc-label">barriles diarios que transitan el Estrecho de Ormuz — el 21% del consumo petrolero mundial</div>
+          <div class="ecc-source">EIA Strait of Hormuz Report</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BLOQUE 3: Quién pierde, quién gana -->
+    <div class="eco-block" id="eco-sides-block">
+      <div class="eco-block-label">03 · Geografía del impacto</div>
+      <h3 class="eco-block-title">Cuando el Golfo arde, los mercados se dividen</h3>
+      <p class="eco-block-desc">Una escalada en el Estrecho de Ormuz no afecta a todos por igual. Hay actores que se benefician de la inestabilidad y otros que la absorben como un shock directo.</p>
+
+      <div class="eco-sides-grid">
+
+        <!-- Pierden -->
+        <div class="eco-side eco-side--lose">
+          <div class="eco-side-header">
+            <div class="eco-side-icon">↓</div>
+            <div class="eco-side-title">Absorben el golpe</div>
+          </div>
+          <div class="eco-side-items">
+            <div class="eco-side-item">
+              <div class="esi-flag">🇯🇵</div>
+              <div class="esi-info">
+                <div class="esi-name">Japón</div>
+                <div class="esi-detail">90% de su petróleo proviene del Golfo. Cada +$10/barril cuesta ~$15B anuales a su economía.</div>
+              </div>
+            </div>
+            <div class="eco-side-item">
+              <div class="esi-flag">🇨🇳</div>
+              <div class="esi-info">
+                <div class="esi-name">China</div>
+                <div class="esi-detail">Mayor importador mundial de crudo. Depende del Golfo para el 44% de sus importaciones energéticas.</div>
+              </div>
+            </div>
+            <div class="eco-side-item">
+              <div class="esi-flag">🇩🇪</div>
+              <div class="esi-info">
+                <div class="esi-name">Europa</div>
+                <div class="esi-detail">El encarecimiento energético alimenta inflación y debilita la industria manufacturera, especialmente alemana.</div>
+              </div>
+            </div>
+            <div class="eco-side-item">
+              <div class="esi-flag">🌍</div>
+              <div class="esi-info">
+                <div class="esi-name">Países en desarrollo</div>
+                <div class="esi-detail">Sin cobertura energética propia, los shocks del petróleo se traducen directamente en crisis de balanza de pagos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ganan -->
+        <div class="eco-side eco-side--gain">
+          <div class="eco-side-header">
+            <div class="eco-side-icon">↑</div>
+            <div class="eco-side-title">Se benefician de la tensión</div>
+          </div>
+          <div class="eco-side-items">
+            <div class="eco-side-item">
+              <div class="esi-flag">🇸🇦</div>
+              <div class="esi-info">
+                <div class="esi-name">Arabia Saudí</div>
+                <div class="esi-detail">Cada $1 de subida en el crudo genera ~$3B adicionales anuales. La tensión con Irán fortalece su posición en la OPEC.</div>
+              </div>
+            </div>
+            <div class="eco-side-item">
+              <div class="esi-flag">🇷🇺</div>
+              <div class="esi-info">
+                <div class="esi-name">Rusia</div>
+                <div class="esi-detail">Exportador masivo de crudo. Las sanciones a Irán reducen la competencia y sostienen precios elevados.</div>
+              </div>
+            </div>
+            <div class="eco-side-item">
+              <div class="esi-flag">🇺🇸</div>
+              <div class="esi-info">
+                <div class="isi-name">EE.UU. (sector energético)</div>
+                <div class="esi-detail">El shale oil americano se vuelve más competitivo cuando el crudo supera los $70/barril. La inestabilidad del Golfo acelera la independencia energética.</div>
+              </div>
+            </div>
+            <div class="eco-side-item">
+              <div class="esi-flag">⚔️</div>
+              <div class="esi-info">
+                <div class="esi-name">Industria de defensa global</div>
+                <div class="esi-detail">Cada escalada activa contratos de armamento. Los presupuestos militares del Golfo crecieron un 136% entre 2003 y 2023.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.eco-sides-grid -->
+    </div><!-- /.eco-block -->
+
+  </section>
 
 </div><!-- /#scroll-wrapper -->
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script type="module" src="js/main.js"></script>
 
 </body>
