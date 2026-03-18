@@ -1,0 +1,744 @@
+/* ════════════════════════════════════════════
+   CONFLICT SECTION — El Conflicto Actual
+   Capítulo entre Timeline y Grafo
+   ════════════════════════════════════════════ */
+
+#conflict-section {
+  height: auto;
+  min-height: 100vh;
+  pointer-events: auto;
+  display: block;
+  position: relative;
+  z-index: 10;
+
+  background:
+    radial-gradient(ellipse 80% 50% at 15% 20%, rgba(192,57,43,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 85% 75%, rgba(212,160,23,0.05) 0%, transparent 50%),
+    linear-gradient(180deg, #0d0d0d 0%, #0b0906 40%, #0d0d0d 100%);
+
+  border-top: 1px solid rgba(192,57,43,0.2);
+}
+
+/* ── Encabezado de sección ── */
+.cf-header {
+  max-width: 780px;
+  margin: 0 auto 0;
+  padding: 100px 48px 80px;
+  text-align: center;
+  position: relative;
+}
+
+.cf-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(192,57,43,0.4), transparent);
+}
+
+.cf-eyebrow {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--red);
+  opacity: 0.8;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.cf-eyebrow::before,
+.cf-eyebrow::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: rgba(192,57,43,0.4);
+}
+
+.cf-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(40px, 5.5vw, 72px);
+  color: var(--cream);
+  line-height: 1.02;
+  margin-bottom: 22px;
+  letter-spacing: -0.025em;
+}
+
+.cf-title em {
+  color: var(--red);
+  font-style: italic;
+}
+
+.cf-subtitle {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(245,240,232,0.5);
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ── Layout scrollytelling interno ── */
+/* Cada bloque: dos columnas — texto (izq) + visual (der) o viceversa */
+.cf-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  position: relative;
+}
+
+.cf-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Alternancia: bloques pares invierten el orden */
+.cf-block.reverse {
+  direction: rtl;
+}
+.cf-block.reverse > * {
+  direction: ltr;
+}
+
+/* ── Columna editorial ── */
+.cf-editorial {
+  padding: 80px 56px 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(255,255,255,0.04);
+}
+
+.cf-block.reverse .cf-editorial {
+  border-right: none;
+  border-left: 1px solid rgba(255,255,255,0.04);
+  padding: 80px 64px 80px 56px;
+}
+
+.cf-block-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 80px;
+  line-height: 1;
+  color: rgba(192,57,43,0.08);
+  letter-spacing: -0.04em;
+  margin-bottom: -16px;
+  position: relative;
+  z-index: 0;
+}
+
+.cf-block-tag {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.cf-block-mini {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  opacity: 0.85;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.cf-block-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 32px);
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.cf-block-title em { color: var(--red); font-style: italic; }
+
+.cf-body {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(245,240,232,0.7);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.cf-body strong { color: var(--gold); font-weight: 400; }
+.cf-body em { color: rgba(245,240,232,0.9); font-style: italic; }
+
+/* Data pills inline */
+.cf-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.cf-pill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 2px;
+  padding: 8px 14px;
+}
+
+.cf-pill .val {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+.cf-pill .lbl {
+  display: block;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 10px;
+  color: rgba(245,240,232,0.45);
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+/* Alert bar dentro de bloque */
+.cf-alert {
+  margin-top: 20px;
+  background: rgba(192,57,43,0.1);
+  border: 1px solid rgba(192,57,43,0.25);
+  border-radius: 2px;
+  padding: 12px 16px;
+  font-family: 'Source Serif 4', serif;
+  font-size: 12px;
+  color: rgba(245,240,232,0.65);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.6;
+}
+
+.cf-alert-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  margin-top: 5px;
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+/* ── Columna visual ── */
+.cf-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.15);
+}
+
+/* Canvas Chart.js dentro del visual */
+.cf-chart-wrap {
+  width: 100%;
+  position: relative;
+}
+
+.cf-chart-wrap canvas {
+  width: 100% !important;
+  max-height: 340px;
+}
+
+.cf-chart-title {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.3);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.cf-chart-note {
+  margin-top: 10px;
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  font-size: 10px;
+  color: rgba(245,240,232,0.2);
+  text-align: center;
+}
+
+/* ── Bloque especial: lista de proxies con mapa mini ── */
+.cf-proxy-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.cf-proxy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-left: 3px solid rgba(212,160,23,0.4);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.cf-proxy-item:hover {
+  background: rgba(255,255,255,0.04);
+  border-left-color: var(--gold);
+}
+
+.cf-proxy-flag {
+  font-size: 22px;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.cf-proxy-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--cream);
+  margin-bottom: 2px;
+}
+
+.cf-proxy-detail {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(245,240,232,0.5);
+}
+
+/* ── Bloque escenarios finales ── */
+.cf-scenarios {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.cf-scenario {
+  padding: 20px 22px;
+  border: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.cf-scenario::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  transition: width 0.3s ease;
+}
+
+.cf-scenario-a::before { background: var(--red); }
+.cf-scenario-b::before { background: var(--gold); }
+.cf-scenario-c::before { background: #3498db; }
+
+.cf-scenario:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.cf-scenario:hover::before {
+  width: 5px;
+}
+
+.cf-scenario-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 32px;
+  color: rgba(255,255,255,0.06);
+  position: absolute;
+  right: 18px; top: 10px;
+  line-height: 1;
+}
+
+.cf-scenario-label {
+  font-family: 'Source Serif 4', serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.35);
+  margin-bottom: 6px;
+}
+
+.cf-scenario-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+
+.cf-scenario-desc {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(245,240,232,0.5);
+}
+
+/* ── Bloque costos asimétricos: comparación visual ── */
+.cf-cost-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.cf-cost-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cf-cost-label {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 11px;
+  color: rgba(245,240,232,0.5);
+  width: 80px;
+  flex-shrink: 0;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.cf-cost-bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cf-cost-bar {
+  height: 28px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  width: 0;
+}
+
+.cf-cost-bar.animated { width: var(--bar-width); }
+
+.cf-cost-bar-val {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: rgba(245,240,232,0.9);
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+
+.cf-cost-bar--usa {
+  background: linear-gradient(90deg, rgba(30,80,160,0.6), rgba(30,80,160,0.3));
+  border: 1px solid rgba(80,130,255,0.2);
+  --bar-width: 100%;
+}
+
+.cf-cost-bar--iran {
+  background: linear-gradient(90deg, rgba(192,57,43,0.6), rgba(192,57,43,0.3));
+  border: 1px solid rgba(192,57,43,0.2);
+  --bar-width: 0.025%;
+}
+
+.cf-cost-ratio {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: rgba(192,57,43,0.08);
+  border: 1px solid rgba(192,57,43,0.2);
+  font-family: 'Source Serif 4', serif;
+  font-size: 12px;
+  color: rgba(245,240,232,0.6);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.cf-cost-ratio strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--red);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ── Dependencia energética: barras horizontales ── */
+.cf-dep-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.cf-dep-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cf-dep-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cf-dep-name {
+  font-family: 'Source Serif 4', serif;
+  font-size: 12px;
+  color: rgba(245,240,232,0.75);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cf-dep-pct {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--cream);
+}
+
+.cf-dep-track {
+  height: 6px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cf-dep-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  width: 0;
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cf-dep-fill.animated { width: var(--dep-width); }
+
+/* ── China: el observador ── */
+.cf-china-points {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.cf-china-point {
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.cf-china-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.cf-china-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--cream);
+  margin-bottom: 3px;
+}
+
+.cf-china-desc {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgba(245,240,232,0.5);
+}
+
+/* ── Bloque contexto: línea de tiempo rápida ── */
+.cf-context-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  position: relative;
+}
+
+.cf-context-timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+}
+
+.cf-ctx-event {
+  display: flex;
+  gap: 18px;
+  padding: 14px 0;
+  position: relative;
+}
+
+.cf-ctx-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(192,57,43,0.5);
+  background: rgba(192,57,43,0.15);
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.cf-ctx-year {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+
+.cf-ctx-label {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(245,240,232,0.6);
+}
+
+/* ── Resistencia interna: estructura ── */
+.cf-forces {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.cf-force-layer {
+  padding: 14px 18px;
+  position: relative;
+}
+
+.cf-force-layer:nth-child(1) {
+  background: rgba(192,57,43,0.12);
+  border: 1px solid rgba(192,57,43,0.25);
+}
+.cf-force-layer:nth-child(2) {
+  background: rgba(212,160,23,0.06);
+  border: 1px solid rgba(212,160,23,0.15);
+  margin-left: 12px;
+}
+.cf-force-layer:nth-child(3) {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  margin-left: 24px;
+}
+
+.cf-force-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--cream);
+  margin-bottom: 3px;
+}
+
+.cf-force-desc {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(245,240,232,0.5);
+}
+
+/* ── Divider entre bloques ── */
+.cf-divider {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 64px;
+  overflow: hidden;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212,160,23,0.15) 20%,
+    rgba(212,160,23,0.15) 80%,
+    transparent 100%
+  );
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .cf-block {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .cf-block.reverse { direction: ltr; }
+
+  .cf-editorial {
+    padding: 56px 32px 40px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .cf-block.reverse .cf-editorial {
+    border-left: none;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding: 56px 32px 40px;
+  }
+
+  .cf-visual { padding: 40px 32px 56px; }
+
+  .cf-header { padding: 60px 24px 50px; }
+}
+
+@media (max-width: 600px) {
+  .cf-editorial { padding: 40px 20px 28px; }
+  .cf-visual { padding: 28px 20px 40px; }
+  .cf-block-num { font-size: 56px; }
+  .cf-cost-label { width: 56px; font-size: 10px; }
+}
