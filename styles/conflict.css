@@ -265,6 +265,41 @@
   background: rgba(0,0,0,0.15);
 }
 
+/* Transparente: deja ver el mapa fijo detrás */
+.cf-visual--transparent {
+  background: transparent !important;
+  padding: 0;
+  /* Sin contenido: el mapa llena el espacio visualmente */
+}
+
+/* Sólido: tapa el mapa completamente */
+.cf-visual--solid {
+  background: #0d0d0d !important;
+  /* Pequeño borde izquierdo para separar de la columna editorial */
+  border-left: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Bloque con mapa: sin borde ni fondo oscuro propio */
+.cf-block--map {
+  background: transparent;
+}
+
+/* Reverse con mapa: la columna transparente va a la izquierda */
+.cf-block--map.cf-block--reverse {
+  grid-template-columns: 1fr 1fr;
+}
+.cf-block--map.cf-block--reverse .cf-visual--transparent {
+  order: -1;
+}
+
+/* Reverse sin mapa */
+.cf-block--reverse {
+  grid-template-columns: 1fr 1fr;
+}
+.cf-block--reverse .cf-visual--solid {
+  order: -1;
+}
+
 /* Canvas Chart.js dentro del visual */
 .cf-chart-wrap {
   width: 100%;
@@ -741,4 +776,52 @@
   .cf-visual { padding: 28px 20px 40px; }
   .cf-block-num { font-size: 56px; }
   .cf-cost-label { width: 56px; font-size: 10px; }
+}
+
+/* ── Fix: sección no tapa el mapa ── */
+#conflict-section {
+  background: transparent !important;
+}
+
+/* El header sí necesita fondo para legibilidad */
+.cf-header {
+  background: linear-gradient(180deg, #0d0d0d 0%, rgba(13,13,13,0.95) 100%);
+  position: relative;
+  z-index: 2;
+}
+
+/* Bloques sin mapa: fondo sólido en TODO el bloque */
+.cf-block:not(.cf-block--map) {
+  background: #0d0d0d;
+  position: relative;
+  z-index: 2;
+}
+
+/* Bloques con mapa: solo la columna editorial tiene fondo */
+.cf-block--map {
+  background: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+.cf-block--map .cf-editorial {
+  background: rgba(13,13,13,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Columna transparente: sin nada, el mapa se ve directo */
+.cf-visual--transparent {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* El mapa debe quedar por encima del fondo pero debajo del texto */
+#map {
+  z-index: 1 !important;
+}
+
+#scroll-wrapper {
+  z-index: 2;
 }

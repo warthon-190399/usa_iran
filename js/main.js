@@ -2,7 +2,7 @@ import { initMap, updateMap } from "./map.js"
 import { initScroll }         from "./scroll.js"
 import { initGraph }          from "./graph.js"
 import { initTimeline }       from "./timeline.js"
-import { initEconomic } from "./economic.js"
+import { initEconomic }       from "./economic.js"
 import { initConflict }       from "./conflict.js"
 
 // Inicializar mapa
@@ -12,9 +12,12 @@ const map = initMap()
 initScroll(updateMap)
 initTimeline()
 
-// Sección El Conflicto Actual (nuevo)
-initConflict()
+// Sección conflicto — recibe updateMap para controlar el mapa por bloque
+initConflict(updateMap)
 
-// Inicializar grafo D3 (Capítulo V, independiente del mapa)
+// Grafo D3
 initGraph("data/graph.json")
 initEconomic()
+
+// Exponer updateMap globalmente para debug y fallback
+window._updateMap = updateMap

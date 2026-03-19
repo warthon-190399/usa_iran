@@ -58,7 +58,7 @@ def transcribir_youtube(url):
 
 #%%
 # -------- EJEMPLO --------
-url = "https://www.youtube.com/watch?v=wwhCcBg9mT8&list=PLcp0oK-yKIcy7JBKWYthtBIPm3doAxYwI&index=7"
+url = "https://www.youtube.com/watch?v=vzPJBkQQeek"
 transcripcion = transcribir_youtube(url)
 
 print("\nTRANSCRIPCIÓN:\n")
