@@ -290,6 +290,59 @@ function injectRouteCSS() {
       white-space: nowrap;
     }
 
+
+
+    /* Ormuz heatmap — círculos concéntricos de calor */
+    @keyframes heatExpand {
+      0%   { stroke-opacity: 0.7; stroke-width: 2; }
+      100% { stroke-opacity: 0;   stroke-width: 0.5; }
+    }
+    @keyframes heatExpand2 {
+      0%   { stroke-opacity: 0.5; stroke-width: 1.5; }
+      100% { stroke-opacity: 0;   stroke-width: 0.5; }
+    }
+    .heat-ring-1 { animation: heatExpand  3.5s ease-out infinite; }
+    .heat-ring-2 { animation: heatExpand  3.5s ease-out infinite; animation-delay: 0.7s; }
+    .heat-ring-3 { animation: heatExpand2 3.5s ease-out infinite; animation-delay: 1.4s; }
+    .heat-ring-4 { animation: heatExpand2 3.5s ease-out infinite; animation-delay: 2.1s; }
+    .heat-ring-5 { animation: heatExpand2 3.5s ease-out infinite; animation-delay: 2.8s; }
+
+    /* Fleet marker */
+    @keyframes fleetPulse {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      50%  { transform: scale(1.8); opacity: 0;   }
+      100% { transform: scale(1);   opacity: 0;   }
+    }
+    .fleet-marker {
+      position: relative;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fleet-marker-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1.5px solid rgba(80,130,255,0.6);
+      animation: fleetPulse 2.8s ease-out infinite;
+    }
+    .fleet-marker-ring--2 {
+      animation-delay: 1.4s;
+    }
+    .fleet-marker-core {
+      position: relative;
+      z-index: 1;
+      width: 28px; height: 28px;
+      background: rgba(20,50,120,0.92);
+      border: 2px solid rgba(80,130,255,0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      box-shadow: 0 0 16px rgba(80,130,255,0.5), 0 0 32px rgba(80,130,255,0.2);
+      backdrop-filter: blur(4px);
+    }
+
     /* Map fade transition */
     #map {
       transition: opacity 0.6s ease;
@@ -671,8 +724,162 @@ export function initMap() {
   ])
 
   /* ── Store ── */
+
+
+  /* ── Ormuz Heatmap — calor de tráfico (step 2) ── */
+  const ormuzHeat = L.layerGroup()
+
+  // Círculos estáticos de relleno — gradiente de calor
+  const heatFills = [
+    { r: 40000,  color: 'rgba(220,50,20,0.18)'  },
+    { r: 90000,  color: 'rgba(210,70,10,0.12)'  },
+    { r: 160000, color: 'rgba(200,100,10,0.09)' },
+    { r: 260000, color: 'rgba(190,130,20,0.07)' },
+    { r: 400000, color: 'rgba(180,150,30,0.05)' },
+    { r: 580000, color: 'rgba(160,160,40,0.04)' },
+    { r: 800000, color: 'rgba(140,160,50,0.03)' },
+  ]
+  heatFills.forEach(({ r, color }) => {
+    L.circle([26.5, 56.5], {
+      radius: r,
+      color: 'transparent',
+      fillColor: color,
+      fillOpacity: 1,
+      weight: 0,
+      interactive: false
+    }).addTo(ormuzHeat)
+  })
+
+  // Anillos animados SVG superpuestos como marker
+  const heatRingsSVG = L.marker([26.5, 56.5], {
+    icon: L.divIcon({
+      className: '',
+      html: `<svg width="0" height="0" style="overflow:visible;" xmlns="http://www.w3.org/2000/svg">
+        <circle class="heat-ring-1" cx="0" cy="0" r="60"  fill="none" stroke="#e83010" />
+        <circle class="heat-ring-2" cx="0" cy="0" r="120" fill="none" stroke="#e85010" />
+        <circle class="heat-ring-3" cx="0" cy="0" r="200" fill="none" stroke="#d47010" />
+        <circle class="heat-ring-4" cx="0" cy="0" r="300" fill="none" stroke="#c49020" />
+        <circle class="heat-ring-5" cx="0" cy="0" r="420" fill="none" stroke="#b4a030" />
+      </svg>`,
+      iconSize: [0, 0],
+      iconAnchor: [0, 0]
+    }),
+    interactive: false
+  })
+
+  // Badge de tráfico central
+  const heatBadge = L.marker([26.5, 56.5], {
+    icon: L.divIcon({
+      className: '',
+      html: `<div style="
+        background: rgba(180,40,20,0.92);
+        border: 1.5px solid rgba(255,120,60,0.8);
+        border-radius: 3px;
+        padding: 8px 14px;
+        font-family: 'Source Serif 4', serif;
+        color: rgba(245,240,232,0.95);
+        white-space: nowrap;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 30px rgba(200,50,20,0.5), 0 4px 16px rgba(0,0,0,0.6);
+        text-align: center;
+        transform: translateX(-50%) translateY(-50%);
+      ">
+        <span style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;display:block;line-height:1;">21M</span>
+        <span style="font-size:9px;letter-spacing:0.18em;text-transform:uppercase;opacity:0.75;display:block;">barriles / día</span>
+        <span style="font-size:9px;opacity:0.5;display:block;margin-top:2px;">20% del gas mundial</span>
+      </div>`,
+      iconSize: [130, 60],
+      iconAnchor: [65, 30]
+    }),
+    interactive: false
+  })
+
+  // Label del estrecho
+  const heatLabel = L.marker([27.2, 57.5], {
+    icon: L.divIcon({
+      className: '',
+      html: `<div style="
+        color: rgba(255,140,80,0.9);
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        font-size: 11px;
+        text-shadow: 0 2px 8px #000, 0 0 20px rgba(200,50,20,0.8);
+        white-space: nowrap;
+        letter-spacing: 0.08em;
+      ">ESTRECHO DE ORMUZ</div>`,
+      iconSize: [180, 16],
+      iconAnchor: [0, 8]
+    }),
+    interactive: false
+  })
+
+  ormuzHeat.addLayer(heatRingsSVG)
+  ormuzHeat.addLayer(heatBadge)
+  ormuzHeat.addLayer(heatLabel)
+
+  /* ── 5ª Flota Naval — marcador destacado ── */
+  const fleetMarker = L.marker([26.08, 50.56], {
+    icon: L.divIcon({
+      className: '',
+      html: `<div class="fleet-marker">
+               <div class="fleet-marker-ring"></div>
+               <div class="fleet-marker-ring fleet-marker-ring--2"></div>
+               <div class="fleet-marker-core">⚓</div>
+             </div>`,
+      iconSize: [44, 44],
+      iconAnchor: [22, 22]
+    }),
+    interactive: true
+  }).bindPopup(`
+    <b style="color:#64a0ff;font-size:14px;">5ª Flota Naval · NSA Bahréin</b><br>
+    <span style="opacity:0.5;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;">
+      Única flota permanente fuera de EE.UU.
+    </span><br><br>
+    <span style="color:rgba(245,240,232,0.8);font-size:12px;line-height:1.7;">
+      <b style="color:#64a0ff;">2.5M km²</b> de área operativa<br>
+      Cubre Golfo Pérsico, Mar Arábigo y Mar Rojo<br>
+      Activada en <b style="color:#64a0ff;">1995</b> tras la Guerra del Golfo
+    </span>
+  `)
+
+  // Radio de cobertura naval (mucho más grande que las bases aéreas)
+  const fleetRange = L.circle([26.08, 50.56], {
+    color: 'rgba(80,130,255,0.35)',
+    weight: 1.5,
+    fillColor: 'rgba(80,130,255,0.04)',
+    fillOpacity: 1,
+    radius: 1800000,
+    dashArray: '4,8',
+    interactive: false
+  })
+
+  // Label de la flota
+  const fleetLabel = L.marker([27.5, 54.0], {
+    icon: L.divIcon({
+      className: '',
+      html: `<div style="
+        background: rgba(13,13,13,0.85);
+        border: 1px solid rgba(80,130,255,0.4);
+        border-radius: 2px;
+        padding: 4px 10px;
+        font-family: 'Source Serif 4', serif;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(100,160,255,0.85);
+        white-space: nowrap;
+        backdrop-filter: blur(6px);
+      ">5ª Flota Naval · Área de operación</div>`,
+      iconSize: [210, 22],
+      iconAnchor: [105, 11]
+    }),
+    interactive: false
+  })
+
+  const fleet = L.layerGroup([fleetRange, fleetMarker, fleetLabel])
+
   _map._layers_store = {
-    iranPoly, neighbors, bases, baseRanges, routes, hormuz,
+    iranPoly, neighbors, bases, baseRanges, routes, hormuz, fleet, ormuzHeat,
     // conflict
     conflictC01, conflictC03, conflictC07, conflictC08
   }
@@ -700,7 +907,7 @@ export function updateMap(step) {
   _map._currentStep = step
 
   const {
-    iranPoly, neighbors, bases, baseRanges, routes, hormuz,
+    iranPoly, neighbors, bases, baseRanges, routes, hormuz, fleet, ormuzHeat,
     conflictC01, conflictC03, conflictC07, conflictC08
   } = _map._layers_store
 
@@ -708,7 +915,7 @@ export function updateMap(step) {
 
   // Todas las capas posibles
   const allLayers = [
-    iranPoly, neighbors, bases, baseRanges, routes, hormuz,
+    iranPoly, neighbors, bases, baseRanges, routes, hormuz, fleet, ormuzHeat,
     conflictC01, conflictC03, conflictC07, conflictC08
   ]
   allLayers.forEach(l => { if (_map.hasLayer(l)) _map.removeLayer(l) })
@@ -718,32 +925,36 @@ export function updateMap(step) {
     mapEl.style.opacity = '1'
     _map.flyTo([28, 50], 3, { duration: 1.6 })
   }
+
+  // Step 1: Rutas comerciales — Irán + vecinos + rutas geodésicas
   if (step === 1) {
     mapEl.style.opacity = '1'
     _map.addLayer(neighbors)
     _map.addLayer(iranPoly)
-    _map.flyTo([32, 53], 3, { duration: 1.6 })
+    _map.addLayer(routes)
+    _map.flyTo([15, 62], 3, { duration: 1.8 })
   }
+
+  // Step 2: Ormuz — zoom cerrado + heatmap de tráfico (sin rutas)
   if (step === 2) {
     mapEl.style.opacity = '1'
     _map.addLayer(iranPoly)
-    _map.addLayer(bases)
-    _map.addLayer(baseRanges)
-    _map.flyTo([30, 50], 4.5, { duration: 1.6 })
+    _map.addLayer(ormuzHeat)
+    _map.flyTo([26.5, 56.5], 7, { duration: 2.0 })
   }
+
+  // Step 3: Presencia militar EE.UU. + 5ª Flota destacada
   if (step === 3) {
     mapEl.style.opacity = '1'
     _map.addLayer(iranPoly)
-    _map.addLayer(routes)
-    _map.addLayer(hormuz)
-    _map.flyTo([10, 60], 3, { duration: 1.8 })
+    _map.addLayer(neighbors)
+    _map.addLayer(bases)
+    _map.addLayer(baseRanges)
+    _map.addLayer(fleet)
+    _map.flyTo([28, 50], 4.5, { duration: 1.6 })
   }
-  if (step === 4) {
-    mapEl.style.opacity = '1'
-    _map.addLayer(iranPoly)
-    _map.addLayer(hormuz)
-    _map.flyTo([26.5, 56.5], 7, { duration: 1.8 })
-  }
+
+  // Step 4 eliminado — absorbido por step 2
 
   // ── Sin mapa: fade out ───────────────────────────────────────────────────
   if (step === 'off') {
@@ -757,24 +968,24 @@ export function updateMap(step) {
     _map.addLayer(iranPoly)
     // Vista amplia Europa+Oriente Medio: centrar en área visible (col derecha ~50%)
     // Desplazamos el centro hacia la izquierda para que el interés quede en col derecha
-    flyOffset(_map, [38, 52], 3.9, { duration: 2.0 })
+    flyOffset(_map, [38, 52], 3, { duration: 2.0 })
   }
   if (step === 'c03') {
     mapEl.style.opacity = '1'
     _map.addLayer(conflictC03)
     // Golfo Pérsico: el Golfo debe quedar en la mitad derecha
-    flyOffset(_map, [30, 95], 4.7, { duration: 1.8 })
+    flyOffset(_map, [26, 50], 5.5, { duration: 1.8 })
   }
   if (step === 'c07') {
     mapEl.style.opacity = '1'
     _map.addLayer(conflictC07)
     // Irán completo: centrar Irán en la columna derecha
-    flyOffset(_map, [32.5, 56], 5.5, { duration: 1.8 })
+    flyOffset(_map, [32.5, 54], 5.5, { duration: 1.8 })
   }
   if (step === 'c08') {
     mapEl.style.opacity = '1'
     _map.addLayer(conflictC08)
     // Levante + Golfo: la red proxy debe quedar en col derecha
-    flyOffset(_map, [30, 97], 4.5, { duration: 2.0 })
+    flyOffset(_map, [30, 46], 4, { duration: 2.0 })
   }
 }

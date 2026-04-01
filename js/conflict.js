@@ -29,10 +29,36 @@ export function initConflict(updateMapFn) {
   _updateMap = updateMapFn
 
   initBlockObserver()
+  initHeaderMap()
   initScrollReveal()
   initCostBars()
   initDepBars()
   initCharts()
+}
+
+
+// ── Activa el mapa cuando el header full-width entra en viewport ──────────
+function initHeaderMap() {
+  const header = document.querySelector('.cf-header')
+  if (!header || !_updateMap) return
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return
+      // Vista global: Oriente Medio visible, centrado
+      _updateMap('off')
+      // Pequeño delay para que el fade del mapa se vea
+      setTimeout(() => {
+        const mapEl = document.getElementById('map')
+        if (mapEl) mapEl.style.opacity = '1'
+        // Llamar flyTo directamente via window._updateMap con step especial
+        if (_updateMap) _updateMap('c01')
+      }, 300)
+      observer.unobserve(entry.target)
+    })
+  }, { threshold: 0.3 })
+
+  observer.observe(header)
 }
 
 // ── Observer: detecta bloque activo y dispara el mapa ────────────────────

@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/timeline.css">
 <link rel="stylesheet" href="styles/conflict.css">
-<link rel="stylesheet" href="styles/economic.css">
+<link rel="stylesheet" href="styles/bridge.css">
 </head>
 
 <body>
@@ -22,10 +22,24 @@
 <div id="map"></div>
 
 <!-- HERO -->
+<!-- ═══════════════════════════════════════════════════════
+     HERO — Solo título + párrafo introductorio con sombra
+     ═══════════════════════════════════════════════════════ -->
 <div id="hero">
   <div class="hero-eyebrow">Análisis Geopolítico · Medio Oriente</div>
   <h1 class="hero-title">EE.UU.<span> vs </span>Irán</h1>
   <p class="hero-sub">Una tensión que moldea el orden mundial</p>
+
+  <div class="hero-intro-wrap">
+    <p class="hero-intro">
+      Durante décadas, el enfrentamiento entre Washington y Teherán ha definido
+      la geopolítica de Medio Oriente. No es solo un conflicto bilateral: es el
+      eje alrededor del cual giran las rutas energéticas globales, el equilibrio
+      militar regional y los intereses de las grandes potencias. Tres factores
+      explican por qué este conflicto te afecta aunque vivas a miles de kilómetros.
+    </p>
+  </div>
+
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     Desplaza para explorar
@@ -37,128 +51,217 @@
 
   <section data-step="0"></section>
 
-  <!-- STEP 1 -->
+  <!-- ═══════════════════════════════════════════════════════
+       STEP 1 · Rutas comerciales del Golfo
+       Mapa: iranPoly + neighbors + routes (rutas geodésicas)
+       ═══════════════════════════════════════════════════════ -->
   <section data-step="1">
     <div class="card" id="card-1">
       <div class="card-header">
-        <div class="card-icon iran">🇮🇷</div>
+        <div class="card-icon oil">🛢️</div>
         <div>
-          <div class="card-chapter">Capítulo I</div>
-          <div class="card-title">Irán y su posición estratégica</div>
+          <div class="card-chapter">Factor I</div>
+          <div class="card-title">Rutas comerciales del Golfo</div>
         </div>
       </div>
       <div class="card-body">
         <p class="card-text">
-          Irán ocupa el corazón geográfico de Medio Oriente, con fronteras en el
+          Irán ocupa el corazón geográfico de Medio Oriente: fronteras en el
           <strong>Caspio, el Golfo Pérsico y el Golfo de Omán</strong>.
-          Su territorio controla accesos terrestres a Asia Central y el Cáucaso.
+          Su posición hace que cualquier tensión afecte directamente las arterias
+          del comercio global de energía.
         </p>
-        <div class="stat-row">
-          <div class="stat-pill"><span class="val">83M</span>habitantes</div>
-          <div class="stat-pill"><span class="val">4°</span>reservas de petróleo</div>
-          <div class="stat-pill"><span class="val">1,648 km</span>frontera costera</div>
-        </div>
-      </div>
-      <div class="alert-bar">
-        <div class="alert-dot"></div>
-        Régimen bajo sanciones internacionales desde 1979
-      </div>
-    </div>
-  </section>
-
-  <!-- STEP 2 -->
-  <section data-step="2">
-    <div class="card" id="card-2">
-      <div class="card-header">
-        <div class="card-icon usa">🏴</div>
-        <div>
-          <div class="card-chapter">Capítulo II</div>
-          <div class="card-title">El cerco militar de EE.UU.</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <p class="card-text">
-          Washington mantiene <strong>más de 35,000 efectivos</strong> desplegados
-          en bases que rodean Irán. Una presencia que funciona como mecanismo de
-          disuasión y proyección de fuerza.
-        </p>
-        <div class="base-list">
-          <div class="base-item"><div class="base-dot"></div>Al Udeid Air Base — Qatar · 10,000 efectivos</div>
-          <div class="base-item"><div class="base-dot"></div>Camp Arifjan — Kuwait · 13,000 efectivos</div>
-          <div class="base-item"><div class="base-dot"></div>Ain al-Asad — Iraq · 2,000 efectivos</div>
-          <div class="base-item"><div class="base-dot"></div>NSA Bahrain — 5ª Flota Naval</div>
-          <div class="base-item"><div class="base-dot"></div>Al Dhafra — Emiratos Árabes</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STEP 3 -->
-  <section data-step="3">
-    <div class="card" id="card-3">
-      <div class="card-header">
-        <div class="card-icon oil">⛽</div>
-        <div>
-          <div class="card-chapter">Capítulo III</div>
-          <div class="card-title">Rutas petroleras globales</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <p class="card-text">
-          El Golfo Pérsico concentra el <strong>30% del petróleo marítimo mundial</strong>.
-          Cualquier perturbación desencadena efectos inmediatos en los mercados energéticos globales.
+        <p class="card-text" style="margin-top:10px;">
+          El Golfo Pérsico mueve el <strong>30% del petróleo marítimo mundial</strong>,
+          distribuido en tres rutas principales hacia Asia, Europa y América.
         </p>
         <div class="legend">
           <div class="legend-item">
             <div class="legend-line" style="background:#f39c12;"></div>
-            Ruta Asia-Pacífico (43% del flujo)
+            Asia-Pacífico · 43% del flujo
           </div>
           <div class="legend-item">
             <div class="legend-line" style="background:#e74c3c;"></div>
-            Ruta Europa-Mediterráneo (28%)
+            Europa-Mediterráneo · 28%
           </div>
           <div class="legend-item">
             <div class="legend-line" style="background:#3498db;"></div>
-            Ruta Norteamérica (18%)
+            Norteamérica · 18%
           </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-pill"><span class="val">30%</span>petróleo marítimo global</div>
+          <div class="stat-pill"><span class="val">4°</span>reservas mundiales Irán</div>
+          <div class="stat-pill"><span class="val">+190</span>países afectados</div>
         </div>
       </div>
       <div class="alert-bar">
         <div class="alert-dot"></div>
-        21 millones de barriles diarios transitan el Golfo
+        Cualquier perturbación en el Golfo se traduce en inflación global en 48 horas
       </div>
     </div>
   </section>
 
-  <!-- STEP 4 -->
-  <section data-step="4">
-    <div class="card" id="card-4">
+  <!-- ═══════════════════════════════════════════════════════
+       STEP 2 · Estrecho de Ormuz — cuello de botella
+       Mapa: zoom cerrado + heatmap de tráfico
+       ═══════════════════════════════════════════════════════ -->
+  <section data-step="2">
+    <div class="card" id="card-2">
       <div class="card-header">
         <div class="card-icon warn">⚡</div>
         <div>
-          <div class="card-chapter">Capítulo IV</div>
+          <div class="card-chapter">Factor II</div>
           <div class="card-title">El Estrecho de Ormuz</div>
         </div>
       </div>
       <div class="card-body">
         <p class="card-text">
           Con apenas <strong>33 km de ancho</strong> en su punto más estrecho,
-          Ormuz es el cuello de botella energético del planeta. Irán ha amenazado
-          en múltiples ocasiones con bloquearlo como respuesta a sanciones.
+          Ormuz es el cuello de botella energético del planeta. 21 millones de
+          barriles diarios — el 20% del gas mundial — pasan por aquí sin alternativa.
+        </p>
+        <p class="card-text" style="margin-top:10px;">
+          Irán comparte ambas orillas con Omán. Ha amenazado en múltiples ocasiones
+          con bloquearlo como <strong>palanca de negociación</strong> frente a sanciones.
+          Un cierre de 30 días elevaría el crudo un 40–60%.
         </p>
         <div class="stat-row">
           <div class="stat-pill"><span class="val">33 km</span>ancho mínimo</div>
-          <div class="stat-pill"><span class="val">~20%</span>del gas mundial</div>
+          <div class="stat-pill"><span class="val">21M</span>barriles/día</div>
           <div class="stat-pill"><span class="val">+17</span>países afectados</div>
         </div>
       </div>
       <div class="alert-bar">
         <div class="alert-dot"></div>
-        Punto crítico de máxima tensión geopolítica
+        El mapa muestra la concentración de tráfico: todo el peso del comercio energético en 33 km
       </div>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════════════════════
+       STEP 3 · Presencia militar EE.UU. + 5ª Flota
+       Mapa: bases + baseRanges + fleet (5ª Flota destacada)
+       ═══════════════════════════════════════════════════════ -->
+  <section data-step="3">
+    <div class="card" id="card-3">
+      <div class="card-header">
+        <div class="card-icon usa">🏴</div>
+        <div>
+          <div class="card-chapter">Factor III</div>
+          <div class="card-title">El cerco militar de EE.UU.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Washington mantiene <strong>más de 35,000 efectivos</strong> en bases
+          que rodean Irán por todos los flancos. Una arquitectura de disuasión
+          construida durante tres décadas.
+        </p>
+        <div class="base-list">
+          <div class="base-item"><div class="base-dot"></div>Al Udeid Air Base — Qatar · 10,000 efectivos</div>
+          <div class="base-item"><div class="base-dot"></div>Camp Arifjan — Kuwait · 13,000 efectivos</div>
+          <div class="base-item"><div class="base-dot"></div>Ain al-Asad — Iraq · 2,000 efectivos</div>
+          <div class="base-item"><div class="base-dot"></div>Al Dhafra Air Base — Emiratos Árabes</div>
+        </div>
+
+        <div class="fleet-block">
+          <div class="fleet-header">
+            <div class="fleet-icon">⚓</div>
+            <div>
+              <div class="fleet-title">5ª Flota Naval · NSA Bahréin</div>
+              <div class="fleet-sub">La única flota americana permanentemente desplegada fuera de EE.UU.</div>
+            </div>
+          </div>
+          <div class="fleet-stats">
+            <div class="fleet-stat">
+              <span class="fleet-val">2.5M</span>
+              <span class="fleet-lbl">km² de área operativa</span>
+            </div>
+            <div class="fleet-stat">
+              <span class="fleet-val">20+</span>
+              <span class="fleet-lbl">buques de guerra</span>
+            </div>
+            <div class="fleet-stat">
+              <span class="fleet-val">1995</span>
+              <span class="fleet-lbl">año de activación</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert-bar">
+        <div class="alert-dot"></div>
+        La 5ª Flota cubre el Golfo Pérsico, el Mar Arábigo y el Mar Rojo simultáneamente
+      </div>
+    </div>
+  </section>
+  <!-- step 4 eliminado — Ormuz zoom absorbido por step 2 -->
+<!-- ═══════════════════════════════════════════════════════
+     BRIDGE SECTION — Conecta intro (pasos 1-3) con timeline
+     Va después del cierre del step 3 y antes de #timeline-section
+     ═══════════════════════════════════════════════════════ -->
+  <section id="bridge-section">
+
+    <div class="bridge-inner">
+
+      <!-- Pregunta retórica -->
+      <div class="bridge-question">
+        ¿Cómo dos países sin frontera común llegaron a ser
+        los mayores <em>rivales</em> del planeta?
+      </div>
+
+      <!-- Puente narrativo -->
+      <p class="bridge-body">
+        No fue un choque inevitable. Fue una acumulación de decisiones,
+        traiciones y crisis que durante cuatro décadas fueron construyendo
+        un muro de desconfianza irreversible. La respuesta está en la historia.
+      </p>
+
+      <!-- Mini hitos — anticipa el timeline -->
+      <div class="bridge-hitos">
+
+        <div class="bridge-hito">
+          <div class="bridge-hito-year">1979</div>
+          <div class="bridge-hito-line"></div>
+          <div class="bridge-hito-label">La revolución iraní rompe la alianza con Washington</div>
+        </div>
+
+        <div class="bridge-hito">
+          <div class="bridge-hito-year">1979–81</div>
+          <div class="bridge-hito-line"></div>
+          <div class="bridge-hito-label">444 días de rehenes sellan la enemistad</div>
+        </div>
+
+        <div class="bridge-hito">
+          <div class="bridge-hito-year">1980–88</div>
+          <div class="bridge-hito-line"></div>
+          <div class="bridge-hito-label">EE.UU. apoya a Irak en la guerra contra Irán</div>
+        </div>
+
+        <div class="bridge-hito">
+          <div class="bridge-hito-year">2015</div>
+          <div class="bridge-hito-line"></div>
+          <div class="bridge-hito-label">El JCPOA: una ventana de diálogo que duró tres años</div>
+        </div>
+
+        <div class="bridge-hito">
+          <div class="bridge-hito-year">2020</div>
+          <div class="bridge-hito-line"></div>
+          <div class="bridge-hito-label">El asesinato de Soleimani lleva la tensión al límite</div>
+        </div>
+
+      </div>
+
+      <!-- CTA scroll -->
+      <div class="bridge-cta">
+        <div class="bridge-cta-line"></div>
+        <span>Explora la cronología</span>
+        <div class="bridge-cta-line"></div>
+      </div>
+
+    </div>
+
+  </section>
 <!-- ═══════════════════════════════════════════════════════
        TIMELINE SECTION — Entre mapa (step 4) y grafo (step 5)
        ═══════════════════════════════════════════════════════ -->
@@ -513,11 +616,26 @@
      ════════════════════════════════════════════════════════════════ -->
 <section data-step="0" id="conflict-section">
 
-  <div class="cf-header">
-    <div class="cf-eyebrow">Capítulo Actual · Análisis del Conflicto</div>
-    <h2 class="cf-title">La anatomía de una <em>guerra</em> que ya comenzó</h2>
+  <div class="cf-timeline-transition">
+  <div class="cf-transition-label">
+    <span class="cf-transition-from">Cronología 1979–2020</span>
+    <div class="cf-transition-arrow">↓</div>
+    <span class="cf-transition-to">El conflicto hoy</span>
+  </div>
+</div>
+ 
+<!-- ── Header full-width con mapa detrás ── -->
+<div class="cf-header">
+  <div class="cf-header-inner">
+    <div class="cf-eyebrow">Análisis del Conflicto</div>
+    <h2 class="cf-title">La anatomía de una <em>guerra</em><br>que ya comenzó</h2>
     <p class="cf-subtitle">Diez dimensiones del enfrentamiento entre Washington y Teherán: estrategia, costos, proxies, energía y los tres futuros posibles.</p>
   </div>
+  <div class="cf-header-scroll">
+    <div class="cf-header-scroll-line"></div>
+    Explora el análisis
+  </div>
+</div>
 
   <!-- ══════════════════════════════
        01 · CON MAPA (c01)
@@ -906,155 +1024,6 @@
   </div>
 
 </section>
- 
-<!-- ═══════════════════════════════════════════════════════
-       ECONOMIC IMPACT SECTION — Impacto económico global
-       Va antes del grafo (step 5), después del timeline
-       ═══════════════════════════════════════════════════════ -->
-  <section data-step="6" id="economic-section">
-
-    <!-- Encabezado de sección -->
-    <div class="eco-header">
-      <div class="eco-eyebrow">Capítulo VI · Impacto Global</div>
-      <h2 class="eco-title">El precio del <em>conflicto</em></h2>
-      <p class="eco-subtitle">Cada escalada entre Washington y Teherán se convierte en una perturbación económica que se propaga por los mercados globales de energía, comercio y divisas.</p>
-    </div>
-
-    <!-- BLOQUE 1: Gráfico del petróleo -->
-    <div class="eco-block" id="eco-oil-block">
-      <div class="eco-block-label">01 · El petróleo como arma</div>
-      <h3 class="eco-block-title">Cada crisis, un pico en el precio del barril</h3>
-      <p class="eco-block-desc">El precio del crudo Brent desde 1970 registra con precisión cada momento de tensión en el Golfo Pérsico. Las líneas verticales marcan los eventos clave de este conflicto.</p>
-      <div class="eco-chart-wrap">
-        <canvas id="oil-chart"></canvas>
-        <div class="eco-chart-annotations" id="oil-annotations">
-          <!-- Generado por JS -->
-        </div>
-      </div>
-      <div class="eco-chart-note">Precio ajustado a dólares de 2024. Fuente: BP Statistical Review, EIA.</div>
-    </div>
-
-    <!-- BLOQUE 2: Contadores -->
-    <div class="eco-block" id="eco-counters-block">
-      <div class="eco-block-label">02 · El costo de las sanciones</div>
-      <h3 class="eco-block-title">Cifras que definen la magnitud</h3>
-      <div class="eco-counters-grid">
-
-        <div class="eco-counter-card" data-target="1900" data-suffix="B" data-prefix="$" data-decimals="0">
-          <div class="ecc-value"><span class="ecc-num">0</span><span class="ecc-unit">B</span></div>
-          <div class="ecc-label">pérdidas acumuladas en comercio global vinculadas a sanciones sobre Irán</div>
-          <div class="ecc-source">FMI / Council on Foreign Relations</div>
-        </div>
-
-        <div class="eco-counter-card" data-target="60" data-suffix="%" data-prefix="" data-decimals="0">
-          <div class="ecc-value"><span class="ecc-num">0</span><span class="ecc-unit">%</span></div>
-          <div class="ecc-label">caída del rial iraní en 12 meses tras la retirada unilateral del JCPOA en 2018</div>
-          <div class="ecc-source">Banco Central de Irán / Reuters</div>
-        </div>
-
-        <div class="eco-counter-card" data-target="83" data-suffix="%" data-prefix="" data-decimals="0">
-          <div class="ecc-value"><span class="ecc-num">0</span><span class="ecc-unit">%</span></div>
-          <div class="ecc-label">reducción en exportaciones de petróleo iraní: de 2.5M a 0.4M barriles diarios bajo sanciones máximas</div>
-          <div class="ecc-source">OPEC / EIA 2019–2020</div>
-        </div>
-
-        <div class="eco-counter-card" data-target="21" data-suffix="M" data-prefix="" data-decimals="0">
-          <div class="ecc-value"><span class="ecc-num">0</span><span class="ecc-unit">M</span></div>
-          <div class="ecc-label">barriles diarios que transitan el Estrecho de Ormuz — el 21% del consumo petrolero mundial</div>
-          <div class="ecc-source">EIA Strait of Hormuz Report</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- BLOQUE 3: Quién pierde, quién gana -->
-    <div class="eco-block" id="eco-sides-block">
-      <div class="eco-block-label">03 · Geografía del impacto</div>
-      <h3 class="eco-block-title">Cuando el Golfo arde, los mercados se dividen</h3>
-      <p class="eco-block-desc">Una escalada en el Estrecho de Ormuz no afecta a todos por igual. Hay actores que se benefician de la inestabilidad y otros que la absorben como un shock directo.</p>
-
-      <div class="eco-sides-grid">
-
-        <!-- Pierden -->
-        <div class="eco-side eco-side--lose">
-          <div class="eco-side-header">
-            <div class="eco-side-icon">↓</div>
-            <div class="eco-side-title">Absorben el golpe</div>
-          </div>
-          <div class="eco-side-items">
-            <div class="eco-side-item">
-              <div class="esi-flag">🇯🇵</div>
-              <div class="esi-info">
-                <div class="esi-name">Japón</div>
-                <div class="esi-detail">90% de su petróleo proviene del Golfo. Cada +$10/barril cuesta ~$15B anuales a su economía.</div>
-              </div>
-            </div>
-            <div class="eco-side-item">
-              <div class="esi-flag">🇨🇳</div>
-              <div class="esi-info">
-                <div class="esi-name">China</div>
-                <div class="esi-detail">Mayor importador mundial de crudo. Depende del Golfo para el 44% de sus importaciones energéticas.</div>
-              </div>
-            </div>
-            <div class="eco-side-item">
-              <div class="esi-flag">🇩🇪</div>
-              <div class="esi-info">
-                <div class="esi-name">Europa</div>
-                <div class="esi-detail">El encarecimiento energético alimenta inflación y debilita la industria manufacturera, especialmente alemana.</div>
-              </div>
-            </div>
-            <div class="eco-side-item">
-              <div class="esi-flag">🌍</div>
-              <div class="esi-info">
-                <div class="esi-name">Países en desarrollo</div>
-                <div class="esi-detail">Sin cobertura energética propia, los shocks del petróleo se traducen directamente en crisis de balanza de pagos.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ganan -->
-        <div class="eco-side eco-side--gain">
-          <div class="eco-side-header">
-            <div class="eco-side-icon">↑</div>
-            <div class="eco-side-title">Se benefician de la tensión</div>
-          </div>
-          <div class="eco-side-items">
-            <div class="eco-side-item">
-              <div class="esi-flag">🇸🇦</div>
-              <div class="esi-info">
-                <div class="esi-name">Arabia Saudí</div>
-                <div class="esi-detail">Cada $1 de subida en el crudo genera ~$3B adicionales anuales. La tensión con Irán fortalece su posición en la OPEC.</div>
-              </div>
-            </div>
-            <div class="eco-side-item">
-              <div class="esi-flag">🇷🇺</div>
-              <div class="esi-info">
-                <div class="esi-name">Rusia</div>
-                <div class="esi-detail">Exportador masivo de crudo. Las sanciones a Irán reducen la competencia y sostienen precios elevados.</div>
-              </div>
-            </div>
-            <div class="eco-side-item">
-              <div class="esi-flag">🇺🇸</div>
-              <div class="esi-info">
-                <div class="isi-name">EE.UU. (sector energético)</div>
-                <div class="esi-detail">El shale oil americano se vuelve más competitivo cuando el crudo supera los $70/barril. La inestabilidad del Golfo acelera la independencia energética.</div>
-              </div>
-            </div>
-            <div class="eco-side-item">
-              <div class="esi-flag">⚔️</div>
-              <div class="esi-info">
-                <div class="esi-name">Industria de defensa global</div>
-                <div class="esi-detail">Cada escalada activa contratos de armamento. Los presupuestos militares del Golfo crecieron un 136% entre 2003 y 2023.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /.eco-sides-grid -->
-    </div><!-- /.eco-block -->
-
-  </section>
 
 </div><!-- /#scroll-wrapper -->
 

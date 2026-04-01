@@ -19,24 +19,58 @@
   border-top: 1px solid rgba(192,57,43,0.2);
 }
 
-/* ── Encabezado de sección ── */
+/* ── Encabezado de sección — full width con mapa detrás ── */
 .cf-header {
-  max-width: 780px;
-  margin: 0 auto 0;
-  padding: 100px 48px 80px;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   text-align: center;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* Fondo transparente: se ve el mapa fijo detrás */
+  background: transparent;
 }
 
+/* Gradiente de entrada: funde desde el timeline (sólido) hacia transparente */
+.cf-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, #0d0d0d 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradiente de salida: vuelve a sólido para los bloques siguientes */
 .cf-header::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, rgba(192,57,43,0.4), transparent);
+  bottom: 0; left: 0; right: 0;
+  height: 160px;
+  background: linear-gradient(to top,
+    rgba(13,13,13,0.95) 0%,
+    rgba(13,13,13,0.6) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Contenido del header: encima de los gradientes */
+.cf-header-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 0 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cf-eyebrow {
@@ -57,7 +91,7 @@
 .cf-eyebrow::before,
 .cf-eyebrow::after {
   content: '';
-  width: 32px;
+  width: 48px;
   height: 1px;
   background: rgba(192,57,43,0.4);
 }
@@ -65,11 +99,12 @@
 .cf-title {
   font-family: 'Playfair Display', serif;
   font-weight: 900;
-  font-size: clamp(40px, 5.5vw, 72px);
+  font-size: clamp(48px, 7vw, 96px);
   color: var(--cream);
-  line-height: 1.02;
-  margin-bottom: 22px;
-  letter-spacing: -0.025em;
+  line-height: 1.0;
+  margin-bottom: 28px;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.8);
 }
 
 .cf-title em {
@@ -80,11 +115,35 @@
 .cf-subtitle {
   font-family: 'Source Serif 4', serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.8;
-  color: rgba(245,240,232,0.5);
-  max-width: 580px;
+  color: rgba(245,240,232,0.55);
+  max-width: 600px;
   margin: 0 auto;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+}
+
+/* Scroll indicator en el header */
+.cf-header-scroll {
+  position: relative;
+  z-index: 2;
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245,240,232,0.3);
+  font-family: 'Source Serif 4', serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.cf-header-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(192,57,43,0.6), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
 }
 
 /* ── Layout scrollytelling interno ── */
@@ -824,4 +883,65 @@
 
 #scroll-wrapper {
   z-index: 2;
+}
+
+/* ════════════════════════════════════════════
+   TRANSICIÓN TIMELINE → CONFLICT
+   ════════════════════════════════════════════ */
+
+.cf-timeline-transition {
+  position: relative;
+  z-index: 11;
+  background: #0d0d0d;
+  padding: 64px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(212,160,23,0.15);
+}
+
+.cf-transition-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.cf-transition-from {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.25);
+}
+
+.cf-transition-arrow {
+  font-size: 20px;
+  color: rgba(192,57,43,0.5);
+  animation: arrowBounce 2s ease-in-out infinite;
+  line-height: 1;
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%       { transform: translateY(6px); opacity: 1; }
+}
+
+.cf-transition-to {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  opacity: 0.85;
+}
+
+/* ── Header responsive ── */
+@media (max-width: 700px) {
+  .cf-header-inner { padding: 0 24px; }
+  .cf-title { font-size: clamp(36px, 8vw, 56px); }
+  .cf-subtitle { font-size: 15px; }
+  .cf-timeline-transition { padding: 40px 24px; }
 }

@@ -1,5 +1,5 @@
-const TOTAL_MAP_STEPS = 4   // pasos 1-4 controlan el mapa
-const TOTAL_STEPS     = 5   // paso 5 = grafo
+const TOTAL_MAP_STEPS = 3   // pasos 1-3 controlan el mapa
+const TOTAL_STEPS     = 3   // dots: solo pasos con mapa
 
 export function initScroll(updateMap) {
   const sections      = document.querySelectorAll("section[data-step]")
@@ -33,27 +33,46 @@ export function initScroll(updateMap) {
     }
   }
 
+  // ── Bridge: oculta el hero cuando entra, no interfiere con el observer principal ──
+  let bridgeVisible = false
+  const bridgeSection = document.getElementById("bridge-section")
+  if (bridgeSection) {
+    const bridgeObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        bridgeVisible = entry.isIntersecting
+        if (entry.isIntersecting) {
+          hero.classList.add("hidden")
+          counter.classList.add("visible")
+          updateMap("off")
+        }
+      })
+    }, { threshold: 0.1 })
+    bridgeObs.observe(bridgeSection)
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return
 
       const step = parseInt(entry.target.dataset.step)
 
-      // Barra de progreso — normalizada sobre todos los pasos
+      // Barra de progreso
       progressBar.style.width = step === 0
         ? "0%"
         : (step / TOTAL_STEPS) * 100 + "%"
 
-      // Hero y contador
+      // Hero y contador — solo mostrar hero en step 0 si bridge NO está visible
       if (step === 0) {
-        hero.classList.remove("hidden")
-        counter.classList.remove("visible")
+        if (!bridgeVisible) {
+          hero.classList.remove("hidden")
+          counter.classList.remove("visible")
+        }
       } else {
         hero.classList.add("hidden")
         counter.classList.add("visible")
       }
 
-      // El mapa solo reacciona a pasos 0-4
+      // El mapa reacciona a pasos 0-3
       if (step <= TOTAL_MAP_STEPS) {
         updateMap(step)
       }
