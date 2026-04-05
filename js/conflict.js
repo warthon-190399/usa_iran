@@ -9,15 +9,13 @@
 
 const BLOCK_MAP_STEPS = {
   'cf-block-01': 'c01',   // Contexto: Ucrania → Golfo (vista amplia)
-  'cf-block-02': null,    // Costos asimétricos — sin mapa
-  'cf-block-03': 'c03',   // Objetivos iraníes en el Golfo
   'cf-block-04': null,    // Dependencia energética — barras, sin mapa
   'cf-block-05': null,    // Guerra de desgaste — chart, sin mapa
   'cf-block-06': null,    // China — sin mapa
-  'cf-block-07': 'c07',   // Irán por dentro — zoom a Irán
-  'cf-block-08': 'c08',   // Red de proxies — vista Levante
   'cf-block-09': null,    // Cadena económica — sin mapa
   'cf-block-10': null,    // Escenarios — sin mapa
+  // Bloque 03 migrado a strategy section (st-screen-03)
+  // Bloques 02, 07, 08 migrados a strategy section
 }
 
 let _updateMap = null

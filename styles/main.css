@@ -375,6 +375,7 @@ section.trail {
   pointer-events: auto;
   display: flex;
   align-items: stretch;
+  width: 100%;
 
   background:
     radial-gradient(ellipse 80% 60% at 65% 50%, rgba(192,57,43,0.07) 0%, transparent 70%),
@@ -384,13 +385,14 @@ section.trail {
   border-top: 1px solid rgba(212,160,23,0.25);
 }
 
-/* Layout: dos columnas */
+/* Layout: dos columnas — sidebar angosto + canvas amplio */
 .graph-layout {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 280px 1fr;
   width: 100%;
   min-height: 100vh;
 }
+
 
 /* ── Columna editorial ── */
 .graph-editorial {

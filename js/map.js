@@ -13,7 +13,7 @@ function animatedRoute(waypoints, color, label, delay = 0) {
   }
 
   L.geodesic(waypoints, { ...base, weight: 10, opacity: 0.10 }).addTo(group)
-  L.geodesic(waypoints, { ...base, weight: 2,  opacity: 0.30 }).addTo(group)
+  L.geodesic(waypoints, { ...base, weight: 2, opacity: 0.30 }).addTo(group)
   L.geodesic(waypoints, {
     ...base,
     weight: 3,
@@ -355,13 +355,13 @@ export function initMap() {
   injectRouteCSS()
 
   _map = L.map('map', {
-    zoomControl:        false,
+    zoomControl: false,
     attributionControl: false,
-    scrollWheelZoom:    false,
-    dragging:           false,
-    doubleClickZoom:    false,
-    touchZoom:          false,
-    keyboard:           false
+    scrollWheelZoom: false,
+    dragging: false,
+    doubleClickZoom: false,
+    touchZoom: false,
+    keyboard: false
   }).setView([28, 50], 4)
 
   L.tileLayer(
@@ -371,32 +371,32 @@ export function initMap() {
 
   /* ── Capas base de países ── */
   const COUNTRY_LAYERS = {
-    iran:        { iso: 'IRN', color: '#e84040', fillColor: '#c0392b', fillOpacity: 0.35, weight: 1.8, opacity: 0.9 },
-    iraq:        { iso: 'IRQ', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.30, weight: 0.8, opacity: 0.5 },
-    kuwait:      { iso: 'KWT', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.30, weight: 0.8, opacity: 0.5 },
-    saudi:       { iso: 'SAU', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.25, weight: 0.8, opacity: 0.5 },
-    qatar:       { iso: 'QAT', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.32, weight: 0.8, opacity: 0.5 },
-    uae:         { iso: 'ARE', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.30, weight: 0.8, opacity: 0.5 },
-    bahrain:     { iso: 'BHR', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.33, weight: 0.8, opacity: 0.5 },
-    oman:        { iso: 'OMN', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.28, weight: 0.8, opacity: 0.5 },
-    turkmen:     { iso: 'TKM', color: '#888',    fillColor: '#999',    fillOpacity: 0.22, weight: 0.6, opacity: 0.6 },
-    afghanistan: { iso: 'AFG', color: '#888',    fillColor: '#999',    fillOpacity: 0.22, weight: 0.6, opacity: 0.6 },
-    azerbaijan:  { iso: 'AZE', color: '#888',    fillColor: '#999',    fillOpacity: 0.22, weight: 0.6, opacity: 0.6 },
+    iran: { iso: 'IRN', color: '#e84040', fillColor: '#c0392b', fillOpacity: 0.35, weight: 1.8, opacity: 0.9 },
+    iraq: { iso: 'IRQ', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.30, weight: 0.8, opacity: 0.5 },
+    kuwait: { iso: 'KWT', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.30, weight: 0.8, opacity: 0.5 },
+    saudi: { iso: 'SAU', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.25, weight: 0.8, opacity: 0.5 },
+    qatar: { iso: 'QAT', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.32, weight: 0.8, opacity: 0.5 },
+    uae: { iso: 'ARE', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.30, weight: 0.8, opacity: 0.5 },
+    bahrain: { iso: 'BHR', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.33, weight: 0.8, opacity: 0.5 },
+    oman: { iso: 'OMN', color: '#8a7040', fillColor: '#b8922a', fillOpacity: 0.28, weight: 0.8, opacity: 0.5 },
+    turkmen: { iso: 'TKM', color: '#888', fillColor: '#999', fillOpacity: 0.22, weight: 0.6, opacity: 0.6 },
+    afghanistan: { iso: 'AFG', color: '#888', fillColor: '#999', fillOpacity: 0.22, weight: 0.6, opacity: 0.6 },
+    azerbaijan: { iso: 'AZE', color: '#888', fillColor: '#999', fillOpacity: 0.22, weight: 0.6, opacity: 0.6 },
     // Nuevos para bloque 01
-    ukraine:     { iso: 'UKR', color: '#5580b0', fillColor: '#4a70a0', fillOpacity: 0.30, weight: 1.2, opacity: 0.7 },
-    russia:      { iso: 'RUS', color: '#666',    fillColor: '#555',    fillOpacity: 0.20, weight: 0.8, opacity: 0.5 },
-    syria:       { iso: 'SYR', color: '#8a5040', fillColor: '#7a4535', fillOpacity: 0.28, weight: 0.8, opacity: 0.5 },
-    lebanon:     { iso: 'LBN', color: '#c06030', fillColor: '#b05528', fillOpacity: 0.35, weight: 1.0, opacity: 0.7 },
-    yemen:       { iso: 'YEM', color: '#c0a030', fillColor: '#b09025', fillOpacity: 0.32, weight: 1.0, opacity: 0.7 },
-    israel:      { iso: 'ISR', color: '#4a80c0', fillColor: '#3a70b0', fillOpacity: 0.30, weight: 1.0, opacity: 0.7 },
+    ukraine: { iso: 'UKR', color: '#5580b0', fillColor: '#4a70a0', fillOpacity: 0.30, weight: 1.2, opacity: 0.7 },
+    russia: { iso: 'RUS', color: '#666', fillColor: '#555', fillOpacity: 0.20, weight: 0.8, opacity: 0.5 },
+    syria: { iso: 'SYR', color: '#8a5040', fillColor: '#7a4535', fillOpacity: 0.28, weight: 0.8, opacity: 0.5 },
+    lebanon: { iso: 'LBN', color: '#c06030', fillColor: '#b05528', fillOpacity: 0.35, weight: 1.0, opacity: 0.7 },
+    yemen: { iso: 'YEM', color: '#c0a030', fillColor: '#b09025', fillOpacity: 0.32, weight: 1.0, opacity: 0.7 },
+    israel: { iso: 'ISR', color: '#4a80c0', fillColor: '#3a70b0', fillOpacity: 0.30, weight: 1.0, opacity: 0.7 },
   }
 
-  const iranPoly  = L.layerGroup()
+  const iranPoly = L.layerGroup()
   const neighbors = L.layerGroup()
 
   // Capas nuevas para conflict section
-  const ukrainePoly  = L.layerGroup()
-  const russiaPoly   = L.layerGroup()
+  const ukrainePoly = L.layerGroup()
+  const russiaPoly = L.layerGroup()
   const proxyCountries = L.layerGroup() // líbano, yemen, siria, israel
 
   let _geojsonCache = null
@@ -433,11 +433,11 @@ export function initMap() {
   ).then(results => {
     results.forEach(({ key, layer }) => {
       if (!layer) return
-      if (key === 'iran')                              iranPoly.addLayer(layer)
-      else if (key === 'ukraine')                      ukrainePoly.addLayer(layer)
-      else if (key === 'russia')                       russiaPoly.addLayer(layer)
-      else if (['lebanon','yemen','syria','israel'].includes(key)) proxyCountries.addLayer(layer)
-      else                                             neighbors.addLayer(layer)
+      if (key === 'iran') iranPoly.addLayer(layer)
+      else if (key === 'ukraine') ukrainePoly.addLayer(layer)
+      else if (key === 'russia') russiaPoly.addLayer(layer)
+      else if (['lebanon', 'yemen', 'syria', 'israel'].includes(key)) proxyCountries.addLayer(layer)
+      else neighbors.addLayer(layer)
     })
     if (_map._currentStep >= 0) {
       const step = _map._currentStep
@@ -461,31 +461,31 @@ export function initMap() {
   }
 
   const bases = L.layerGroup([
-    baseMarker([25.11, 51.31], 'Al Udeid Air Base',      'Qatar'),
-    baseMarker([29.23, 47.45], 'Camp Arifjan',            'Kuwait'),
-    baseMarker([33.79, 42.44], 'Ain al-Asad',             'Iraq'),
+    baseMarker([25.11, 51.31], 'Al Udeid Air Base', 'Qatar'),
+    baseMarker([29.23, 47.45], 'Camp Arifjan', 'Kuwait'),
+    baseMarker([33.79, 42.44], 'Ain al-Asad', 'Iraq'),
     baseMarker([26.08, 50.56], 'NSA Bahrain · 5ª Flota', 'Bahrain'),
-    baseMarker([24.25, 54.65], 'Al Dhafra Air Base',      'Emiratos Árabes'),
-    baseMarker([30.44, 47.78], 'Camp Buehring',           'Kuwait')
+    baseMarker([24.25, 54.65], 'Al Dhafra Air Base', 'Emiratos Árabes'),
+    baseMarker([30.44, 47.78], 'Camp Buehring', 'Kuwait')
   ])
 
   const baseRanges = L.layerGroup([
-    L.circle([25.11, 51.31], { color:'rgba(80,130,255,0.3)', weight:1, fillColor:'rgba(80,130,255,0.05)', radius:500000, interactive:false }),
-    L.circle([29.23, 47.45], { color:'rgba(80,130,255,0.3)', weight:1, fillColor:'rgba(80,130,255,0.05)', radius:400000, interactive:false }),
-    L.circle([33.79, 42.44], { color:'rgba(80,130,255,0.3)', weight:1, fillColor:'rgba(80,130,255,0.05)', radius:450000, interactive:false })
+    L.circle([25.11, 51.31], { color: 'rgba(80,130,255,0.3)', weight: 1, fillColor: 'rgba(80,130,255,0.05)', radius: 500000, interactive: false }),
+    L.circle([29.23, 47.45], { color: 'rgba(80,130,255,0.3)', weight: 1, fillColor: 'rgba(80,130,255,0.05)', radius: 400000, interactive: false }),
+    L.circle([33.79, 42.44], { color: 'rgba(80,130,255,0.3)', weight: 1, fillColor: 'rgba(80,130,255,0.05)', radius: 450000, interactive: false })
   ])
 
   /* ── Rutas petroleras ── */
   const routeAsia = animatedRoute(
-    [ L.latLng(26.5,56.5), L.latLng(12.0,44.0), L.latLng(1.3,103.8), L.latLng(35.6,139.6) ],
+    [L.latLng(26.5, 56.5), L.latLng(12.0, 44.0), L.latLng(1.3, 103.8), L.latLng(35.6, 139.6)],
     '#f39c12', 'Asia-Pacífico · 43%', 0
   )
   const routeEurope = animatedRoute(
-    [ L.latLng(26.5,56.5), L.latLng(12.0,44.0), L.latLng(29.9,32.5), L.latLng(36.5,15.0), L.latLng(41.0,9.0) ],
+    [L.latLng(26.5, 56.5), L.latLng(12.0, 44.0), L.latLng(29.9, 32.5), L.latLng(36.5, 15.0), L.latLng(41.0, 9.0)],
     '#e74c3c', 'Europa-Mediterráneo · 28%', 1
   )
   const routeAmerica = animatedRoute(
-    [ L.latLng(26.5,56.5), L.latLng(12.0,44.0), L.latLng(-34.4,18.5), L.latLng(0.0,-25.0), L.latLng(25.0,-80.0) ],
+    [L.latLng(26.5, 56.5), L.latLng(12.0, 44.0), L.latLng(-34.4, 18.5), L.latLng(0.0, -25.0), L.latLng(25.0, -80.0)],
     '#3498db', 'Norteamérica · 18%', 2
   )
 
@@ -545,7 +545,7 @@ export function initMap() {
 
   // ── BLOQUE C01: Dos teatros (Ucrania + Golfo) ────────────────────────────
   const warUkraine = animatedRoute(
-    [ L.latLng(55.75, 37.6), L.latLng(50.45, 30.52) ],  // Moscú → Kiev
+    [L.latLng(55.75, 37.6), L.latLng(50.45, 30.52)],  // Moscú → Kiev
     '#5580b0', 'Frente Ucrania', 0
   )
 
@@ -586,18 +586,18 @@ export function initMap() {
 
   // ── BLOQUE C03: Objetivos iraníes en el Golfo ────────────────────────────
   const targetDesalinization = L.layerGroup([
-    targetMarker([27.0, 49.6],  '💧', 'Jubail (Saudi)', '#c0392b',
+    targetMarker([27.0, 49.6], '💧', 'Jubail (Saudi)', '#c0392b',
       'Mayor planta desalinizadora del mundo. 3M m³/día.'),
-    targetMarker([25.07, 55.13],'💧', 'Jebel Ali (EAU)', '#c0392b',
+    targetMarker([25.07, 55.13], '💧', 'Jebel Ali (EAU)', '#c0392b',
       'Abastece al 98% de Dubai. Crítica para 3M personas.'),
-    targetMarker([25.28, 51.53],'💧', 'Ras Abu Fontas (Qatar)', '#c0392b',
+    targetMarker([25.28, 51.53], '💧', 'Ras Abu Fontas (Qatar)', '#c0392b',
       'Única fuente de agua potable de Qatar.'),
   ])
 
   const targetOil = L.layerGroup([
     targetMarker([26.0, 49.97], '⛽', 'Abqaiq (Saudi)', '#d4a017',
       '7% del petróleo mundial pasa por esta instalación.'),
-    targetMarker([24.47, 54.37],'⛽', 'Ruwais (EAU)', '#d4a017',
+    targetMarker([24.47, 54.37], '⛽', 'Ruwais (EAU)', '#d4a017',
       'Refinería más grande de Oriente Medio fuera de Arabia.'),
   ])
 
@@ -633,8 +633,8 @@ export function initMap() {
   // ── BLOQUE C07: Irán por dentro ──────────────────────────────────────────
   // Zonas montañosas estratégicas (polígonos aproximados)
   const zagros = L.polygon([
-    [34.5, 46.0],[33.0, 47.5],[31.0, 49.5],[29.0, 50.5],
-    [28.0, 56.0],[30.0, 57.5],[32.0, 55.0],[34.0, 52.0],[36.0, 48.5]
+    [34.5, 46.0], [33.0, 47.5], [31.0, 49.5], [29.0, 50.5],
+    [28.0, 56.0], [30.0, 57.5], [32.0, 55.0], [34.0, 52.0], [36.0, 48.5]
   ], {
     color: 'rgba(100,80,60,0.4)',
     weight: 0,
@@ -645,8 +645,8 @@ export function initMap() {
   })
 
   const alborz = L.polygon([
-    [36.8, 49.0],[37.2, 51.0],[36.5, 53.0],[36.0, 56.0],
-    [37.5, 56.5],[38.5, 54.0],[38.0, 50.0],[37.5, 48.5]
+    [36.8, 49.0], [37.2, 51.0], [36.5, 53.0], [36.0, 56.0],
+    [37.5, 56.5], [38.5, 54.0], [38.0, 50.0], [37.5, 48.5]
   ], {
     color: 'rgba(100,80,60,0.4)',
     weight: 0,
@@ -671,7 +671,7 @@ export function initMap() {
     iranFacilityMarker([33.72, 51.72], 'Natanz', 'Enriquecimiento uraniо'),
     iranFacilityMarker([32.82, 51.52], 'Isfahan', 'Centro nuclear'),
     iranFacilityMarker([28.81, 50.89], 'Bushehr', 'Reactor nuclear'),
-    iranFacilityMarker([34.88, 48.84], 'Fordow',  'Instalación subterránea'),
+    iranFacilityMarker([34.88, 48.84], 'Fordow', 'Instalación subterránea'),
     iranFacilityMarker([35.69, 51.39], 'Teherán', 'HQ IRGC'),
   ])
 
@@ -692,10 +692,10 @@ export function initMap() {
   })
 
   // Líneas de comando desde Teherán
-  const lineHezbollah    = proxyLine(L.latLng(35.69,51.39), L.latLng(33.88,35.50), '#e67e22', 0)
-  const lineHouthis      = proxyLine(L.latLng(35.69,51.39), L.latLng(15.35,44.20), '#d4a017', 1)
-  const lineIraqMilitias = proxyLine(L.latLng(35.69,51.39), L.latLng(33.32,44.36), '#c0392b', 2)
-  const lineHamas        = proxyLine(L.latLng(35.69,51.39), L.latLng(31.50,34.46), '#e84040', 3)
+  const lineHezbollah = proxyLine(L.latLng(35.69, 51.39), L.latLng(33.88, 35.50), '#e67e22', 0)
+  const lineHouthis = proxyLine(L.latLng(35.69, 51.39), L.latLng(15.35, 44.20), '#d4a017', 1)
+  const lineIraqMilitias = proxyLine(L.latLng(35.69, 51.39), L.latLng(33.32, 44.36), '#c0392b', 2)
+  const lineHamas = proxyLine(L.latLng(35.69, 51.39), L.latLng(31.50, 34.46), '#e84040', 3)
 
   // Labels de zona proxy
   function proxyZoneLabel(latlng, text, color) {
@@ -710,10 +710,10 @@ export function initMap() {
   }
 
   const proxyLabels = L.layerGroup([
-    proxyZoneLabel([34.5,  35.0], 'Hezbollah',  '#e67e22'),
-    proxyZoneLabel([14.5,  44.5], 'Houthis',    '#d4a017'),
-    proxyZoneLabel([32.5,  43.5], 'Milicias',   '#c0392b'),
-    proxyZoneLabel([31.2,  34.0], 'Hamas',      '#e84040'),
+    proxyZoneLabel([34.5, 35.0], 'Hezbollah', '#e67e22'),
+    proxyZoneLabel([14.5, 44.5], 'Houthis', '#d4a017'),
+    proxyZoneLabel([32.5, 43.5], 'Milicias', '#c0392b'),
+    proxyZoneLabel([31.2, 34.0], 'Hamas', '#e84040'),
   ])
 
   const conflictC08 = L.layerGroup([
@@ -731,8 +731,8 @@ export function initMap() {
 
   // Círculos estáticos de relleno — gradiente de calor
   const heatFills = [
-    { r: 40000,  color: 'rgba(220,50,20,0.18)'  },
-    { r: 90000,  color: 'rgba(210,70,10,0.12)'  },
+    { r: 40000, color: 'rgba(220,50,20,0.18)' },
+    { r: 90000, color: 'rgba(210,70,10,0.12)' },
     { r: 160000, color: 'rgba(200,100,10,0.09)' },
     { r: 260000, color: 'rgba(190,130,20,0.07)' },
     { r: 400000, color: 'rgba(180,150,30,0.05)' },
@@ -959,6 +959,14 @@ export function updateMap(step) {
   // ── Sin mapa: fade out ───────────────────────────────────────────────────
   if (step === 'off') {
     mapEl.style.opacity = '0'
+  }
+
+  // ── Paso estrategia s04: Ormuz heatmap (reutiliza ormuzHeat + step 2) ──
+  if (step === 's04') {
+    mapEl.style.opacity = '1'
+    _map.addLayer(iranPoly)
+    _map.addLayer(ormuzHeat)
+    _map.flyTo([26.5, 51.5], 6, { duration: 2.0 })
   }
 
   // ── Pasos conflict section ───────────────────────────────────────────────
