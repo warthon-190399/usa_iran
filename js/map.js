@@ -996,4 +996,84 @@ export function updateMap(step) {
     // Levante + Golfo: la red proxy debe quedar en col derecha
     flyOffset(_map, [30, 46], 4, { duration: 2.0 })
   }
+
+  // ── Pasos Capítulo Ormuz ─────────────────────────────────────────────────
+  // oz01: Zoom cerrado Estrecho de Ormuz + heatmap de tráfico
+  if (step === 'oz01') {
+    mapEl.style.opacity = '1'
+    _map.addLayer(iranPoly)
+    _map.addLayer(ormuzHeat)
+    _map.addLayer(hormuz)
+    flyOffset(_map, [26.5, 56.5], 7.5, { duration: 2.0 })
+  }
+
+  // oz02: Vista media del Golfo — dependencia por país
+  if (step === 'oz02') {
+    mapEl.style.opacity = '1'
+    _map.addLayer(iranPoly)
+    _map.addLayer(neighbors)
+    _map.addLayer(ormuzHeat)
+    flyOffset(_map, [25, 54], 5, { duration: 2.0 })
+  }
+
+  // oz03: Heatmap con énfasis en Ormuz — contexto de peajes
+  if (step === 'oz03') {
+    mapEl.style.opacity = '1'
+    _map.addLayer(iranPoly)
+    _map.addLayer(ormuzHeat)
+    _map.addLayer(hormuzSVG)
+    flyOffset(_map, [26.8, 56.0], 7, { duration: 1.8 })
+  }
+
+  // oz04: Zoom a Isla Kharg (29.24°N, 50.32°E) — terminal exportación iraní
+  if (step === 'oz04') {
+    mapEl.style.opacity = '1'
+    _map.addLayer(iranPoly)
+    _map.addLayer(neighbors)
+    // Punto especial: isla Kharg
+    const khargLabel = L.marker([29.24, 50.32], {
+      icon: L.divIcon({
+        className: '',
+        html: `<div style="
+          background: rgba(192,57,43,0.92);
+          border: 1.5px solid rgba(255,120,80,0.9);
+          border-radius: 3px;
+          padding: 8px 14px;
+          font-family: 'Source Serif 4', serif;
+          color: rgba(245,240,232,0.95);
+          white-space: nowrap;
+          backdrop-filter: blur(8px);
+          box-shadow: 0 0 20px rgba(192,57,43,0.6);
+          transform: translateX(-50%) translateY(-110%);
+          text-align: center;
+        ">
+          <span style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;display:block;">🛢️ Isla Kharg</span>
+          <span style="font-size:10px;opacity:0.75;letter-spacing:0.1em;text-transform:uppercase;">Terminal exportación iraní</span>
+        </div>`,
+        iconSize: [160, 50],
+        iconAnchor: [80, 50]
+      }),
+      interactive: false
+    })
+    const khargDot = L.circleMarker([29.24, 50.32], {
+      radius: 10,
+      color: '#c0392b',
+      fillColor: '#c0392b',
+      fillOpacity: 0.9,
+      weight: 2,
+      interactive: true,
+      className: 'proxy-pulse-dot'
+    }).bindPopup(`<b style="color:#d4a017;">Isla Kharg</b><br>
+      <span style="opacity:0.7;font-size:12px;">Principal terminal de exportación petrolera irań. 
+      Gran parte del crudo iraní destinado a mercados internacionales sale por aquí.</span>`)
+
+    const khargLayer = L.layerGroup([khargDot, khargLabel])
+    _map.addLayer(khargLayer)
+    flyOffset(_map, [28.5, 51.0], 7, { duration: 2.0 })
+    // Limpiar la layer kharg cuando se cambie de paso
+    _map._khargLayer = khargLayer
+  } else if (_map._khargLayer) {
+    if (_map.hasLayer(_map._khargLayer)) _map.removeLayer(_map._khargLayer)
+    _map._khargLayer = null
+  }
 }

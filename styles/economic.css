@@ -1,33 +1,37 @@
 /* ════════════════════════════════════════════
-   ECONOMIC IMPACT SECTION
+   CAPÍTULO IV — Impacto Económico Global
    ════════════════════════════════════════════ */
 
 #economic-section {
   height: auto;
-  min-height: 100vh;
+  min-height: auto;
   pointer-events: auto;
   display: block;
   position: relative;
   z-index: 10;
-  padding: 100px 0 120px;
-
   background:
-    radial-gradient(ellipse 90% 40% at 50% 0%,   rgba(212,160,23,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 80%,  rgba(192,57,43,0.05) 0%, transparent 55%),
-    linear-gradient(180deg, #0d0d0d 0%, #0a0804 50%, #0d0d0d 100%);
-
-  border-top: 1px solid rgba(212,160,23,0.18);
+    radial-gradient(ellipse 60% 40% at 30% 20%, rgba(212,160,23,0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #0d0d0d 0%, #0a0804 100%);
+  border-top: 1px solid rgba(212,160,23,0.2);
 }
 
-/* ── Encabezado ── */
-.eco-header {
-  max-width: 700px;
-  margin: 0 auto 80px;
-  padding: 0 48px;
-  text-align: center;
+/* ── Header ── */
+.ec-header {
+  width: 100%;
+  padding: 90px 64px 70px;
+  background: linear-gradient(180deg, #0a0804 0%, rgba(10,8,4,0) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.eco-eyebrow {
+.ec-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ec-eyebrow {
   font-family: 'Source Serif 4', serif;
   font-weight: 300;
   font-size: 10px;
@@ -35,315 +39,361 @@
   text-transform: uppercase;
   color: var(--gold);
   opacity: 0.7;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
-.eco-title {
+.ec-title {
   font-family: 'Playfair Display', serif;
   font-weight: 900;
   font-size: clamp(36px, 5vw, 64px);
   color: var(--cream);
   line-height: 1.05;
-  margin-bottom: 20px;
   letter-spacing: -0.02em;
+  max-width: 760px;
+  margin-bottom: 20px;
 }
 
-.eco-title em {
-  color: var(--red);
-  font-style: italic;
-}
+.ec-title em { color: var(--gold); font-style: italic; }
 
-.eco-subtitle {
+.ec-intro {
   font-family: 'Source Serif 4', serif;
   font-weight: 300;
-  font-size: 16px;
-  line-height: 1.75;
-  color: rgba(245,240,232,0.55);
-  max-width: 560px;
-  margin: 0 auto;
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(245,240,232,0.5);
+  max-width: 580px;
 }
 
-/* ── Bloques ── */
-.eco-block {
-  max-width: 900px;
-  margin: 0 auto 100px;
-  padding: 0 48px;
+/* ── Pantallas ── */
+.ec-screen {
   opacity: 0;
-  transform: translateY(32px);
+  transform: translateY(20px);
   transition: opacity 0.7s ease, transform 0.7s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 
-.eco-block.visible {
+.ec-screen.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.eco-block-label {
+/* ════════════════════════════════════════════
+   PANTALLA 1 — Gráfico histórico con scroll
+   ════════════════════════════════════════════ */
+
+#ec-screen-historic {
+  /* Altura grande para que el scroll active los 7 periodos */
+  min-height: 700vh;
+  background: #0a0804;
+  position: relative;         /* necesario para los sentinels absolutos */
+}
+
+/* El contenido real queda pegado (sticky) mientras el usuario scrollea */
+.ec-chart-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 60px 64px 56px;
+  background: #0a0804;
+  /* Sombra inferior para separar del scroll */
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+.ec-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ec-chart-tag {
   font-family: 'Source Serif 4', serif;
   font-weight: 300;
   font-size: 10px;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.6;
-  margin-bottom: 10px;
+  opacity: 0.65;
+  margin-bottom: 6px;
 }
 
-.eco-block-title {
+.ec-chart-title {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: clamp(20px, 2.4vw, 28px);
+  font-size: clamp(20px, 2.5vw, 30px);
   color: var(--cream);
-  line-height: 1.2;
-  margin-bottom: 12px;
+  line-height: 1.15;
 }
 
-.eco-block-desc {
-  font-family: 'Source Serif 4', serif;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.75;
-  color: rgba(245,240,232,0.55);
-  max-width: 580px;
-  margin-bottom: 32px;
-}
+.ec-chart-title em { color: var(--gold); font-style: italic; }
 
-/* ── Bloque 1: Gráfico ── */
-.eco-chart-wrap {
-  position: relative;
-  width: 100%;
-  height: 280px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 2px;
-  overflow: visible;
-}
-
-#oil-chart {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.eco-chart-note {
-  margin-top: 10px;
-  font-family: 'Source Serif 4', serif;
-  font-style: italic;
-  font-size: 11px;
-  color: rgba(245,240,232,0.25);
-}
-
-/* Anotaciones del gráfico */
-.eco-chart-annotations {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-}
-
-.eco-annotation {
-  position: absolute;
-  top: 0;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-}
-
-.eco-annotation-line {
-  width: 1px;
-  height: 100%;
-  background: rgba(192,57,43,0.35);
-  position: absolute;
-  top: 0;
-}
-
-.eco-annotation-label {
-  position: absolute;
-  top: 8px;
-  background: rgba(13,13,13,0.9);
-  border: 1px solid rgba(192,57,43,0.4);
-  border-radius: 2px;
-  padding: 3px 6px;
-  font-family: 'Source Serif 4', serif;
-  font-size: 9px;
-  font-weight: 300;
-  color: rgba(245,240,232,0.7);
-  white-space: nowrap;
-  letter-spacing: 0.05em;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
-/* ── Bloque 2: Contadores ── */
-.eco-counters-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-}
-
-.eco-counter-card {
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.07);
-  padding: 32px 28px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
-
-.eco-counter-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 3px; height: 0;
-  background: linear-gradient(to bottom, var(--gold), var(--red));
-  transition: height 0.8s ease;
-}
-
-.eco-counter-card.counted::before {
-  height: 100%;
-}
-
-.eco-counter-card:hover {
-  background: rgba(255,255,255,0.04);
-  border-color: rgba(212,160,23,0.2);
-}
-
-.ecc-value {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: clamp(40px, 4.5vw, 60px);
-  color: var(--cream);
-  line-height: 1.0;
-  margin-bottom: 14px;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-}
-
-.ecc-unit {
-  font-size: 0.55em;
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.ecc-label {
-  font-family: 'Source Serif 4', serif;
-  font-weight: 300;
-  font-size: 13px;
-  line-height: 1.6;
-  color: rgba(245,240,232,0.6);
-  margin-bottom: 12px;
-}
-
-.ecc-source {
+.ec-chart-note {
   font-family: 'Source Serif 4', serif;
   font-style: italic;
   font-size: 10px;
   color: rgba(245,240,232,0.2);
-  letter-spacing: 0.05em;
+  align-self: flex-end;
 }
 
-/* ── Bloque 3: Pierden / Ganan ── */
-.eco-sides-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  margin-top: 32px;
-}
-
-.eco-side {
-  padding: 32px 28px;
-  border: 1px solid rgba(255,255,255,0.06);
-}
-
-.eco-side--lose {
-  background: rgba(192,57,43,0.04);
-  border-color: rgba(192,57,43,0.12);
-}
-
-.eco-side--gain {
-  background: rgba(46,204,113,0.03);
-  border-color: rgba(46,204,113,0.1);
-}
-
-.eco-side-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Canvas wrapper */
+.ec-canvas-wrap {
+  width: 100%;
+  height: 260px;
+  position: relative;
   margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-.eco-side-icon {
-  font-size: 20px;
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  line-height: 1;
+/* ── Cards de periodos ── */
+#ec-period-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
 }
 
-.eco-side--lose  .eco-side-icon { color: var(--red); }
-.eco-side--gain  .eco-side-icon { color: #2ecc71; }
+.ec-period-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 2px;
+  padding: 8px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  flex: 1 1 auto;
+  min-width: 110px;
+}
 
-.eco-side-title {
+.ec-period-card:hover {
+  background: rgba(212,160,23,0.08);
+  border-color: rgba(212,160,23,0.25);
+  transform: translateY(-1px);
+}
+
+.ec-period-card.active {
+  background: rgba(212,160,23,0.11);
+  border-color: rgba(212,160,23,0.50);
+  transform: translateY(-1px);
+}
+
+.ec-period-label {
+  display: block;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 3px;
+}
+
+.ec-period-title {
+  display: block;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 11px;
+  color: rgba(245,240,232,0.65);
+  line-height: 1.4;
+}
+
+/* ── Narración activa ── */
+#ec-narration {
+  background: rgba(212,160,23,0.05);
+  border: 1px solid rgba(212,160,23,0.15);
+  border-left: 3px solid var(--gold);
+  padding: 18px 22px;
+  transition: opacity 0.18s ease;
+}
+
+#ec-narration.refreshing { opacity: 0; }
+
+.ec-narration-label {
+  display: block;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.65;
+  margin-bottom: 5px;
+}
+
+.ec-narration-title {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: clamp(15px, 1.8vw, 20px);
   color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 8px;
 }
 
-.eco-side-items {
+.ec-narration-body {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.85;
+  color: rgba(245,240,232,0.62);
+}
+
+.ec-narration-body strong {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* ════════════════════════════════════════════
+   PANTALLA 2 — Zoom 2025–2026
+   ════════════════════════════════════════════ */
+
+#ec-screen-recent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  background: #0d0d0d;
+}
+
+.ec-recent-editorial {
+  padding: 80px 56px 80px 64px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: center;
 }
 
-.eco-side-item {
+.ec-recent-screen-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 72px;
+  line-height: 1;
+  color: rgba(212,160,23,0.06);
+  letter-spacing: -0.04em;
+  margin-bottom: -10px;
+}
+
+.ec-recent-tag {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.65;
+  margin-bottom: 10px;
+}
+
+.ec-recent-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 34px);
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.ec-recent-title em { color: var(--red); font-style: italic; }
+
+.ec-body {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(245,240,232,0.68);
+  margin-bottom: 10px;
+}
+
+.ec-body strong { color: var(--gold); font-weight: 400; }
+
+/* ── Columna visual reciente ── */
+.ec-recent-visual {
+  background: #090705;
+  border-left: 1px solid rgba(255,255,255,0.04);
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ec-recent-canvas-wrap {
+  width: 100%;
+  height: 220px;
+  margin-bottom: 24px;
+}
+
+/* ── Impact cards ── */
+#ec-recent-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ec-impact-card {
   display: flex;
   gap: 14px;
   align-items: flex-start;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-left: 3px solid var(--ic, var(--gold));
+  padding: 12px 16px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.esi-flag {
+.ec-impact-card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ec-impact-icon {
   font-size: 20px;
-  line-height: 1;
   flex-shrink: 0;
-  margin-top: 1px;
+  line-height: 1;
+  margin-top: 2px;
 }
 
-.esi-name {
-  font-family: 'Source Serif 4', serif;
-  font-weight: 400;
+.ec-impact-title {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
   font-size: 13px;
   color: var(--cream);
   margin-bottom: 3px;
 }
 
-.isi-name {
-  font-family: 'Source Serif 4', serif;
-  font-weight: 400;
-  font-size: 13px;
-  color: var(--cream);
-  margin-bottom: 3px;
-}
-
-.esi-detail {
+.ec-impact-text {
   font-family: 'Source Serif 4', serif;
   font-weight: 300;
   font-size: 12px;
-  line-height: 1.6;
-  color: rgba(245,240,232,0.5);
+  line-height: 1.65;
+  color: rgba(245,240,232,0.55);
+}
+
+.ec-impact-text strong {
+  color: var(--ic, var(--gold));
+  font-weight: 400;
 }
 
 /* ── Responsive ── */
-@media (max-width: 700px) {
-  #economic-section { padding: 60px 0 80px; }
-  .eco-header        { padding: 0 20px; margin-bottom: 48px; }
-  .eco-block         { padding: 0 20px; margin-bottom: 64px; }
-  .eco-counters-grid { grid-template-columns: 1fr; }
-  .eco-sides-grid    { grid-template-columns: 1fr; }
-  .eco-chart-wrap    { height: 200px; }
-  .ecc-value         { font-size: 36px; }
+@media (max-width: 960px) {
+  .ec-chart-sticky { padding: 40px 32px 44px; }
+  #ec-screen-recent {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .ec-recent-editorial { padding: 56px 32px 40px; }
+  .ec-recent-visual { padding: 40px 32px 56px; }
+  .ec-header { padding: 60px 32px 50px; }
+  /* En mobile, la sección histórica no necesita tanto scroll */
+  #ec-screen-historic { min-height: 500vh; }
+}
+
+@media (max-width: 600px) {
+  .ec-chart-sticky { padding: 28px 20px 32px; }
+  .ec-recent-editorial { padding: 36px 20px 28px; }
+  .ec-recent-visual { padding: 28px 20px 40px; }
+  .ec-header { padding: 44px 20px 36px; }
+  #ec-period-cards { gap: 4px; }
+  .ec-period-card { min-width: 90px; padding: 6px 10px; }
+  #ec-screen-historic { min-height: 400vh; }
 }

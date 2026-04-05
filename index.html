@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="styles/conflict.css">
 <link rel="stylesheet" href="styles/bridge.css">
 <link rel="stylesheet" href="styles/strategy.css">
+<link rel="stylesheet" href="styles/ormuz.css">
+<link rel="stylesheet" href="styles/economic.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 
 <body>
@@ -803,311 +806,246 @@
   </div>
 
 </section>
-<!-- ═══════════════════════════════════════════════════════════════════
-     CONFLICT SECTION — El Conflicto Actual
-     Insertar en index.html: después de #timeline-section,
-     antes de #graph-section
-     ════════════════════════════════════════════════════════════════ -->
-<section data-step="0" id="conflict-section">
+<!-- ══════════════════════════════════════════════════════
+     CAPÍTULO III — El Estrecho de Ormuz
+     Insertar en index.html DESPUÉS de #strategy-section
+     ══════════════════════════════════════════════════════ -->
+<section id="ormuz-section">
 
-  <div class="cf-timeline-transition">
-  <div class="cf-transition-label">
-    <span class="cf-transition-from">Cronología 1979–2020</span>
-    <div class="cf-transition-arrow">↓</div>
-    <span class="cf-transition-to">El conflicto hoy</span>
+  <!-- Header -->
+  <div class="oz-header">
+    <p class="oz-eyebrow">Capítulo III</p>
+    <h2 class="oz-title">El Estrecho de <em>Ormuz</em></h2>
+    <p class="oz-intro">33 kilómetros de agua que concentran el 20% del petróleo mundial. El punto de estrangulamiento más crítico del sistema energético global.</p>
   </div>
-</div>
- 
-<!-- ── Header full-width con mapa detrás ── -->
-<div class="cf-header">
-  <div class="cf-header-inner">
-    <div class="cf-eyebrow">Análisis del Conflicto</div>
-    <h2 class="cf-title">La anatomía de una <em>guerra</em><br>que ya comenzó</h2>
-    <p class="cf-subtitle">Diez dimensiones del enfrentamiento entre Washington y Teherán: estrategia, costos, proxies, energía y los tres futuros posibles.</p>
-  </div>
-  <div class="cf-header-scroll">
-    <div class="cf-header-scroll-line"></div>
-    Explora el análisis
-  </div>
-</div>
 
-  <!-- ══════════════════════════════
-       01 · CON MAPA (c01)
-       Vista amplia: Ucrania + Golfo
-       ══════════════════════════════ -->
-  <div class="cf-block cf-block--map" data-block="cf-block-01">
-    <div class="cf-editorial">
-      <div class="cf-block-num">01</div>
-      <div class="cf-block-tag">Contexto geopolítico</div>
-      <div class="cf-block-mini">Oportunidades en medio del caos</div>
-      <h3 class="cf-block-title">Cuando la guerra empieza <em>antes</em> de la guerra</h3>
-      <p class="cf-body">El conflicto entre Irán y EE.UU. no surge en el vacío. Todo empieza con la invasión rusa a Ucrania: Moscú concentra recursos allá y deja otros frentes abiertos.</p>
-      <p class="cf-body">Siria pierde respaldo ruso. Azerbaiyán recupera Nagorno-Karabakh. <strong>EE.UU. gana libertad estratégica en Oriente Medio.</strong> Cuando una superpotencia se enfrasa en una guerra, los demás actores aprovechan el espacio.</p>
-      <div class="cf-pills">
-        <div class="cf-pill"><span class="val">Feb 2022</span><span class="lbl">Invasión Ucrania</span></div>
-        <div class="cf-pill"><span class="val">Sep 2023</span><span class="lbl">Nagorno-Karabakh cae</span></div>
-        <div class="cf-pill"><span class="val">Oct 2023</span><span class="lbl">Hamas ataca Israel</span></div>
+  <!-- Pantalla 01: Dimensiones físicas + volumen -->
+  <div class="oz-screen oz-screen--map" data-screen="oz-screen-01">
+    <div class="oz-editorial">
+      <div class="oz-screen-num">01</div>
+      <p class="oz-screen-tag">El cuello de botella</p>
+      <h3 class="oz-screen-title">33 km que mueven el <em>mundo</em></h3>
+      <p class="oz-body">El Estrecho de Ormuz, con apenas <strong>33 km en su punto más angosto</strong>, es el corredor marítimo más estratégico del planeta. Por él transitan dos canales de navegación de apenas 3 km de ancho cada uno.</p>
+      <p class="oz-body">En términos de volumen, ningún otro chokepoint se le acerca: <strong>21 millones de barriles</strong> de petróleo cruzan este estrecho cada día.</p>
+
+      <div class="oz-stat-hero">
+        <span class="oz-stat-number">21M</span>
+        <div>
+          <span class="oz-stat-unit">barriles<br>diarios</span>
+        </div>
       </div>
-      <div class="cf-alert">
-        <div class="cf-alert-dot"></div>
-        El mapa muestra los dos teatros simultáneos: el frente europeo que absorbe a Rusia y el vacío estratégico que se abre en Oriente Medio.
+      <p class="oz-stat-label">20% del petróleo mundial · 25% del LNG global</p>
+
+      <div class="oz-pills">
+        <div class="oz-pill"><span class="val">33 km</span><span class="lbl">ancho mínimo</span></div>
+        <div class="oz-pill"><span class="val">20%</span><span class="lbl">petróleo mundial</span></div>
+        <div class="oz-pill"><span class="val">25%</span><span class="lbl">LNG global</span></div>
       </div>
     </div>
-    <!-- Columna transparente: se ve el mapa detrás -->
-    <div class="cf-visual cf-visual--transparent"></div>
+    <div class="oz-visual oz-visual--transparent"></div>
   </div>
 
+  <!-- Pantalla 02: Dependencia por país -->
+  <div class="oz-screen oz-screen--data oz-screen--reverse" data-screen="oz-screen-02">
+    <div class="oz-editorial">
+      <div class="oz-screen-num">02</div>
+      <p class="oz-screen-tag">Dependencia energética</p>
+      <h3 class="oz-screen-title">¿Quién pierde más si <em>Ormuz cierra</em>?</h3>
+      <p class="oz-body">Las economías de Asia-Pacífico son las más expuestas. Japón, con <strong>95% de su crudo</strong> procedente del Golfo Pérsico, enfrentaría una crisis energética inmediata. Corea del Sur e India no están lejos de ese umbral.</p>
+      <p class="oz-body">China, con el <strong>44% de su petróleo</strong> dependiente del estrecho, tiene tanto incentivo geopolítico para mantenerlo abierto como Irán para usarlo de palanca.</p>
 
-
-  <!-- ══════════════════════════════
-       04 · SIN MAPA
-       Dependencia energética
-       ══════════════════════════════ -->
-  <div class="cf-block" data-block="cf-block-04">
-    <div class="cf-editorial">
-      <div class="cf-block-num">04</div>
-      <div class="cf-block-tag">Palanca energética global</div>
-      <div class="cf-block-mini">Donde pasa el petróleo, pasa el mundo</div>
-      <h3 class="cf-block-title">Ormuz: la <em>llave</em> que Irán tiene en la mano</h3>
-      <p class="cf-body">El 20% del petróleo transportado por mar transita el Estrecho de Ormuz. No hace falta un bloqueo real: la <strong>amenaza creíble</strong> dispara los precios globales en horas.</p>
-      <p class="cf-body">Asia es la región más expuesta. Un bloqueo no es solo una crisis energética: es una crisis de crecimiento simultánea en las cuatro mayores economías del continente.</p>
-      <div class="cf-pills">
-        <div class="cf-pill"><span class="val">21M</span><span class="lbl">barriles/día por Ormuz</span></div>
-        <div class="cf-pill"><span class="val">33km</span><span class="lbl">Ancho mínimo del estrecho</span></div>
+      <div class="oz-alert">
+        <div class="oz-alert-dot"></div>
+        <span>Un cierre de 30 días provocaría reservas estratégicas insuficientes en Japón, Corea y partes de la India.</span>
       </div>
     </div>
-    <div class="cf-visual cf-visual--solid">
+    <div class="oz-visual oz-visual--data">
       <div style="width:100%;">
-        <div class="cf-chart-title">Dependencia del Golfo Pérsico por país (%)</div>
-        <div class="cf-dep-list">
-          <div class="cf-dep-item">
-            <div class="cf-dep-header">
-              <div class="cf-dep-name">🇯🇵 Japón</div>
-              <div class="cf-dep-pct">95%</div>
+        <p class="oz-chart-title">% del crudo importado vía Ormuz</p>
+        <div class="oz-dep-list">
+          <div class="oz-dep-item">
+            <div class="oz-dep-header">
+              <span class="oz-dep-name">🇯🇵 Japón</span>
+              <span class="oz-dep-pct">95%</span>
             </div>
-            <div class="cf-dep-track"><div class="cf-dep-fill" style="--dep-width:95%;"></div></div>
+            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:95%"></div></div>
           </div>
-          <div class="cf-dep-item">
-            <div class="cf-dep-header">
-              <div class="cf-dep-name">🇰🇷 Corea del Sur</div>
-              <div class="cf-dep-pct">70%</div>
+          <div class="oz-dep-item">
+            <div class="oz-dep-header">
+              <span class="oz-dep-name">🇰🇷 Corea del Sur</span>
+              <span class="oz-dep-pct">70%</span>
             </div>
-            <div class="cf-dep-track"><div class="cf-dep-fill" style="--dep-width:70%;"></div></div>
+            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:70%"></div></div>
           </div>
-          <div class="cf-dep-item">
-            <div class="cf-dep-header">
-              <div class="cf-dep-name">🇮🇳 India</div>
-              <div class="cf-dep-pct">55%</div>
+          <div class="oz-dep-item">
+            <div class="oz-dep-header">
+              <span class="oz-dep-name">🇮🇳 India</span>
+              <span class="oz-dep-pct">55%</span>
             </div>
-            <div class="cf-dep-track"><div class="cf-dep-fill" style="--dep-width:55%;"></div></div>
+            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:55%"></div></div>
           </div>
-          <div class="cf-dep-item">
-            <div class="cf-dep-header">
-              <div class="cf-dep-name">🇨🇳 China</div>
-              <div class="cf-dep-pct">44%</div>
+          <div class="oz-dep-item">
+            <div class="oz-dep-header">
+              <span class="oz-dep-name">🇨🇳 China</span>
+              <span class="oz-dep-pct">44%</span>
             </div>
-            <div class="cf-dep-track"><div class="cf-dep-fill" style="--dep-width:44%;"></div></div>
+            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:44%"></div></div>
           </div>
-          <div class="cf-dep-item">
-            <div class="cf-dep-header">
-              <div class="cf-dep-name">🇩🇪 Europa (prom.)</div>
-              <div class="cf-dep-pct">28%</div>
+          <div class="oz-dep-item">
+            <div class="oz-dep-header">
+              <span class="oz-dep-name">🇪🇺 Europa (promedio)</span>
+              <span class="oz-dep-pct">28%</span>
             </div>
-            <div class="cf-dep-track"><div class="cf-dep-fill" style="--dep-width:28%;"></div></div>
+            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:28%"></div></div>
           </div>
-          <div class="cf-dep-item">
-            <div class="cf-dep-header">
-              <div class="cf-dep-name">🇺🇸 EE.UU.</div>
-              <div class="cf-dep-pct">14%</div>
+          <div class="oz-dep-item">
+            <div class="oz-dep-header">
+              <span class="oz-dep-name">🇺🇸 EE.UU.</span>
+              <span class="oz-dep-pct">14%</span>
             </div>
-            <div class="cf-dep-track"><div class="cf-dep-fill" style="--dep-width:14%;background:linear-gradient(90deg,rgba(30,80,160,0.6),rgba(30,80,160,0.4));"></div></div>
-          </div>
-        </div>
-        <div class="cf-chart-note">Fuente: EIA, IEA 2023–2024</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════
-       05 · SIN MAPA
-       Guerra de desgaste
-       ══════════════════════════════ -->
-  <div class="cf-block cf-block--reverse" data-block="cf-block-05">
-    <div class="cf-visual cf-visual--solid">
-      <div class="cf-chart-wrap">
-        <div class="cf-chart-title">Costo acumulado EE.UU. vs capacidad operativa Irán</div>
-        <canvas id="cf-attrition-chart"></canvas>
-        <div class="cf-chart-note">Modelo estimativo. No refleja datos oficiales.</div>
-      </div>
-    </div>
-    <div class="cf-editorial">
-      <div class="cf-block-num">05</div>
-      <div class="cf-block-tag">Dinámica del conflicto</div>
-      <div class="cf-block-mini">Tecnología vs paciencia</div>
-      <h3 class="cf-block-title">Conflicto rápido vs <em>guerra de desgaste</em></h3>
-      <p class="cf-body">EE.UU. históricamente busca conflictos cortos y decisivos. Su ventana política es de meses, no de años. La opinión pública, el Congreso y los mercados toleran escaladas breves, no guerras prolongadas.</p>
-      <p class="cf-body">Irán diseñó su estrategia sabiendo esto. Su régimen puede <strong>absorber sufrimiento durante años</strong> sin enfrentar elecciones. Ya sobrevivió 8 años de guerra con Irak y décadas de sanciones.</p>
-      <div class="cf-alert">
-        <div class="cf-alert-dot"></div>
-        La paciencia es un activo estratégico. En una guerra de desgaste, quien más aguanta —no quien tiene mejor tecnología— determina el resultado.
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════
-       06 · SIN MAPA
-       China
-       ══════════════════════════════ -->
-  <div class="cf-block" data-block="cf-block-06">
-    <div class="cf-editorial">
-      <div class="cf-block-num">06</div>
-      <div class="cf-block-tag">El tercer jugador</div>
-      <div class="cf-block-mini">Observador que gana terreno</div>
-      <h3 class="cf-block-title">China: <em>la guerra de otros</em> como oportunidad</h3>
-      <p class="cf-body">Mientras EE.UU. gasta capital político y militar en Oriente Medio, y Rusia se consume en Ucrania, China adopta la estrategia del observador estratégico: dejar que los rivales se desgasten.</p>
-      <p class="cf-body">El resultado no es pasivo: compra petróleo iraní con descuento, expande la <strong>Belt and Road Initiative</strong>, y en 2023 brokereó el acuerdo de reanudación diplomática entre Irán y Arabia Saudita. EE.UU. no fue invitado.</p>
-    </div>
-    <div class="cf-visual cf-visual--solid">
-      <div style="display:flex;flex-direction:column;gap:10px;width:100%;">
-        <div style="display:flex;gap:14px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);">
-          <div style="font-size:22px;flex-shrink:0;">🛢️</div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--cream);margin-bottom:2px;">Petróleo iraní con descuento</div>
-            <div style="font-family:'Source Serif 4',serif;font-weight:300;font-size:11px;line-height:1.5;color:rgba(245,240,232,0.5);">~1.8M barriles/día, 10–15% por debajo del mercado. Las sanciones americanas benefician directamente a Beijing.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);">
-          <div style="font-size:22px;flex-shrink:0;">🤝</div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--cream);margin-bottom:2px;">Mediación Irán–Arabia Saudita</div>
-            <div style="font-family:'Source Serif 4',serif;font-weight:300;font-size:11px;line-height:1.5;color:rgba(245,240,232,0.5);">Marzo 2023: China brokereó la normalización diplomática. EE.UU. no fue invitado. Un momento histórico de reposicionamiento.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);">
-          <div style="font-size:22px;flex-shrink:0;">🛤️</div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--cream);margin-bottom:2px;">Belt and Road en el Golfo</div>
-            <div style="font-family:'Source Serif 4',serif;font-weight:300;font-size:11px;line-height:1.5;color:rgba(245,240,232,0.5);">Puertos en Omán, EAU, Pakistán. La inestabilidad americana consolida a China como alternativa de inversión estable.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);">
-          <div style="font-size:22px;flex-shrink:0;">📈</div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--cream);margin-bottom:2px;">El dividendo del caos</div>
-            <div style="font-family:'Source Serif 4',serif;font-weight:300;font-size:11px;line-height:1.5;color:rgba(245,240,232,0.5);">Cada escalada en el Golfo debilita la narrativa americana de "orden liberal". China llena ese vacío narrativo y económico.</div>
+            <div class="oz-dep-track"><div class="oz-dep-fill oz-dep-fill--usa" style="--dep-w:14%"></div></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════
-       09 · SIN MAPA
-       Cadena económica
-       ══════════════════════════════ -->
-  <div class="cf-block" data-block="cf-block-09">
-    <div class="cf-editorial">
-      <div class="cf-block-num">09</div>
-      <div class="cf-block-tag">Economía global</div>
-      <div class="cf-block-mini">Cuando la geopolítica toca tu bolsillo</div>
-      <h3 class="cf-block-title">El riesgo más inmediato es <em>energético</em></h3>
-      <p class="cf-body">No hace falta un bloqueo de Ormuz para desestabilizar los mercados. Pequeños ataques, amenazas creíbles o sabotajes pueden disparar el crudo 30–40% en semanas.</p>
-      <p class="cf-body">El mecanismo es directo: <strong>petróleo caro → inflación global → presión sobre bancos centrales → tipos altos → recesión latente</strong>. La geopolítica del Golfo llega a los bolsillos de ciudadanos de 190 países.</p>
-      <div class="cf-pills">
-        <div class="cf-pill"><span class="val">+38%</span><span class="lbl">Subida crudo inicio guerra Ucrania</span></div>
-        <div class="cf-pill"><span class="val">$10/b</span><span class="lbl">= 0.3% menos de PIB global</span></div>
+  <!-- Pantalla 03: Peajes en yuanes / petroyuan -->
+  <div class="oz-screen oz-screen--map" data-screen="oz-screen-03">
+    <div class="oz-editorial">
+      <div class="oz-screen-num">03</div>
+      <p class="oz-screen-tag">El arma financiera</p>
+      <h3 class="oz-screen-title">Peajes en <em>yuanes</em>: atacando el dólar</h3>
+      <p class="oz-body">Teherán está aplicando tasas de hasta <strong>2 millones de dólares</strong> por cada petrolero que cruza el estrecho. Se estima que esto podría generar ingresos de hasta <strong>1 billón de dólares anuales</strong>.</p>
+      <p class="oz-body">La exigencia más disruptiva: que los peajes se paguen en <strong>yuanes chinos</strong>. Esto ataca directamente la hegemonía del dólar en los mercados energéticos y acelera la transición hacia un "<strong>petroyuan</strong>".</p>
+
+      <div class="oz-toll-card">
+        <p class="oz-toll-header">Tasa por petrolero</p>
+        <div class="oz-toll-amount">$2M</div>
+        <p class="oz-toll-desc">por tránsito · pagado en yuanes</p>
+      </div>
+
+      <div class="oz-alert oz-alert--gold">
+        <div class="oz-alert-dot"></div>
+        <span>Si consolida el sistema, Irán recaudaría ~1 billón USD/año y erosionaría el dominio del dólar en el comercio energético global.</span>
       </div>
     </div>
-    <div class="cf-visual cf-visual--solid">
-      <div style="width:100%;">
-        <div class="cf-chart-title">Cadena de transmisión del shock energético</div>
-        <div style="display:flex;flex-direction:column;gap:2px;margin-top:12px;">
-          <div style="padding:12px 14px;background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.25);display:flex;align-items:center;gap:10px;">
-            <span style="font-size:16px;">💥</span>
-            <div>
-              <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--cream);">Escalada en Ormuz / ataque</div>
-              <div style="font-family:'Source Serif 4',serif;font-size:10px;color:rgba(245,240,232,0.4);">Military action · sabotage · credible threat</div>
-            </div>
-          </div>
-          <div style="height:14px;display:flex;justify-content:center;align-items:center;"><div style="width:1px;height:100%;background:rgba(212,160,23,0.3);"></div></div>
-          <div style="padding:12px 14px;background:rgba(212,160,23,0.06);border:1px solid rgba(212,160,23,0.15);display:flex;align-items:center;gap:10px;">
-            <span style="font-size:16px;">📈</span>
-            <div>
-              <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--cream);">Crudo Brent +20–60% en semanas</div>
-              <div style="font-family:'Source Serif 4',serif;font-size:10px;color:rgba(245,240,232,0.4);">Futuros reaccionan horas antes del evento físico</div>
-            </div>
-          </div>
-          <div style="height:14px;display:flex;justify-content:center;align-items:center;"><div style="width:1px;height:100%;background:rgba(212,160,23,0.3);"></div></div>
-          <div style="padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px;">
-            <span style="font-size:16px;">🔥</span>
-            <div>
-              <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--cream);">Inflación: energía, transporte, alimentos</div>
-              <div style="font-family:'Source Serif 4',serif;font-size:10px;color:rgba(245,240,232,0.4);">El crudo sube todo: plásticos, fertilizantes, logística</div>
-            </div>
-          </div>
-          <div style="height:14px;display:flex;justify-content:center;align-items:center;"><div style="width:1px;height:100%;background:rgba(212,160,23,0.3);"></div></div>
-          <div style="padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px;">
-            <span style="font-size:16px;">🏦</span>
-            <div>
-              <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--cream);">Tipos al alza: presión sobre deuda global</div>
-              <div style="font-family:'Source Serif 4',serif;font-size:10px;color:rgba(245,240,232,0.4);">FED, BCE, BoJ forzados a actuar simultáneamente</div>
-            </div>
-          </div>
-          <div style="height:14px;display:flex;justify-content:center;align-items:center;"><div style="width:1px;height:100%;background:rgba(212,160,23,0.3);"></div></div>
-          <div style="padding:12px 14px;background:rgba(30,80,160,0.06);border:1px solid rgba(80,130,255,0.1);display:flex;align-items:center;gap:10px;">
-            <span style="font-size:16px;">📉</span>
-            <div>
-              <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--cream);">Recesión latente en economías dependientes</div>
-              <div style="font-family:'Source Serif 4',serif;font-size:10px;color:rgba(245,240,232,0.4);">Europa, Japón, India, países emergentes</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="oz-visual oz-visual--transparent"></div>
   </div>
 
-  <!-- ══════════════════════════════
-       10 · SIN MAPA
-       Tres escenarios
-       ══════════════════════════════ -->
-  <div class="cf-block cf-block--reverse" data-block="cf-block-10" style="border-bottom:none;">
-    <div class="cf-visual cf-visual--solid">
-      <div style="display:flex;flex-direction:column;gap:2px;width:100%;">
-        <div style="padding:20px 22px;background:rgba(192,57,43,0.05);border:1px solid rgba(192,57,43,0.15);border-left:3px solid var(--red);position:relative;">
-          <div style="position:absolute;right:16px;top:10px;font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;">I</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:5px;">Escenario A · alta intensidad</div>
-          <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:var(--cream);margin-bottom:6px;">Victoria rápida de EE.UU.</div>
-          <div style="font-family:'Source Serif 4',serif;font-weight:300;font-size:12px;line-height:1.6;color:rgba(245,240,232,0.5);">Campaña aérea derriba el régimen. Probabilidad baja: la experiencia de Irak 2003 muestra que derrocar un gobierno no garantiza el orden posterior.</div>
-        </div>
-        <div style="padding:20px 22px;background:rgba(212,160,23,0.04);border:1px solid rgba(212,160,23,0.12);border-left:3px solid var(--gold);position:relative;">
-          <div style="position:absolute;right:16px;top:10px;font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;">II</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:5px;">Escenario B · más probable</div>
-          <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:var(--cream);margin-bottom:6px;">Guerra larga y negociación</div>
-          <div style="font-family:'Source Serif 4',serif;font-weight:300;font-size:12px;line-height:1.6;color:rgba(245,240,232,0.5);">Irán resiste, EE.UU. se desgasta. Después de 18–36 meses, fatiga de guerra fuerza negociaciones. El régimen sobrevive, debilitado pero intacto.</div>
-        </div>
-        <div style="padding:20px 22px;background:rgba(52,152,219,0.04);border:1px solid rgba(52,152,219,0.12);border-left:3px solid #3498db;position:relative;">
-          <div style="position:absolute;right:16px;top:10px;font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;">III</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:5px;">Escenario C · largo plazo</div>
-          <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:var(--cream);margin-bottom:6px;">Ascenso de China</div>
-          <div style="font-family:'Source Serif 4',serif;font-weight:300;font-size:12px;line-height:1.6;color:rgba(245,240,232,0.5);">Resultado indirecto del desgaste de EE.UU. y Rusia. China consolida su posición como árbitro del petróleo global. El siglo XXI se decide en el Golfo Pérsico.</div>
+  <!-- Pantalla 04: Isla Kharg — punto crítico -->
+  <div class="oz-screen oz-screen--map" data-screen="oz-screen-04">
+    <div class="oz-editorial">
+      <div class="oz-screen-num">04</div>
+      <p class="oz-screen-tag">El talón de Aquiles iraní</p>
+      <h3 class="oz-screen-title"><em>Isla Kharg</em>: el punto más vulnerable</h3>
+      <p class="oz-body">Ormuz es el arma de Irán, pero tiene su propio punto ciego: la <strong>Isla Kharg</strong>. Esta pequeña isla en el Golfo Pérsico concentra la mayor parte de las exportaciones petroleras iraníes.</p>
+      <p class="oz-body">Cualquier ataque sostenido contra Kharg colapsaría los ingresos de petróleo del régimen en semanas. Es el contra-leverage que equilibra la ecuación estratégica.</p>
+
+      <div class="oz-kharg">
+        <span class="oz-kharg-icon">🛢️</span>
+        <div>
+          <div class="oz-kharg-title">Terminal de exportación Kharg</div>
+          <p class="oz-kharg-sub">Principal instalación de exportación petrolera del país. Gran parte del crudo iraní destinado a mercados internacionales sale a través de esta terminal en la Isla Kharg (29°N, 50°E).</p>
         </div>
       </div>
+
+      <div class="oz-alert" style="margin-top:16px;">
+        <div class="oz-alert-dot"></div>
+        <span>Si Kharg es neutralizada, Irán pierde su principal fuente de divisas en cuestión de días, no semanas.</span>
+      </div>
     </div>
-    <div class="cf-editorial">
-      <div class="cf-block-num">10</div>
-      <div class="cf-block-tag">Escenarios estratégicos</div>
-      <div class="cf-block-mini">Tres futuros posibles</div>
-      <h3 class="cf-block-title">Las guerras se deciden en <em>política</em>, no solo en batalla</h3>
-      <p class="cf-body">El resultado final no depende únicamente de la capacidad militar. La resistencia interna, la economía global y la paciencia estratégica de cada actor determinarán cuál de los tres escenarios se materializa.</p>
-      <p class="cf-body">Ningún escenario es inevitable. Cada uno depende de decisiones políticas que aún no se han tomado, y de accidentes que nadie puede predecir.</p>
-      <div class="cf-alert">
-        <div class="cf-alert-dot"></div>
-        La lección histórica es clara: las guerras en Oriente Medio raramente terminan como los que las empiezan imaginan.
+    <div class="oz-visual oz-visual--transparent"></div>
+  </div>
+
+  <!-- Pantalla 05: Síntesis final del capítulo -->
+  <div class="oz-screen oz-screen--data" data-screen="oz-screen-05">
+    <div class="oz-editorial">
+      <div class="oz-screen-num">05</div>
+      <p class="oz-screen-tag">El equilibrio del terror</p>
+      <h3 class="oz-screen-title">Ormuz como <em>arma de destrucción</em> mutua</h3>
+      <p class="oz-body">Irán tiene el poder de cerrar Ormuz y paralizar la economía global. Pero cerrar el estrecho también destruiría los ingresos de petróleo iraníes y desencadenaría una respuesta militar inmediata de EE.UU.</p>
+      <p class="oz-body">El resultado es un <strong>equilibrio de disuasión mutua</strong>: el estrecho permanece abierto porque su cierre sería catastrófico para todas las partes. Pero la amenaza latente es suficiente para distorsionar los mercados energéticos globales.</p>
+
+      <div class="oz-pills">
+        <div class="oz-pill"><span class="val">$1T</span><span class="lbl">potencial ingreso anual</span></div>
+        <div class="oz-pill"><span class="val">+17</span><span class="lbl">países afectados</span></div>
+        <div class="oz-pill"><span class="val">3 km</span><span class="lbl">canal navegable</span></div>
+      </div>
+    </div>
+    <div class="oz-visual oz-visual--data">
+      <div style="width:100%;text-align:center;">
+        <p class="oz-chart-title">El dilema iraní</p>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);padding:20px 24px;text-align:left;">
+            <p style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:8px;">Si cierra Ormuz</p>
+            <p style="font-family:'Source Serif 4',serif;font-size:13px;line-height:1.7;color:rgba(245,240,232,0.65);">Crisis energética global · respuesta militar EE.UU. · colapso de ingresos propios · aislamiento total</p>
+          </div>
+          <div style="background:rgba(212,160,23,0.06);border:1px solid rgba(212,160,23,0.18);padding:20px 24px;text-align:left;">
+            <p style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:8px;">Si mantiene la amenaza</p>
+            <p style="font-family:'Source Serif 4',serif;font-size:13px;line-height:1.7;color:rgba(245,240,232,0.65);">Prima de riesgo sostenida · peajes rentables · influencia geopolítica máxima · presión sin confrontación directa</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
 </section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     CAPÍTULO IV — Impacto Económico Global
+     Insertar en index.html DESPUÉS de #ormuz-section
+     ══════════════════════════════════════════════════════ -->
+<section id="economic-section">
+
+  <div class="ec-header">
+    <p class="ec-eyebrow">Capítulo IV</p>
+    <h2 class="ec-title">El impacto <em>económico</em> global</h2>
+    <p class="ec-intro">Del mercado energético a los precios de los alimentos: cómo el conflicto reconfiguró la economía mundial en tiempo real.</p>
+  </div>
+
+  <!-- Pantalla 1: Gráfico histórico Brent -->
+  <div class="ec-screen" id="ec-screen-historic">
+    <div class="ec-chart-sticky">  
+      <div class="ec-chart-header">
+        <div>
+          <p class="ec-chart-tag">Petróleo Brent · 1987–2025</p>
+          <h3 class="ec-chart-title">Cuatro décadas de <em>shocks energéticos</em></h3>
+        </div>
+        <span class="ec-chart-note">Precio mensual en USD/barril. Selecciona un periodo para ampliar.</span>
+      </div>
+
+      <div class="ec-canvas-wrap">
+        <canvas id="ec-historic-canvas"></canvas>
+      </div>
+
+      <div id="ec-period-cards"></div>
+
+      <div id="ec-narration"></div>
+    </div>
+  </div>
+
+  <!-- Pantalla 2: Zoom 2025–2026 + impact cards -->
+  <div class="ec-screen" id="ec-screen-recent">
+    <div class="ec-recent-editorial">
+      <div class="ec-recent-screen-num">25</div>
+      <p class="ec-recent-tag">2025 – 2026</p>
+      <h3 class="ec-recent-title">El shock del <em>conflicto</em></h3>
+      <p class="ec-body">En menos de un mes el Brent pasó de <strong>72 a más de 112 dólares</strong> — un salto del 55% que se transmitió inmediatamente a energía, alimentos y mercados financieros globales.</p>
+      <p class="ec-body">El mundo enfrenta un escenario de <strong>alta inflación, bajo crecimiento</strong> y aumento del desempleo. Los mercados financieros acumulan pérdidas masivas mientras la cadena de suministros se resquebraja.</p>
+    </div>
+
+    <div class="ec-recent-visual">
+      <div class="ec-recent-canvas-wrap">
+        <canvas id="ec-recent-canvas"></canvas>
+      </div>
+      <div id="ec-recent-cards"></div>
+    </div>
+  </div>
+
+</section>
+
 
 </div><!-- /#scroll-wrapper -->
 

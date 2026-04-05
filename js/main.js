@@ -5,6 +5,8 @@ import { initTimeline }       from "./timeline.js"
 import { initConflict }       from "./conflict.js"
 import { initBridge }         from "./bridge.js"
 import { initStrategy }       from "./strategy.js"
+import { initOrmuz }          from "./ormuz.js"
+import { initEconomic }       from "./economic.js"
  
 // Inicializar mapa
 const map = initMap()
@@ -15,6 +17,8 @@ initTimeline()
 initBridge()
 initStrategy(updateMap)
 initConflict(updateMap)
+initOrmuz(updateMap)
+initEconomic()
 initGraph("data/graph.json")
  
 // Debug
