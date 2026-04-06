@@ -6,7 +6,7 @@ function animatedRoute(waypoints, color, label, delay = 0) {
 
   const base = {
     color,
-    steps: 50,
+    steps: 120,
     wrap: false,
     interactive: false,
     smoothFactor: 1

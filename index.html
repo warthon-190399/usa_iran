@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="styles/strategy.css">
 <link rel="stylesheet" href="styles/ormuz.css">
 <link rel="stylesheet" href="styles/economic.css">
+<link rel="stylesheet" href="styles/actors.css">
+<link rel="stylesheet" href="styles/scenarios.css">
+<link rel="stylesheet" href="styles/conclusions.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 
@@ -24,6 +27,7 @@
 <div id="progress-bar"></div>
 <div id="chapter-counter"></div>
 <div id="map"></div>
+<nav id="chapter-index" aria-label="Índice de capítulos"></nav>
 
 <!-- HERO -->
 <!-- ═══════════════════════════════════════════════════════
@@ -1046,7 +1050,363 @@
 
 </section>
 
-
+<section data-step="0" id="actors-section">
+ 
+  <!-- Portada del capítulo -->
+  <div class="ac-cover">
+    <div class="ac-cover-chapter">V</div>
+    <p class="ac-cover-eyebrow">Capítulo V</p>
+    <h2 class="ac-cover-title">Análisis e intereses de los <em>actores globales</em></h2>
+    <p class="ac-cover-body">Irán, China, Rusia, EE.UU. e Israel no actúan por impulso. Cada decisión responde a intereses estratégicos precisos. Este capítulo mapea quién gana, quién pierde y por qué.</p>
+    <div class="ac-cover-scroll">
+      <div class="ac-cover-scroll-line"></div>
+      Explorar
+    </div>
+  </div>
+ 
+  <!-- Bloque 1: El eje de evasión -->
+  <div class="ac-block" id="ac-block-01">
+    <div class="ac-editorial">
+      <div class="ac-block-num">01</div>
+      <div class="ac-block-tag">El eje de evasión</div>
+      <h3 class="ac-block-title">Irán – China – Rusia: <em>arquitectura económica paralela</em></h3>
+      <p class="ac-body">A lo largo del conflicto ha tomado forma una estructura menos visible que el campo de batalla: una red económica y tecnológica diseñada para mantener a Irán operando a pesar de las sanciones occidentales.</p>
+      <p class="ac-body">No funciona como alianza militar formal. Lo que existe es una <strong>red flexible de cooperación tecnológica, logística y financiera</strong>. Irán diseña y ensambla, Rusia aporta experiencia militar e industrial, y China actúa como nodo tecnológico y comercial.</p>
+      <p class="ac-body">Con el tiempo, este eje ha dejado de ser solo una estrategia para sobrevivir a las sanciones. Es cada vez más un intento de construir una <strong>arquitectura económica paralela</strong> al sistema dominado por Occidente.</p>
+      <div class="ac-pills">
+        <div class="ac-pill"><span class="val">Shahed-136</span><span class="lbl">dron iraní con chips globales</span></div>
+        <div class="ac-pill"><span class="val">Yuan</span><span class="lbl">moneda de comercio energético</span></div>
+        <div class="ac-pill"><span class="val">3 nodos</span><span class="lbl">Irán · China · Rusia</span></div>
+      </div>
+    </div>
+    <div class="ac-visual">
+      <div class="ac-actor-cards">
+        <div class="ac-actor-card" style="--ac: var(--red);">
+          <span class="ac-actor-icon">🇮🇷</span>
+          <div>
+            <div class="ac-actor-name">Irán — El resistente estratégico</div>
+            <div class="ac-actor-desc">Diseña y ensambla. Sobrevivir a las sanciones durante décadas le ha dado capacidad de improvisar, producir en serie y exportar doctrina de guerra asimétrica.</div>
+          </div>
+        </div>
+        <div class="ac-actor-card" style="--ac: rgba(200,30,30,0.7);">
+          <span class="ac-actor-icon">🇷🇺</span>
+          <div>
+            <div class="ac-actor-name">Rusia — El socio industrial</div>
+            <div class="ac-actor-desc">Aporta experiencia militar, bases industriales y cobertura diplomática en el Consejo de Seguridad. Además, cada escalada en el Golfo sube el precio del crudo y refuerza sus ingresos fiscales.</div>
+          </div>
+        </div>
+        <div class="ac-actor-card" style="--ac: rgba(200,30,30,0.5);">
+          <span class="ac-actor-icon">🇨🇳</span>
+          <div>
+            <div class="ac-actor-name">China — El nodo tecnológico y financiero</div>
+            <div class="ac-actor-desc">Compra petróleo iraní con descuento de ~15%, facilita el acceso a componentes electrónicos y construye la infraestructura del petroyuan. No arriesga confrontación directa; recolecta los dividendos del caos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Bloque 2: El bloque occidental -->
+  <div class="ac-block ac-block--reverse" id="ac-block-02">
+    <div class="ac-visual">
+      <div class="ac-actor-cards">
+        <div class="ac-actor-card" style="--ac: rgba(80,130,255,0.8);">
+          <span class="ac-actor-icon">🇺🇸</span>
+          <div>
+            <div class="ac-actor-name">EE.UU. — La superpotencia en dilema</div>
+            <div class="ac-actor-desc">Ventaja tecnológica y aérea aplastante. Pero la opinión pública y el Congreso toleran escaladas breves, no guerras prolongadas. La experiencia de Irak y Afganistán pesa en cada decisión.</div>
+          </div>
+        </div>
+        <div class="ac-actor-card" style="--ac: rgba(80,130,255,0.5);">
+          <span class="ac-actor-icon">🇮🇱</span>
+          <div>
+            <div class="ac-actor-name">Israel — El actor más expuesto</div>
+            <div class="ac-actor-desc">Primera línea de ataque de misiles, drones y proxies iraníes. Su seguridad depende directamente de la capacidad de Irán para proyectar fuerza. El conflicto existencial lo convierte en el aliado más comprometido.</div>
+          </div>
+        </div>
+        <div class="ac-actor-card" style="--ac: rgba(80,130,255,0.3);">
+          <span class="ac-actor-icon">🛢️</span>
+          <div>
+            <div class="ac-actor-name">Aliados del Golfo — Los que más temen</div>
+            <div class="ac-actor-desc">Arabia Saudita, EAU y Qatar dependen del estrecho de Ormuz. Un cierre los golpea antes que a cualquier otro. Silenciosamente, algunos diversifican sus relaciones hacia China como plan B.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ac-editorial">
+      <div class="ac-block-num">02</div>
+      <div class="ac-block-tag">El bloque occidental</div>
+      <h3 class="ac-block-title">EE.UU. e Israel: <em>superioridad sin garantía</em></h3>
+      <p class="ac-body">La coalición liderada por Washington ha apostado por ataques de precisión, inteligencia satelital y operaciones aéreas para golpear infraestructuras militares iraníes. Nadie en el mundo hace esto mejor.</p>
+      <p class="ac-body">Pero la estrategia occidental enfrenta dos dilemas estructurales. El primero es político: una intervención terrestre en Oriente Medio tendría un <strong>costo político enorme</strong>. El segundo es económico: las tensiones en el Golfo generan shocks energéticos que impactan a los propios aliados de Washington.</p>
+      <div class="ac-alert">
+        <div class="ac-alert-dot"></div>
+        El equilibrio es difícil: debilitar a Irán sin escalar hacia una guerra regional o una ocupación prolongada. Hasta ahora, nadie ha encontrado esa fórmula en Oriente Medio.
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Bloque 3: Ganadores y perdedores económicos -->
+  <div class="ac-block" id="ac-block-03">
+    <div class="ac-editorial">
+      <div class="ac-block-num">03</div>
+      <div class="ac-block-tag">Redistribución económica</div>
+      <h3 class="ac-block-title">Los <em>ganadores inesperados</em> de la crisis energética</h3>
+      <p class="ac-body">Las guerras modernas generan destrucción, pero también redistribuyen riqueza. Cada escalada en el Golfo sube el precio del crudo, y cuando el crudo sube, ciertos países experimentan un inesperado beneficio.</p>
+      <p class="ac-body"><strong>Rusia</strong> es el caso más paradójico: aunque mantiene relación estratégica con Irán, el alza del crudo refuerza sus ingresos fiscales. <strong>Noruega</strong> se consolida como proveedor energético alternativo para Europa. <strong>Canadá</strong> busca posicionarse como socio estable. Incluso <strong>Indonesia</strong> ve crecer la demanda de carbón en Asia.</p>
+      <p class="ac-body">La paradoja es evidente: mientras las economías del campo de batalla sufren, algunos productores de energía experimentan un <strong>auge económico impulsado por la misma crisis</strong>.</p>
+      <div class="ac-alert" style="background:rgba(212,160,23,0.07);border-color:rgba(212,160,23,0.2);">
+        <div class="ac-alert-dot" style="background:var(--gold);"></div>
+        Las guerras energéticas rara vez tienen solo perdedores. La pregunta es quién está posicionado para beneficiarse cuando la crisis llegue.
+      </div>
+    </div>
+    <div class="ac-visual">
+      <div style="width:100%;">
+        <div style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:16px;">Impacto por actor</div>
+        <div class="ac-actor-cards">
+          <div class="ac-actor-card" style="--ac: rgba(192,57,43,0.7);">
+            <span class="ac-actor-icon">💀</span>
+            <div>
+              <div class="ac-actor-name">Perdedores regionales directos</div>
+              <div class="ac-actor-desc">Irán, Israel, Líbano, Siria, Irak: destrucción de infraestructura, desplazamientos masivos, caída del PIB, colapso del comercio.</div>
+            </div>
+          </div>
+          <div class="ac-actor-card" style="--ac: rgba(212,160,23,0.7);">
+            <span class="ac-actor-icon">📊</span>
+            <div>
+              <div class="ac-actor-name">Impacto mixto: Golfo</div>
+              <div class="ac-actor-desc">Arabia Saudita, EAU, Qatar se benefician del precio alto del crudo pero sufren inestabilidad en inversiones, transporte y turismo regional.</div>
+            </div>
+          </div>
+          <div class="ac-actor-card" style="--ac: rgba(100,180,100,0.7);">
+            <span class="ac-actor-icon">📈</span>
+            <div>
+              <div class="ac-actor-name">Beneficiarios energéticos</div>
+              <div class="ac-actor-desc">Noruega, Canadá, EE.UU. (shale), Indonesia (carbón): mayores ingresos, demanda creciente, posicionamiento como alternativas estables.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</section>
+ <section data-step="0" id="scenarios-section">
+ 
+  <div class="sc-cover">
+    <div class="sc-cover-bg-num">VI</div>
+    <p class="sc-cover-eyebrow">Capítulo VI</p>
+    <h2 class="sc-cover-title">Los <em>escenarios posibles</em> del conflicto</h2>
+    <p class="sc-cover-body">Ninguna guerra termina como quienes la empiezan imaginan. Cinco interpretaciones de hacia dónde podría evolucionar el enfrentamiento entre Washington y Teherán, con sus plazos y probabilidades.</p>
+    <div class="sc-cover-scroll">
+      <div class="sc-cover-scroll-line"></div>
+      Explorar
+    </div>
+  </div>
+ 
+  <div class="sc-content">
+ 
+    <!-- Intro -->
+    <div class="sc-intro-grid">
+      <div>
+        <p class="sc-section-tag">El marco analítico</p>
+        <h3 class="sc-section-title">Por qué los <em>escenarios</em> importan más que las predicciones</h3>
+        <p class="sc-body">Los escenarios no son predicciones. Son marcos para pensar qué condiciones hacen probable cada resultado, y qué señales deben monitorearse. En un conflicto de esta complejidad, la utilidad no está en apostar por uno, sino en entender qué lo desencadenaría.</p>
+      </div>
+      <div>
+        <p class="sc-section-tag">El factor clave</p>
+        <h3 class="sc-section-title">La variable que más importa: la <em>tolerancia al costo</em></h3>
+        <p class="sc-body">Irán puede absorber sufrimiento durante años sin elecciones que lo castiguen. EE.UU. tiene una ventana política de meses antes de que el Congreso y los mercados presionen. Esta asimetría de tolerancia al costo es el factor que más determina cuál escenario se materializa.</p>
+      </div>
+    </div>
+ 
+    <!-- Cards de escenarios -->
+    <div class="sc-scenarios-grid">
+ 
+      <div class="sc-scenario-card sc-scenario-card--a">
+        <div class="sc-scenario-bg-letter">A</div>
+        <div class="sc-scenario-header">
+          <span class="sc-scenario-icon">⚡</span>
+          <div class="sc-scenario-meta">
+            <div class="sc-scenario-label">Escenario A · Corto plazo · Baja probabilidad</div>
+            <div class="sc-scenario-title">Victoria rápida de EE.UU. — Colapso del régimen iraní</div>
+          </div>
+          <div class="sc-scenario-prob">~10%</div>
+        </div>
+        <p class="sc-scenario-body">Una campaña aérea de alta intensidad logra destruir las capacidades nucleares y militares de Irán, y provoca el colapso de la cúpula del régimen. <strong>Probabilidad baja</strong>: la experiencia de Irak 2003 demuestra que derrocar un gobierno no garantiza el orden posterior. Sin una estructura política capaz de estabilizar el país, el resultado más probable sería un vacío de poder y una etapa prolongada de fragmentación interna o incluso guerra civil.</p>
+      </div>
+ 
+      <div class="sc-scenario-card sc-scenario-card--d">
+        <div class="sc-scenario-bg-letter">B</div>
+        <div class="sc-scenario-header">
+          <span class="sc-scenario-icon">🏚️</span>
+          <div class="sc-scenario-meta">
+            <div class="sc-scenario-label">Escenario B · Medio plazo · Posible</div>
+            <div class="sc-scenario-title">Fragmentación territorial — El riesgo separatista</div>
+          </div>
+          <div class="sc-scenario-prob">~15%</div>
+        </div>
+        <p class="sc-scenario-body">Potencias externas apoyan movimientos separatistas en regiones periféricas de Irán con identidades étnicas diferenciadas — kurdos, baluchis, azeríes — con el objetivo de debilitar estructuralmente al país. <strong>Resultado inestable</strong>: este tipo de estrategia también genera nuevas fuentes de inestabilidad regional que pueden volverse incontrolables.</p>
+      </div>
+ 
+      <div class="sc-scenario-card sc-scenario-card--b">
+        <div class="sc-scenario-bg-letter">C</div>
+        <div class="sc-scenario-header">
+          <span class="sc-scenario-icon">⏳</span>
+          <div class="sc-scenario-meta">
+            <div class="sc-scenario-label">Escenario C · 18–36 meses · Más probable</div>
+            <div class="sc-scenario-title">La trampa del desgaste — Irán sobrevive</div>
+          </div>
+          <div class="sc-scenario-prob">~45%</div>
+        </div>
+        <p class="sc-scenario-body">La estrategia iraní de prolongar el conflicto impone costos económicos y políticos crecientes a EE.UU. Después de 18–36 meses, la fatiga de guerra fuerza negociaciones. Irán no obtiene una victoria militar directa, pero logra <strong>sobrevivir al conflicto y consolidar su posición regional</strong>. El régimen sale debilitado pero intacto, habiendo demostrado su capacidad de resistencia.</p>
+      </div>
+ 
+      <div class="sc-scenario-card sc-scenario-card--c">
+        <div class="sc-scenario-bg-letter">D</div>
+        <div class="sc-scenario-header">
+          <span class="sc-scenario-icon">🌏</span>
+          <div class="sc-scenario-meta">
+            <div class="sc-scenario-label">Escenario D · 1–3 años · Probable en paralelo</div>
+            <div class="sc-scenario-title">Reconfiguración de alianzas — El ascenso de China</div>
+          </div>
+          <div class="sc-scenario-prob">~40%</div>
+        </div>
+        <p class="sc-scenario-body">Si EE.UU. enfrenta dificultades para garantizar la estabilidad del Golfo, los países del Golfo diversifican sus relaciones estratégicas. China amplía su presencia económica y diplomática. Este proceso no implica abandono inmediato de las alianzas tradicionales, pero conduce a una <strong>política exterior más pragmática</strong>: equilibrar relaciones entre múltiples centros de poder. La incertidumbre geopolítica estimula la demanda de oro y sistemas financieros alternativos al dólar.</p>
+      </div>
+ 
+      <div class="sc-scenario-card sc-scenario-card--e">
+        <div class="sc-scenario-bg-letter">E</div>
+        <div class="sc-scenario-header">
+          <span class="sc-scenario-icon">🔭</span>
+          <div class="sc-scenario-meta">
+            <div class="sc-scenario-label">Escenario E · Largo plazo · Estructural</div>
+            <div class="sc-scenario-title">El fin de la era unipolar — Nueva arquitectura global</div>
+          </div>
+          <div class="sc-scenario-prob">Tendencia</div>
+        </div>
+        <p class="sc-scenario-body">A más largo plazo —medido en décadas— el conflicto podría convertirse en uno de los episodios que simbolicen el cierre de la era de hegemonía estadounidense iniciada tras la Guerra Fría. Esto no implica el colapso del poder americano, sino la consolidación de un <strong>sistema internacional multipolar</strong> donde la estabilidad depende menos de una potencia dominante y más de un equilibrio dinámico entre múltiples actores. Resiliencia nacional, autonomía energética y seguridad de infraestructuras críticas adquieren mayor importancia que la integración global.</p>
+      </div>
+ 
+    </div>
+ 
+    <!-- Horizontes temporales -->
+    <div class="sc-timeline-section">
+      <h3 class="sc-timeline-title">Plazos de análisis: <em>tres horizontes</em></h3>
+      <div class="sc-horizon-grid">
+        <div class="sc-horizon-card">
+          <div class="sc-horizon-period">Corto plazo · 0–12 meses</div>
+          <div class="sc-horizon-title">La dinámica militar determina el margen de maniobra</div>
+          <div class="sc-horizon-body">Los precios energéticos, la capacidad de resistencia iraní y la presión del Congreso estadounidense definen el rango de opciones disponibles. <strong>Señal clave:</strong> si Irán activa a sus proxies de forma coordinada, el costo político de continuar se eleva exponencialmente.</div>
+        </div>
+        <div class="sc-horizon-card">
+          <div class="sc-horizon-period">Medio plazo · 1–3 años</div>
+          <div class="sc-horizon-title">Las alianzas se reconfiguran, los mercados se adaptan</div>
+          <div class="sc-horizon-body">Los países del Golfo buscan seguros estratégicos alternativos. La Belt and Road Initiative amplía su presencia. Los mercados energéticos encuentran nuevos equilibrios. <strong>Señal clave:</strong> si Arabia Saudita profundiza lazos con China más allá de lo económico, el sistema de alianzas de EE.UU. en el Golfo habrá cambiado estructuralmente.</div>
+        </div>
+        <div class="sc-horizon-card">
+          <div class="sc-horizon-period">Largo plazo · Décadas</div>
+          <div class="sc-horizon-title">El sistema internacional se reorganiza en torno a nuevos ejes</div>
+          <div class="sc-horizon-body">La guerra acelera tendencias que ya existían: desdolarización parcial, multipolaridad, transición energética, autonomía tecnológica. <strong>Señal clave:</strong> el porcentaje del comercio energético global denominado en monedas distintas al dólar. Si supera el 30%, la hegemonía financiera americana habrá cambiado de forma irreversible.</div>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+ 
+<!-- ══════════════════════════════════════════════════════
+     8. CONCLUSIONES
+     Insertar DESPUÉS de #scenarios-section
+     ══════════════════════════════════════════════════════ -->
+<section data-step="0" id="conclusions-section">
+ 
+  <div class="cn-cover">
+    <div class="cn-cover-bg-num">VII</div>
+    <p class="cn-cover-eyebrow">Conclusiones</p>
+    <h2 class="cn-cover-title">Lo que este conflicto <em>revela</em> del mundo</h2>
+    <p class="cn-cover-body">Más allá del teatro militar, la guerra entre EE.UU. e Irán es el espejo de una transición sistémica global. Cinco conclusiones que trascienden el conflicto bilateral.</p>
+  </div>
+ 
+  <div class="cn-content">
+    <div class="cn-points">
+ 
+      <div class="cn-point" style="--cp: var(--red);">
+        <div class="cn-point-num">01</div>
+        <div class="cn-point-body">
+          <div class="cn-point-title">El poder asimétrico es el nuevo equilibrio</div>
+          <p class="cn-point-text">Un dron de <strong>$25,000</strong> puede obligar a emplear un misil Patriot de <strong>$4 millones</strong>. La superioridad tecnológica deja de ser garantía cuando el adversario explota la brecha de costos. El que más aguanta —no el que tiene mejor tecnología— determina el resultado.</p>
+        </div>
+      </div>
+ 
+      <div class="cn-point" style="--cp: var(--gold);">
+        <div class="cn-point-num">02</div>
+        <div class="cn-point-body">
+          <div class="cn-point-title">Los 33 km de Ormuz son el cuello de botella del siglo XXI</div>
+          <p class="cn-point-text">El <strong>20% del petróleo mundial</strong> y el <strong>25% del LNG global</strong> pasan por un canal que se puede monitorear desde la orilla. El que controla Ormuz no solo controla energía: controla la velocidad de crecimiento de Asia, la inflación de Europa y el presupuesto de defensa de EE.UU.</p>
+        </div>
+      </div>
+ 
+      <div class="cn-point" style="--cp: rgba(80,130,255,0.8);">
+        <div class="cn-point-num">03</div>
+        <div class="cn-point-body">
+          <div class="cn-point-title">China es el beneficiario silencioso del caos</div>
+          <p class="cn-point-text">No disparó un solo misil. Compra petróleo iraní con descuento, broker<strong>eó la paz Irán–Arabia Saudita</strong> y expande su presencia económica mientras EE.UU. y Rusia se desgastan. La mejor estrategia geopolítica a veces es no hacer nada mientras tus rivales se debilitan entre sí.</p>
+        </div>
+      </div>
+ 
+      <div class="cn-point" style="--cp: rgba(150,50,150,0.7);">
+        <div class="cn-point-num">04</div>
+        <div class="cn-point-body">
+          <div class="cn-point-title">La energía y la geopolítica son inseparables</div>
+          <p class="cn-point-text">Cada tensión en el Golfo se transmite en horas a los precios de los alimentos, el costo del transporte y la inflación global. La <strong>cadena de transmisión</strong> es perfectamente visible: crudo caro → fertilizantes caros → alimentos caros → presión social en 190 países. La geopolítica del Golfo es política interna para todos.</p>
+        </div>
+      </div>
+ 
+      <div class="cn-point" style="--cp: rgba(100,180,100,0.7);">
+        <div class="cn-point-num">05</div>
+        <div class="cn-point-body">
+          <div class="cn-point-title">El orden global está en transición, no en colapso</div>
+          <p class="cn-point-text">El conflicto no implica el colapso del poder estadounidense. Implica la <strong>consolidación de un sistema multipolar</strong> donde ninguna potencia puede imponer el orden sola. La estabilidad futura dependerá de la capacidad de gestionar la competencia sin desembocar en una confrontación que nadie puede controlar.</p>
+        </div>
+      </div>
+ 
+    </div>
+ 
+    <div class="cn-closing">
+      <div class="cn-closing-quote">"Las guerras en Oriente Medio rara vez terminan como los que las empiezan imaginan. La incógnita no es si el orden mundial va a cambiar, sino a qué velocidad."</div>
+      <div class="cn-closing-sub">Análisis · EE.UU. vs Irán · 2025–2026</div>
+    </div>
+  </div>
+ 
+</section>
+ 
+ 
+<!-- ══════════════════════════════════════════════════════
+     9. AUTOR
+     Insertar DESPUÉS de #conclusions-section, ANTES del cierre de #scroll-wrapper
+     ══════════════════════════════════════════════════════ -->
+<section id="author-section">
+  <div class="au-inner">
+    <p class="au-eyebrow">Desarrollado por</p>
+    <h2 class="au-name">Tato Warthon</h2>
+    <p class="au-title">Data Scientist &amp; Economista · Universidad de Lima</p>
+    <div class="au-divider"></div>
+    <p class="au-bio">Apasionado por el mundo de la geopolítica y los fenómenos complejos. Combina economía, ciencia de datos y análisis estratégico para entender cómo las decisiones de poder moldean los mercados globales y la vida cotidiana de millones de personas.</p>
+    <div class="au-links">
+      <a class="au-link au-link--linkedin" href="https://linkedin.com/in/tato-warthon/" target="_blank" rel="noopener">
+        <span class="au-link-icon">💼</span> LinkedIn
+      </a>
+      <a class="au-link au-link--github" href="https://github.com/warthon-190399" target="_blank" rel="noopener">
+        <span class="au-link-icon">⌨️</span> GitHub
+      </a>
+      <a class="au-link au-link--medium" href="https://medium.com/@warthon.123" target="_blank" rel="noopener">
+        <span class="au-link-icon">✍️</span> Medium
+      </a>
+    </div>
+  </div>
+</section>
 </div><!-- /#scroll-wrapper -->
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

@@ -592,71 +592,69 @@ function renderGraph(data) {
 
 // ── Construir panel de filtros en el HTML editorial ───────────────────────
 function buildFilterPanel() {
-  // Buscar el contenedor de la leyenda existente (el segundo .graph-legend)
-  const editorial = document.querySelector(".graph-editorial")
-  if (!editorial) return
-
-  // Eliminar leyendas estáticas si existen y crear el panel dinámico
-  const existingLegends = editorial.querySelectorAll(".graph-legend")
-  existingLegends.forEach(l => l.remove())
-
-  const existingHint = editorial.querySelector(".graph-hint")
-
-  // Leyenda de nodos (estática)
-  const nodeLegend = document.createElement("div")
-  nodeLegend.className = "graph-legend"
-  nodeLegend.innerHTML = `
-    <div class="graph-legend-item">
-      <svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#c0392b" opacity="0.9"/></svg>
-      Estado
-    </div>
-    <div class="graph-legend-item">
-      <svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#d4a017" opacity="0.9"/></svg>
-      Organización
-    </div>
-    <div class="graph-legend-item">
-      <svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#7f8c8d" opacity="0.9"/></svg>
-      Milicia / Proxy
-    </div>
-    <div class="graph-legend-item">
-      <svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#2980b9" opacity="0.7"/></svg>
-      Objetivo
-    </div>
-  `
-
-  // Panel de filtros interactivo
-  const filterPanel = document.createElement("div")
-  filterPanel.id = "graph-filter-legend"
-  filterPanel.innerHTML = `
-    <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(212,160,23,0.7);margin-bottom:4px;font-family:'Source Serif 4',serif;">
-      Filtrar conexiones
-    </div>
-    ${RELATION_CATEGORIES.map(cat => `
-      <div class="filter-item" data-cat="${cat.id}" title="Clic para activar/desactivar">
-        <div class="filter-swatch">
-          <svg width="30" height="8">
-            <line x1="0" y1="4" x2="30" y2="4"
-              stroke="${cat.color}"
-              stroke-width="2.5"
-              ${cat.dashed ? 'stroke-dasharray="5,3"' : ''}/>
-          </svg>
-        </div>
-        <span style="flex:1">${cat.label}</span>
-        <div class="filter-toggle" style="color:${cat.color};border-color:${cat.color};"></div>
-      </div>
-    `).join("")}
-    <div id="filter-mode-badge"></div>
-    <button id="filter-reset">✕ Mostrar todo</button>
-  `
-
-  if (existingHint) {
-    editorial.insertBefore(nodeLegend, existingHint)
-    editorial.insertBefore(filterPanel, existingHint)
-  } else {
-    editorial.appendChild(nodeLegend)
-    editorial.appendChild(filterPanel)
-  }
-}
+       const editorial = document.querySelector(".graph-editorial")
+       const canvasWrap = document.querySelector(".graph-canvas-wrap")
+       if (!editorial || !canvasWrap) return
+ 
+       const existingLegends = editorial.querySelectorAll(".graph-legend")
+       existingLegends.forEach(l => l.remove())
+       const existingHint = editorial.querySelector(".graph-hint")
+ 
+       // Leyenda de nodos — ENCIMA del grafo (horizontal)
+       const nodeLegend = document.createElement("div")
+       nodeLegend.className = "graph-legend graph-legend--top"
+       nodeLegend.innerHTML = `
+         <div class="graph-legend-item">
+           <svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#c0392b" opacity="0.9"/></svg>
+           Estado
+         </div>
+         <div class="graph-legend-item">
+           <svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#d4a017" opacity="0.9"/></svg>
+           Organización
+         </div>
+         <div class="graph-legend-item">
+           <svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#7f8c8d" opacity="0.9"/></svg>
+           Milicia
+         </div>
+         <div class="graph-legend-item">
+           <svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#2980b9" opacity="0.7"/></svg>
+           Objetivo
+         </div>
+       `
+       // Insertar encima del canvas
+       canvasWrap.insertBefore(nodeLegend, canvasWrap.firstChild)
+ 
+       // Panel de filtros — mantener en editorial
+       const filterPanel = document.createElement("div")
+       filterPanel.id = "graph-filter-legend"
+       filterPanel.innerHTML = `
+         <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(212,160,23,0.7);margin-bottom:4px;font-family:'Source Serif 4',serif;">
+           Filtrar conexiones
+         </div>
+         ${RELATION_CATEGORIES.map(cat => `
+           <div class="filter-item" data-cat="${cat.id}" title="Clic para activar/desactivar">
+             <div class="filter-swatch">
+               <svg width="30" height="8">
+                 <line x1="0" y1="4" x2="30" y2="4"
+                   stroke="${cat.color}"
+                   stroke-width="2.5"
+                   ${cat.dashed ? 'stroke-dasharray="5,3"' : ''}/>
+               </svg>
+             </div>
+             <span style="flex:1">${cat.label}</span>
+             <div class="filter-toggle" style="color:${cat.color};border-color:${cat.color};"></div>
+           </div>
+         `).join("")}
+         <div id="filter-mode-badge"></div>
+         <button id="filter-reset">✕ Mostrar todo</button>
+       `
+ 
+       if (existingHint) {
+         editorial.insertBefore(filterPanel, existingHint)
+       } else {
+         editorial.appendChild(filterPanel)
+       }
+     }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 function nodeRadius(d) {
