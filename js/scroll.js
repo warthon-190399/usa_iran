@@ -1,6 +1,6 @@
 const TOTAL_MAP_STEPS = 3   // pasos 1-3 controlan el mapa
 const TOTAL_STEPS     = 3   // dots: solo pasos con mapa
-
+let heroLocked = false
 export function initScroll(updateMap) {
   const sections      = document.querySelectorAll("section[data-step]")
   const progressBar   = document.getElementById("progress-bar")
@@ -62,16 +62,26 @@ export function initScroll(updateMap) {
         : (step / TOTAL_STEPS) * 100 + "%"
 
       // Hero y contador — solo mostrar hero en step 0 si bridge NO está visible
+      // if (step === 0) {
+      //   if (!bridgeVisible) {
+      //     hero.classList.remove("hidden")
+      //     counter.classList.remove("visible")
+      //   }
+      
+      // } else {
+      //   hero.classList.add("hidden")
+      //   counter.classList.add("visible")
+      // }
       if (step === 0) {
-        if (!bridgeVisible) {
-          hero.classList.remove("hidden")
-          counter.classList.remove("visible")
-        }
-      } else {
-        hero.classList.add("hidden")
-        counter.classList.add("visible")
-      }
-
+  if (!heroLocked) {
+    hero.classList.remove("hidden")
+    counter.classList.remove("visible")
+  }
+} else {
+  hero.classList.add("hidden")
+  counter.classList.add("visible")
+  heroLocked = true
+}
       // El mapa reacciona a pasos 0-3
       if (step <= TOTAL_MAP_STEPS) {
         updateMap(step)
@@ -80,7 +90,8 @@ export function initScroll(updateMap) {
       setActiveCard(step)
       setCounterDot(step)
     })
-  }, { threshold: 0.55 })
+  }, { threshold: 0.25 })
 
   sections.forEach(s => observer.observe(s))
 }
+
