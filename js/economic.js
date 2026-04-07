@@ -84,7 +84,7 @@ const RECENT_CARDS = [
     icon: '📈',
     color: 'var(--red)',
     title: 'Escalada de precios',
-    body: 'En menos de un mes el crudo Brent subió de 72 a más de 112 dólares — un aumento del <strong>55%</strong>.',
+    body: 'En menos de un mes el crudo Brent subió de 72 a más de 120 dólares — un aumento del <strong>66%</strong>.',
   },
   {
     icon: '⚡',
@@ -96,13 +96,13 @@ const RECENT_CARDS = [
     icon: '📉',
     color: 'rgba(80,130,255,0.9)',
     title: 'Mercados financieros en caída',
-    body: 'El Dow Jones perdió más de 400 puntos. El KOSPI coreano se desplomó un <strong>12%</strong>. Wall Street perdió un billón de dólares en una sola jornada.',
+    body: 'El Dow Jones perdió más de 400 puntos. El KOSPI coreano se desplomó un <strong>7.2%</strong> en una jornada (la peor en 2 años). Wall Street perdió un billón de dólares en una sola jornada.',
   },
   {
     icon: '🌾',
     color: 'rgba(100,180,100,0.9)',
     title: 'Crisis alimentaria',
-    body: 'El Golfo es proveedor clave de urea y amoníaco. Su escasez elevó los fertilizantes un <strong>40%</strong>, y el precio de los alimentos entre un <strong>40% y 120%</strong>.',
+    body: 'El Golfo es proveedor clave de urea y amoníaco. Los fertilizantes han registrado subidas superiores al <strong>28%</strong>, con algunos productos clave como la urea mostrando incrementos cercanos al <strong>45%</strong>.',
   },
   {
     icon: '🌐',

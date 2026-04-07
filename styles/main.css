@@ -457,7 +457,7 @@ section.trail {
 /* Layout: dos columnas — sidebar angosto + canvas amplio */
 .graph-layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 320px 1fr;
   width: 100%;
   min-height: 100vh;
 }
