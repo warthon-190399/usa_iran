@@ -2,1412 +2,1629 @@
 <html lang="es">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conflicto EE.UU.–Irán</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conflicto EE.UU.–Irán</title>
 
-<link rel="stylesheet" href="styles/main.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles/timeline.css">
-<!-- <link rel="stylesheet" href="styles/conflict.css"> -->
-<link rel="stylesheet" href="styles/bridge.css">
-<link rel="stylesheet" href="styles/strategy.css">
-<link rel="stylesheet" href="styles/ormuz.css">
-<link rel="stylesheet" href="styles/economic.css">
-<link rel="stylesheet" href="styles/actors.css">
-<link rel="stylesheet" href="styles/scenarios.css">
-<link rel="stylesheet" href="styles/conclusions.css">
-<link rel="stylesheet" href="styles/mobile.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <!-- Open Graph / LinkedIn Preview -->
+  <meta property="og:title" content="EE.UU. vs Irán — Anatomía de un conflicto moderno">
+  <meta property="og:description"
+    content="Un análisis interactivo sobre el conflicto entre Estados Unidos e Irán: historia, geografía estratégica, economía de la guerra y actores globales.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://warthon-190399.github.io/usa_iran/">
+  <meta property="og:image" content="https://warthon-190399.github.io/usa_iran/preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/timeline.css">
+  <!-- <link rel="stylesheet" href="styles/conflict.css"> -->
+  <link rel="stylesheet" href="styles/bridge.css">
+  <link rel="stylesheet" href="styles/strategy.css">
+  <link rel="stylesheet" href="styles/ormuz.css">
+  <link rel="stylesheet" href="styles/economic.css">
+  <link rel="stylesheet" href="styles/actors.css">
+  <link rel="stylesheet" href="styles/scenarios.css">
+  <link rel="stylesheet" href="styles/conclusions.css">
+  <link rel="stylesheet" href="styles/mobile.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 
 <body>
 
-<div id="progress-bar"></div>
-<div id="chapter-counter"></div>
-<div id="map"></div>
-<nav id="chapter-index" aria-label="Índice de capítulos"></nav>
+  <div id="progress-bar"></div>
+  <div id="chapter-counter"></div>
+  <div id="map"></div>
+  <nav id="chapter-index" aria-label="Índice de capítulos"></nav>
 
-<!-- HERO -->
-<!-- ═══════════════════════════════════════════════════════
+  <!-- HERO -->
+  <!-- ═══════════════════════════════════════════════════════
      HERO — Solo título + párrafo introductorio con sombra
      ═══════════════════════════════════════════════════════ -->
-<div id="hero">
-  <div class="hero-eyebrow">Análisis Geopolítico · Medio Oriente</div>
-  <h1 class="hero-title">EE.UU.<span> vs </span>Irán</h1>
-  <p class="hero-sub">Una tensión que moldea el orden mundial</p>
+  <div id="hero">
+    <div class="hero-eyebrow">Análisis Geopolítico · Medio Oriente</div>
+    <h1 class="hero-title">EE.UU.<span> vs </span>Irán</h1>
+    <p class="hero-sub">Una tensión que moldea el orden mundial</p>
 
-  <div class="hero-intro-wrap">
-    <p class="hero-intro">
-      Durante décadas, el enfrentamiento entre Washington y Teherán ha definido
-      la geopolítica de Medio Oriente. No es solo un conflicto bilateral: es el
-      eje alrededor del cual giran las rutas energéticas globales, el equilibrio
-      militar regional y los intereses de las grandes potencias. A lo largo del presente editorial revisaremos 7 aspectos clave que debemos tener en cuenta a la hora de analizar su evolución.
-    </p>
+    <div class="hero-intro-wrap">
+      <p class="hero-intro">
+        Durante décadas, el enfrentamiento entre Washington y Teherán ha definido
+        la geopolítica de Medio Oriente. No es solo un conflicto bilateral: es el
+        eje alrededor del cual giran las rutas energéticas globales, el equilibrio
+        militar regional y los intereses de las grandes potencias. A lo largo del presente editorial revisaremos 7
+        aspectos clave que debemos tener en cuenta a la hora de analizar su evolución.
+      </p>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Desplaza para explorar
+    </div>
   </div>
 
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    Desplaza para explorar
-  </div>
-</div>
+  <!-- SCROLL WRAPPER -->
+  <div id="scroll-wrapper">
 
-<!-- SCROLL WRAPPER -->
-<div id="scroll-wrapper">
+    <section data-step="0"></section>
 
-  <section data-step="0"></section>
-
-  <!-- ═══════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════
        STEP 1 · Rutas comerciales del Golfo
        Mapa: iranPoly + neighbors + routes (rutas geodésicas)
        ═══════════════════════════════════════════════════════ -->
-  <section data-step="1">
-    <div class="card" id="card-1">
-      <div class="card-header">
-        <div class="card-icon oil">🛢️</div>
-        <div>
-          <div class="card-chapter">Factor I</div>
-          <div class="card-title">Rutas comerciales del Golfo</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <p class="card-text">
-          Irán ocupa el corazón geográfico de Medio Oriente: fronteras en el
-          <strong>Caspio, el Golfo Pérsico y el Golfo de Omán</strong>.
-          Su posición hace que cualquier tensión afecte directamente las arterias
-          del comercio global de energía.
-        </p>
-        <p class="card-text" style="margin-top:10px;">
-          El Golfo Pérsico mueve el <strong>∼25% del petróleo marítimo mundial</strong>,
-          distribuido en tres rutas principales hacia Asia, Europa y América.
-        </p>
-        <div class="legend">
-          <div class="legend-item">
-            <div class="legend-line" style="background:#f39c12;"></div>
-            Asia-Pacífico · 43% del flujo
-          </div>
-          <div class="legend-item">
-            <div class="legend-line" style="background:#e74c3c;"></div>
-            Europa-Mediterráneo · 28%
-          </div>
-          <div class="legend-item">
-            <div class="legend-line" style="background:#3498db;"></div>
-            Norteamérica · 18%
+    <section data-step="1">
+      <div class="card" id="card-1">
+        <div class="card-header">
+          <div class="card-icon oil">🛢️</div>
+          <div>
+            <div class="card-chapter">Factor I</div>
+            <div class="card-title">Rutas comerciales del Golfo</div>
           </div>
         </div>
-        <div class="stat-row">
-          <div class="stat-pill"><span class="val">∼25%</span>petróleo marítimo global</div>
-          <div class="stat-pill"><span class="val">4°</span>reservas mundiales Irán</div>
-          <div class="stat-pill"><span class="val">+190</span>países afectados</div>
+        <div class="card-body">
+          <p class="card-text">
+            Irán ocupa el corazón geográfico de Medio Oriente: fronteras en el
+            <strong>Caspio, el Golfo Pérsico y el Golfo de Omán</strong>.
+            Su posición hace que cualquier tensión afecte directamente las arterias
+            del comercio global de energía.
+          </p>
+          <p class="card-text" style="margin-top:10px;">
+            El Golfo Pérsico mueve el <strong>∼25% del petróleo marítimo mundial</strong>,
+            distribuido en tres rutas principales hacia Asia, Europa y América.
+          </p>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-line" style="background:#f39c12;"></div>
+              Asia-Pacífico · 43% del flujo
+            </div>
+            <div class="legend-item">
+              <div class="legend-line" style="background:#e74c3c;"></div>
+              Europa-Mediterráneo · 28%
+            </div>
+            <div class="legend-item">
+              <div class="legend-line" style="background:#3498db;"></div>
+              Norteamérica · 18%
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-pill"><span class="val">∼25%</span>petróleo marítimo global</div>
+            <div class="stat-pill"><span class="val">4°</span>reservas mundiales Irán</div>
+            <div class="stat-pill"><span class="val">+190</span>países afectados</div>
+          </div>
+        </div>
+        <div class="alert-bar">
+          <div class="alert-dot"></div>
+          Cualquier perturbación en el Golfo se traduce en inflación global en 48 horas
         </div>
       </div>
-      <div class="alert-bar">
-        <div class="alert-dot"></div>
-        Cualquier perturbación en el Golfo se traduce en inflación global en 48 horas
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════
        STEP 2 · Estrecho de Ormuz — cuello de botella
        Mapa: zoom cerrado + heatmap de tráfico
        ═══════════════════════════════════════════════════════ -->
-  <section data-step="2">
-    <div class="card" id="card-2">
-      <div class="card-header">
-        <div class="card-icon warn">⚡</div>
-        <div>
-          <div class="card-chapter">Factor II</div>
-          <div class="card-title">El Estrecho de Ormuz</div>
+    <section data-step="2">
+      <div class="card" id="card-2">
+        <div class="card-header">
+          <div class="card-icon warn">⚡</div>
+          <div>
+            <div class="card-chapter">Factor II</div>
+            <div class="card-title">El Estrecho de Ormuz</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            Con apenas <strong>33 km de ancho</strong> en su punto más estrecho,
+            Ormuz es el cuello de botella energético del planeta. 21 millones de
+            barriles diarios — el 20% del gas mundial — pasan por aquí sin alternativa.
+          </p>
+          <p class="card-text" style="margin-top:10px;">
+            Irán ha restringido el paso desde el inicio del conflicto con Washington y
+            Jesuralén el pasado 28 de febrero, impudiendo la libre circulación de buques. El tráfico marítimo se ha
+            reducido drásticamente, pasando de <strong>135 embarcaciones diarias a menos de 20<strong> durante un fin de
+                semana.
+          </p>
+          <div class="stat-row">
+            <div class="stat-pill"><span class="val">33 km</span>ancho mínimo</div>
+            <div class="stat-pill"><span class="val">21M</span>barriles/día</div>
+            <div class="stat-pill"><span class="val">+17</span>países afectados</div>
+          </div>
+        </div>
+        <div class="alert-bar">
+          <div class="alert-dot"></div>
+          El mapa muestra la concentración de tráfico: todo el peso del comercio energético en 33 km
         </div>
       </div>
-      <div class="card-body">
-        <p class="card-text">
-          Con apenas <strong>33 km de ancho</strong> en su punto más estrecho,
-          Ormuz es el cuello de botella energético del planeta. 21 millones de
-          barriles diarios — el 20% del gas mundial — pasan por aquí sin alternativa.
-        </p>
-        <p class="card-text" style="margin-top:10px;">
-          Irán ha restringido el paso desde el inicio del conflicto con Washington y 
-          Jesuralén el pasado 28 de febrero, impudiendo la libre circulación de buques. El tráfico marítimo se ha reducido drásticamente, pasando de <strong>135 embarcaciones diarias a menos de 20<strong> durante un fin de semana.
-        </p>
-        <div class="stat-row">
-          <div class="stat-pill"><span class="val">33 km</span>ancho mínimo</div>
-          <div class="stat-pill"><span class="val">21M</span>barriles/día</div>
-          <div class="stat-pill"><span class="val">+17</span>países afectados</div>
-        </div>
-      </div>
-      <div class="alert-bar">
-        <div class="alert-dot"></div>
-        El mapa muestra la concentración de tráfico: todo el peso del comercio energético en 33 km
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════
        STEP 3 · Presencia militar EE.UU. + 5ª Flota
        Mapa: bases + baseRanges + fleet (5ª Flota destacada)
        ═══════════════════════════════════════════════════════ -->
-  <section data-step="3">
-    <div class="card" id="card-3">
-      <div class="card-header">
-        <div class="card-icon usa">🏴</div>
-        <div>
-          <div class="card-chapter">Factor III</div>
-          <div class="card-title">El cerco militar de EE.UU.</div>
+    <section data-step="3">
+      <div class="card" id="card-3">
+        <div class="card-header">
+          <div class="card-icon usa">🏴</div>
+          <div>
+            <div class="card-chapter">Factor III</div>
+            <div class="card-title">El cerco militar de EE.UU.</div>
+          </div>
         </div>
-      </div>
-      <div class="card-body">
-        <p class="card-text">
-          Washington mantiene <strong>más de 35,000 efectivos</strong> en bases
-          que rodean Irán por todos los flancos. Una arquitectura de disuasión
-          construida durante tres décadas.
-        </p>
-        <div class="base-list">
-          <div class="base-item"><div class="base-dot"></div>Al Udeid Air Base — Qatar · 10,000 efectivos</div>
-          <div class="base-item"><div class="base-dot"></div>Camp Arifjan — Kuwait · 13,000 efectivos</div>
-          <div class="base-item"><div class="base-dot"></div>Ain al-Asad — Iraq · 2,000 efectivos</div>
-          <div class="base-item"><div class="base-dot"></div>Al Dhafra Air Base — Emiratos Árabes</div>
-        </div>
+        <div class="card-body">
+          <p class="card-text">
+            Washington mantiene <strong>más de 35,000 efectivos</strong> en bases
+            que rodean Irán por todos los flancos. Una arquitectura de disuasión
+            construida durante tres décadas.
+          </p>
+          <div class="base-list">
+            <div class="base-item">
+              <div class="base-dot"></div>Al Udeid Air Base — Qatar · 10,000 efectivos
+            </div>
+            <div class="base-item">
+              <div class="base-dot"></div>Camp Arifjan — Kuwait · 13,000 efectivos
+            </div>
+            <div class="base-item">
+              <div class="base-dot"></div>Ain al-Asad — Iraq · 2,000 efectivos
+            </div>
+            <div class="base-item">
+              <div class="base-dot"></div>Al Dhafra Air Base — Emiratos Árabes
+            </div>
+          </div>
 
-        <div class="fleet-block">
-          <div class="fleet-header">
-            <div class="fleet-icon">⚓</div>
-            <div>
-              <div class="fleet-title">5ª Flota Naval · NSA Bahréin</div>
-              <div class="fleet-sub">La única flota americana permanentemente desplegada fuera de EE.UU.</div>
+          <div class="fleet-block">
+            <div class="fleet-header">
+              <div class="fleet-icon">⚓</div>
+              <div>
+                <div class="fleet-title">5ª Flota Naval · NSA Bahréin</div>
+                <div class="fleet-sub">La única flota americana permanentemente desplegada fuera de EE.UU.</div>
+              </div>
             </div>
-          </div>
-          <div class="fleet-stats">
-            <div class="fleet-stat">
-              <span class="fleet-val">2.5M</span>
-              <span class="fleet-lbl">km² de área operativa</span>
-            </div>
-            <div class="fleet-stat">
-              <span class="fleet-val">20+</span>
-              <span class="fleet-lbl">buques de guerra</span>
-            </div>
-            <div class="fleet-stat">
-              <span class="fleet-val">1995</span>
-              <span class="fleet-lbl">año de activación</span>
+            <div class="fleet-stats">
+              <div class="fleet-stat">
+                <span class="fleet-val">2.5M</span>
+                <span class="fleet-lbl">km² de área operativa</span>
+              </div>
+              <div class="fleet-stat">
+                <span class="fleet-val">20+</span>
+                <span class="fleet-lbl">buques de guerra</span>
+              </div>
+              <div class="fleet-stat">
+                <span class="fleet-val">1995</span>
+                <span class="fleet-lbl">año de activación</span>
+              </div>
             </div>
           </div>
         </div>
+        <div class="alert-bar">
+          <div class="alert-dot"></div>
+          La 5ª Flota cubre el Golfo Pérsico, el Mar Arábigo y el Mar Rojo simultáneamente
+        </div>
       </div>
-      <div class="alert-bar">
-        <div class="alert-dot"></div>
-        La 5ª Flota cubre el Golfo Pérsico, el Mar Arábigo y el Mar Rojo simultáneamente
-      </div>
-    </div>
-  </section>
-  <!-- step 4 eliminado — Ormuz zoom absorbido por step 2 -->
-<!-- ═══════════════════════════════════════════════════════
+    </section>
+    <!-- step 4 eliminado — Ormuz zoom absorbido por step 2 -->
+    <!-- ═══════════════════════════════════════════════════════
      BRIDGE SECTION — Conecta intro (pasos 1-3) con timeline
      Va después del cierre del step 3 y antes de #timeline-section
      ═══════════════════════════════════════════════════════ -->
-  <section id="bridge-section">
+    <section id="bridge-section">
 
-    <div class="bridge-inner">
-      <p class="st-cover-eyebrow">Capítulo I</p>
+      <div class="bridge-inner">
+        <p class="st-cover-eyebrow">Capítulo I</p>
 
-      <!-- Pregunta retórica -->
-      <div class="bridge-question">
-        ¿Cómo dos países sin frontera común llegaron a ser
-        los mayores <em>rivales</em> del planeta?
+        <!-- Pregunta retórica -->
+        <div class="bridge-question">
+          ¿Cómo dos países sin frontera común llegaron a ser
+          los mayores <em>rivales</em> del planeta?
+        </div>
+
+        <!-- Puente narrativo -->
+        <p class="bridge-body">
+          No fue un choque inevitable. Fue una acumulación de decisiones,
+          traiciones y crisis que durante cuatro décadas fueron construyendo
+          un muro de desconfianza irreversible. La respuesta está en la historia.
+        </p>
+
+        <!-- Mini hitos — anticipa el timeline -->
+        <div class="bridge-hitos">
+
+          <div class="bridge-hito">
+            <div class="bridge-hito-year">1979</div>
+            <div class="bridge-hito-line"></div>
+            <div class="bridge-hito-label">La revolución iraní rompe la alianza con Washington</div>
+          </div>
+
+          <div class="bridge-hito">
+            <div class="bridge-hito-year">1979–81</div>
+            <div class="bridge-hito-line"></div>
+            <div class="bridge-hito-label">444 días de rehenes sellan la enemistad</div>
+          </div>
+
+          <div class="bridge-hito">
+            <div class="bridge-hito-year">1980–88</div>
+            <div class="bridge-hito-line"></div>
+            <div class="bridge-hito-label">EE.UU. apoya a Irak en la guerra contra Irán</div>
+          </div>
+
+          <div class="bridge-hito">
+            <div class="bridge-hito-year">2015</div>
+            <div class="bridge-hito-line"></div>
+            <div class="bridge-hito-label">El JCPOA: una ventana de diálogo que duró tres años</div>
+          </div>
+
+          <div class="bridge-hito">
+            <div class="bridge-hito-year">2020</div>
+            <div class="bridge-hito-line"></div>
+            <div class="bridge-hito-label">El asesinato de Soleimani lleva la tensión al límite</div>
+          </div>
+
+        </div>
+
+        <!-- CTA scroll -->
+        <div class="bridge-cta">
+          <div class="bridge-cta-line"></div>
+          <span>Explora la cronología</span>
+          <div class="bridge-cta-line"></div>
+        </div>
+
       </div>
 
-      <!-- Puente narrativo -->
-      <p class="bridge-body">
-        No fue un choque inevitable. Fue una acumulación de decisiones,
-        traiciones y crisis que durante cuatro décadas fueron construyendo
-        un muro de desconfianza irreversible. La respuesta está en la historia.
-      </p>
-
-      <!-- Mini hitos — anticipa el timeline -->
-      <div class="bridge-hitos">
-
-        <div class="bridge-hito">
-          <div class="bridge-hito-year">1979</div>
-          <div class="bridge-hito-line"></div>
-          <div class="bridge-hito-label">La revolución iraní rompe la alianza con Washington</div>
-        </div>
-
-        <div class="bridge-hito">
-          <div class="bridge-hito-year">1979–81</div>
-          <div class="bridge-hito-line"></div>
-          <div class="bridge-hito-label">444 días de rehenes sellan la enemistad</div>
-        </div>
-
-        <div class="bridge-hito">
-          <div class="bridge-hito-year">1980–88</div>
-          <div class="bridge-hito-line"></div>
-          <div class="bridge-hito-label">EE.UU. apoya a Irak en la guerra contra Irán</div>
-        </div>
-
-        <div class="bridge-hito">
-          <div class="bridge-hito-year">2015</div>
-          <div class="bridge-hito-line"></div>
-          <div class="bridge-hito-label">El JCPOA: una ventana de diálogo que duró tres años</div>
-        </div>
-
-        <div class="bridge-hito">
-          <div class="bridge-hito-year">2020</div>
-          <div class="bridge-hito-line"></div>
-          <div class="bridge-hito-label">El asesinato de Soleimani lleva la tensión al límite</div>
-        </div>
-
-      </div>
-
-      <!-- CTA scroll -->
-      <div class="bridge-cta">
-        <div class="bridge-cta-line"></div>
-        <span>Explora la cronología</span>
-        <div class="bridge-cta-line"></div>
-      </div>
-
-    </div>
-
-  </section>
-<!-- ═══════════════════════════════════════════════════════
+    </section>
+    <!-- ═══════════════════════════════════════════════════════
        TIMELINE SECTION — Entre mapa (step 4) y grafo (step 5)
        ═══════════════════════════════════════════════════════ -->
-  <section data-step="0" id="timeline-section">
+    <section data-step="0" id="timeline-section">
 
-    <div class="timeline-layout">
+      <div class="timeline-layout">
 
-      <!-- Columna izquierda: sticky con año / evento activo -->
-      <div class="timeline-sticky-col">
-        <div class="timeline-sticky-inner" id="timeline-sticky">
-          <div class="tl-eyebrow">Cronología · 1979–2020</div>
-          <div class="tl-active-year" id="tl-year">1979</div>
-          <div class="tl-active-event" id="tl-event">La revolución que cambió el Medio Oriente</div>
-          <div class="tl-progress-track">
-            <div class="tl-progress-fill" id="tl-progress"></div>
-          </div>
-          <div class="tl-dots" id="tl-dots">
-            <!-- Generado por JS -->
-          </div>
-          <div class="tl-counter" id="tl-counter">1 / 5</div>
+        <!-- Columna izquierda: sticky con año / evento activo -->
+        <div class="timeline-sticky-col">
+          <div class="timeline-sticky-inner" id="timeline-sticky">
+            <div class="tl-eyebrow">Cronología · 1979–2020</div>
+            <div class="tl-active-year" id="tl-year">1979</div>
+            <div class="tl-active-event" id="tl-event">La revolución que cambió el Medio Oriente</div>
+            <div class="tl-progress-track">
+              <div class="tl-progress-fill" id="tl-progress"></div>
+            </div>
+            <div class="tl-dots" id="tl-dots">
+              <!-- Generado por JS -->
+            </div>
+            <div class="tl-counter" id="tl-counter">1 / 5</div>
 
-          <!-- Imagen activa en sticky -->
-          <div class="tl-sticky-image-wrap" id="tl-sticky-image">
-            <img src="images/cap_1_1.jpg" alt="" class="tl-sticky-img" id="tl-sticky-img-el">
-            <div class="tl-sticky-img-caption" id="tl-sticky-img-caption">El ayatolá Ruhollah Khomeini, líder de la revolución iraní de 1979</div>
+            <!-- Imagen activa en sticky -->
+            <div class="tl-sticky-image-wrap" id="tl-sticky-image">
+              <img src="images/cap_1_1.jpg" alt="" class="tl-sticky-img" id="tl-sticky-img-el">
+              <div class="tl-sticky-img-caption" id="tl-sticky-img-caption">El ayatolá Ruhollah Khomeini, líder de la
+                revolución iraní de 1979</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Columna derecha: scroll de escenas -->
-      <div class="timeline-scroll-col" id="timeline-scroll-col">
+        <!-- Columna derecha: scroll de escenas -->
+        <div class="timeline-scroll-col" id="timeline-scroll-col">
 
-        <!-- ESCENA 1 -->
-        <div class="tl-scene" data-tl="0">
-          <div class="tl-scene-inner">
-            <div class="tl-tag">Escena 1 · El punto de ruptura</div>
-            <h3 class="tl-scene-title">La revolución que cambió la relación con Occidente</h3>
-            <div class="tl-event-badge">Iranian Revolution · 1979</div>
+          <!-- ESCENA 1 -->
+          <div class="tl-scene" data-tl="0">
+            <div class="tl-scene-inner">
+              <div class="tl-tag">Escena 1 · El punto de ruptura</div>
+              <h3 class="tl-scene-title">La revolución que cambió la relación con Occidente</h3>
+              <div class="tl-event-badge">Iranian Revolution · 1979</div>
 
-            <!-- Galería de imágenes de escena -->
-            <div class="tl-scene-gallery">
-              <div class="tl-gallery-main" data-scene="0" data-img="0">
-                <img src="images/cap_1_1.jpg" alt="El ayatolá Khomeini" class="tl-gallery-img active" data-idx="0">
-                <img src="images/cap_1_2.jpg" alt="Masas revolucionarias en Teherán" class="tl-gallery-img" data-idx="1">
-                <div class="tl-gallery-overlay">
-                  <div class="tl-gallery-caption" id="tl-gallery-caption-0">El ayatolá Khomeini, figura central de la revolución islámica</div>
-                  <div class="tl-gallery-nav">
-                    <button class="tl-gal-btn tl-gal-prev" data-scene="0">‹</button>
-                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
-                    <button class="tl-gal-btn tl-gal-next" data-scene="0">›</button>
+              <!-- Galería de imágenes de escena -->
+              <div class="tl-scene-gallery">
+                <div class="tl-gallery-main" data-scene="0" data-img="0">
+                  <img src="images/cap_1_1.jpg" alt="El ayatolá Khomeini" class="tl-gallery-img active" data-idx="0">
+                  <img src="images/cap_1_2.jpg" alt="Masas revolucionarias en Teherán" class="tl-gallery-img"
+                    data-idx="1">
+                  <div class="tl-gallery-overlay">
+                    <div class="tl-gallery-caption" id="tl-gallery-caption-0">El ayatolá Khomeini, figura central de la
+                      revolución islámica</div>
+                    <div class="tl-gallery-nav">
+                      <button class="tl-gal-btn tl-gal-prev" data-scene="0">‹</button>
+                      <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                      <button class="tl-gal-btn tl-gal-next" data-scene="0">›</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="tl-body">
-              <p>
-                Durante más de dos décadas, el <strong>sha Mohammad Reza Pahlaví</strong> gobernó Irán como
-                un aliado estratégico de Washington. La <strong>CIA había participado en 1953
-                en el golpe que lo restauró en el poder</strong>, y a cambio, Teherán garantizaba
-                estabilidad regional, flujo petrolero y una posición pro-occidental en plena
-                Guerra Fría.
-              </p>
-              <p>
-                Todo eso colapsó en febrero de 1979. Una revolución popular liderada por el
-                <strong>ayatolá Ruhollah Khomeini</strong> derrocó al sha y proclamó la <strong>República Islámica de Irán</strong>.
-                El nuevo régimen convirtió a Estados Unidos —al que llamaba el <em>"Gran Satán"</em>—
-                en su principal adversario ideológico y estratégico.
-              </p>
-              <p>
-                El impacto fue inmediato: Washington perdió su principal socio en el Golfo Pérsico,
-                acceso privilegiado al petróleo iraní y décadas de inversión en inteligencia regional.
-                Para Irán, la revolución fue el inicio de un proyecto de poder que buscaría
-                expandirse a través de aliados y milicias por todo el Medio Oriente.
-              </p>
-            </div>
-            <div class="tl-data-row">
-              <div class="tl-data-pill">
-                <span class="tdp-val">38 días</span>
-                <span class="tdp-label">duró la ofensiva revolucionaria</span>
+              <div class="tl-body">
+                <p>
+                  Durante más de dos décadas, el <strong>sha Mohammad Reza Pahlaví</strong> gobernó Irán como
+                  un aliado estratégico de Washington. La <strong>CIA había participado en 1953
+                    en el golpe que lo restauró en el poder</strong>, y a cambio, Teherán garantizaba
+                  estabilidad regional, flujo petrolero y una posición pro-occidental en plena
+                  Guerra Fría.
+                </p>
+                <p>
+                  Todo eso colapsó en febrero de 1979. Una revolución popular liderada por el
+                  <strong>ayatolá Ruhollah Khomeini</strong> derrocó al sha y proclamó la <strong>República Islámica de
+                    Irán</strong>.
+                  El nuevo régimen convirtió a Estados Unidos —al que llamaba el <em>"Gran Satán"</em>—
+                  en su principal adversario ideológico y estratégico.
+                </p>
+                <p>
+                  El impacto fue inmediato: Washington perdió su principal socio en el Golfo Pérsico,
+                  acceso privilegiado al petróleo iraní y décadas de inversión en inteligencia regional.
+                  Para Irán, la revolución fue el inicio de un proyecto de poder que buscaría
+                  expandirse a través de aliados y milicias por todo el Medio Oriente.
+                </p>
               </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">1953</span>
-                <span class="tdp-label">golpe de la CIA que precedió la ruptura</span>
-              </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">45 años</span>
-                <span class="tdp-label">sin relaciones diplomáticas formales</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ESCENA 2 -->
-        <div class="tl-scene" data-tl="1">
-          <div class="tl-scene-inner">
-            <div class="tl-tag">Escena 2 · La crisis que rompió la diplomacia</div>
-            <h3 class="tl-scene-title">444 días que sellaron la enemistad</h3>
-            <div class="tl-event-badge">Iran Hostage Crisis · 1979–1981</div>
-
-            <div class="tl-scene-gallery">
-              <div class="tl-gallery-main" data-scene="1" data-img="0">
-                <img src="images/cap_2_1.jpg" alt="Helicóptero destruido en Operación Eagle Claw" class="tl-gallery-img active" data-idx="0">
-                <img src="images/cap_2_2.jpg" alt="Rehenes liberados abordan avión" class="tl-gallery-img" data-idx="1">
-                <div class="tl-gallery-overlay">
-                  <div class="tl-gallery-caption" id="tl-gallery-caption-1">Restos del helicóptero en la Operación Eagle Claw, el rescate fallido</div>
-                  <div class="tl-gallery-nav">
-                    <button class="tl-gal-btn tl-gal-prev" data-scene="1">‹</button>
-                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
-                    <button class="tl-gal-btn tl-gal-next" data-scene="1">›</button>
-                  </div>
+              <div class="tl-data-row">
+                <div class="tl-data-pill">
+                  <span class="tdp-val">38 días</span>
+                  <span class="tdp-label">duró la ofensiva revolucionaria</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">1953</span>
+                  <span class="tdp-label">golpe de la CIA que precedió la ruptura</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">45 años</span>
+                  <span class="tdp-label">sin relaciones diplomáticas formales</span>
                 </div>
               </div>
             </div>
-
-            <div class="tl-body">
-              <p>
-                El 4 de noviembre de 1979, centenares de estudiantes iraníes asaltaron la embajada
-                estadounidense en Teherán. Tomaron como rehenes a <strong>52 diplomáticos y personal
-                consular</strong>. El detonante inmediato fue la decisión de Washington de admitir al
-                sha en suelo estadounidense para recibir tratamiento médico.
-              </p>
-              <p>
-                Lo que siguió fue una crisis de 444 días que humilló a la administración Carter,
-                frustró un rescate militar fallido —la operación <em>Eagle Claw</em> terminó en desastre
-                en el desierto iraní con ocho soldados muertos— y <strong>terminó con las relaciones
-                diplomáticas entre ambos países de forma definitiva</strong>.
-              </p>
-              <p>
-                Los rehenes fueron liberados el 20 de enero de 1981, minutos después de que Ronald
-                Reagan prestara juramento como presidente. La sincronización fue interpretada como
-                un mensaje político deliberado de Teherán a Washington.
-                Desde entonces, <strong>ningún embajador estadounidense ha pisado suelo iraní.<strong>
-              </p>
-            </div>
-            <div class="tl-data-row">
-              <div class="tl-data-pill">
-                <span class="tdp-val">52</span>
-                <span class="tdp-label">diplomáticos retenidos</span>
-              </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">444</span>
-                <span class="tdp-label">días de cautiverio</span>
-              </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">8 muertos</span>
-                <span class="tdp-label">en el rescate fallido Eagle Claw</span>
-              </div>
-            </div>
           </div>
-        </div>
 
-        <!-- ESCENA 3 -->
-        <div class="tl-scene" data-tl="2">
-          <div class="tl-scene-inner">
-            <div class="tl-tag">Escena 3 · El forjado de una potencia regional</div>
-            <h3 class="tl-scene-title">La guerra que construyó el modelo iraní</h3>
-            <div class="tl-event-badge">Iran–Iraq War · 1980–1988</div>
+          <!-- ESCENA 2 -->
+          <div class="tl-scene" data-tl="1">
+            <div class="tl-scene-inner">
+              <div class="tl-tag">Escena 2 · La crisis que rompió la diplomacia</div>
+              <h3 class="tl-scene-title">444 días que sellaron la enemistad</h3>
+              <div class="tl-event-badge">Iran Hostage Crisis · 1979–1981</div>
 
-            <div class="tl-scene-gallery">
-              <div class="tl-gallery-main" data-scene="2" data-img="0">
-                <img src="images/cap_3_1.jpg" alt="Saddam Hussein con militares iraquíes" class="tl-gallery-img active" data-idx="0">
-                <img src="images/cap_3_2.jpg" alt="Tanque frente a pozos petroleros en llamas" class="tl-gallery-img" data-idx="1">
-                <div class="tl-gallery-overlay">
-                  <div class="tl-gallery-caption" id="tl-gallery-caption-2">Saddam Hussein junto a su estado mayor durante la guerra Irán–Irak</div>
-                  <div class="tl-gallery-nav">
-                    <button class="tl-gal-btn tl-gal-prev" data-scene="2">‹</button>
-                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
-                    <button class="tl-gal-btn tl-gal-next" data-scene="2">›</button>
+              <div class="tl-scene-gallery">
+                <div class="tl-gallery-main" data-scene="1" data-img="0">
+                  <img src="images/cap_2_1.jpg" alt="Helicóptero destruido en Operación Eagle Claw"
+                    class="tl-gallery-img active" data-idx="0">
+                  <img src="images/cap_2_2.jpg" alt="Rehenes liberados abordan avión" class="tl-gallery-img"
+                    data-idx="1">
+                  <div class="tl-gallery-overlay">
+                    <div class="tl-gallery-caption" id="tl-gallery-caption-1">Restos del helicóptero en la Operación
+                      Eagle Claw, el rescate fallido</div>
+                    <div class="tl-gallery-nav">
+                      <button class="tl-gal-btn tl-gal-prev" data-scene="1">‹</button>
+                      <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                      <button class="tl-gal-btn tl-gal-next" data-scene="1">›</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="tl-body">
-              <p>
-                En septiembre de 1980, Saddam Hussein invadió Irán con el respaldo tácito de
-                Washington, que veía en Irak un contrapeso al nuevo régimen islamista. Estados
-                Unidos proporcionó a Bagdad <strong>inteligencia satelital, créditos y precursores
-                químicos</strong> que serían usados contra tropas iraníes.
-              </p>
-              <p>
-                La guerra duró ocho años y costó entre 500,000 y un millón de vidas. Irán la libró
-                con una combinación de movilización masiva, milicias voluntarias y una doctrina
-                de "guerra de desgaste" que marcó su pensamiento estratégico posterior. Fue entonces
-                cuando Teherán comenzó a desarrollar el modelo de <strong>proxy warfare</strong>:
-                apoyar milicias aliadas en países vecinos como extensión de su propio poder.
-              </p>
-              <p>
-                Al final del conflicto, Irán no había ganado territorialmente, pero había construido
-                la infraestructura ideológica y militar que hoy articula su influencia desde el
-                Líbano hasta Yemen. La <strong>Fuerza Quds del IRGC</strong>, creada en este período,
-                sería el instrumento central de esa proyección de poder.
-              </p>
-            </div>
-            <div class="tl-data-row">
-              <div class="tl-data-pill">
-                <span class="tdp-val">~1M</span>
-                <span class="tdp-label">bajas estimadas en ambos bandos</span>
+              <div class="tl-body">
+                <p>
+                  El 4 de noviembre de 1979, centenares de estudiantes iraníes asaltaron la embajada
+                  estadounidense en Teherán. Tomaron como rehenes a <strong>52 diplomáticos y personal
+                    consular</strong>. El detonante inmediato fue la decisión de Washington de admitir al
+                  sha en suelo estadounidense para recibir tratamiento médico.
+                </p>
+                <p>
+                  Lo que siguió fue una crisis de 444 días que humilló a la administración Carter,
+                  frustró un rescate militar fallido —la operación <em>Eagle Claw</em> terminó en desastre
+                  en el desierto iraní con ocho soldados muertos— y <strong>terminó con las relaciones
+                    diplomáticas entre ambos países de forma definitiva</strong>.
+                </p>
+                <p>
+                  Los rehenes fueron liberados el 20 de enero de 1981, minutos después de que Ronald
+                  Reagan prestara juramento como presidente. La sincronización fue interpretada como
+                  un mensaje político deliberado de Teherán a Washington.
+                  Desde entonces, <strong>ningún embajador estadounidense ha pisado suelo iraní.<strong>
+                </p>
               </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">8 años</span>
-                <span class="tdp-label">el conflicto más largo del siglo XX</span>
-              </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">Fuerza Quds</span>
-                <span class="tdp-label">creada durante este período</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ESCENA 4 -->
-        <div class="tl-scene" data-tl="3">
-          <div class="tl-scene-inner">
-            <div class="tl-tag">Escena 4 · El intento de distensión</div>
-            <h3 class="tl-scene-title">El acuerdo que prometió un nuevo capítulo</h3>
-            <div class="tl-event-badge">JCPOA · 2015</div>
-
-            <div class="tl-scene-gallery">
-              <div class="tl-gallery-main" data-scene="3" data-img="0">
-                <img src="images/cap_4_1.jpg" alt="Diplomáticos en la firma del JCPOA en Viena" class="tl-gallery-img active" data-idx="0">
-                <img src="images/cap_4_2.jpg" alt="Apretón de manos en las negociaciones nucleares" class="tl-gallery-img" data-idx="1">
-                <div class="tl-gallery-overlay">
-                  <div class="tl-gallery-caption" id="tl-gallery-caption-3">Los cancilleres del P5+1 e Irán en la firma del JCPOA, Viena 2015</div>
-                  <div class="tl-gallery-nav">
-                    <button class="tl-gal-btn tl-gal-prev" data-scene="3">‹</button>
-                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
-                    <button class="tl-gal-btn tl-gal-next" data-scene="3">›</button>
-                  </div>
+              <div class="tl-data-row">
+                <div class="tl-data-pill">
+                  <span class="tdp-val">52</span>
+                  <span class="tdp-label">diplomáticos retenidos</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">444</span>
+                  <span class="tdp-label">días de cautiverio</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">8 muertos</span>
+                  <span class="tdp-label">en el rescate fallido Eagle Claw</span>
                 </div>
               </div>
             </div>
-
-            <div class="tl-body">
-              <p>
-                Después de años de sanciones internacionales y tensiones crecientes por el programa
-                nuclear iraní, el 14 de julio de 2015 se firmó en Viena el <em>Joint Comprehensive
-                Plan of Action</em>. Irán se comprometía a <strong>reducir su capacidad de enriquecimiento
-                de uranio y aceptar inspecciones internacionales</strong> a cambio del levantamiento
-                progresivo de sanciones.
-              </p>
-              <p>
-                El acuerdo, negociado bajo la administración Obama con la participación del
-                grupo P5+1 —los cinco miembros permanentes del Consejo de Seguridad más Alemania—,
-                fue celebrado como un logro diplomático histórico. La economía iraní recibió
-                un impulso inmediato: el petróleo volvió a fluir hacia Europa y se liberaron
-                activos congelados por <strong>más de 100,000 millones de dólares</strong>.
-              </p>
-              <p>
-                Pero el acuerdo no sobrevivió al cambio político en Washington. En mayo de 2018,
-                la administración Trump se retiró unilateralmente del JCPOA y reimplantó
-                sanciones máximas. Irán respondió gradualmente reactivando su programa nuclear.
-                En 2024, la Agencia Internacional de Energía Atómica confirmó que Teherán
-                <strong>enriquecía uranio al 60%</strong>, a un paso técnico del grado armamentístico.
-              </p>
-            </div>
-            <div class="tl-data-row">
-              <div class="tl-data-pill">
-                <span class="tdp-val">+$100B</span>
-                <span class="tdp-label">activos descongelados</span>
-              </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">2018</span>
-                <span class="tdp-label">retirada unilateral de EE.UU.</span>
-              </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">60%</span>
-                <span class="tdp-label">enriquecimiento de uranio en 2024</span>
-              </div>
-            </div>
           </div>
-        </div>
 
-        <!-- ESCENA 5 -->
-        <div class="tl-scene" data-tl="4">
-          <div class="tl-scene-inner">
-            <div class="tl-tag">Escena 5 · El retorno de la confrontación directa</div>
-            <h3 class="tl-scene-title">El asesinato que casi desató una guerra</h3>
-            <div class="tl-event-badge">Assassination of Qasem Soleimani · 2020</div>
+          <!-- ESCENA 3 -->
+          <div class="tl-scene" data-tl="2">
+            <div class="tl-scene-inner">
+              <div class="tl-tag">Escena 3 · El forjado de una potencia regional</div>
+              <h3 class="tl-scene-title">La guerra que construyó el modelo iraní</h3>
+              <div class="tl-event-badge">Iran–Iraq War · 1980–1988</div>
 
-            <!-- Galería escena 5 -->
-            <div class="tl-scene-gallery">
-              <div class="tl-gallery-main" data-scene="4" data-img="0">
-                <img src="images/cap_5_1.jpg" alt="Soleimani, líder de las fuerzas iraníes en Irak" class="tl-gallery-img active" data-idx="0">
-                <img src="images/cap_5_2.jpg" alt="El asesinato de Soleimani desencadenó una crisis geopolítica" class="tl-gallery-img" data-idx="1">
-                <div class="tl-gallery-overlay">
-                  <div class="tl-gallery-caption" id="tl-gallery-caption-4">Soleimani, líder de las fuerzas iraníes en Irak</div>
-                  <div class="tl-gallery-nav">
-                    <button class="tl-gal-btn tl-gal-prev" data-scene="4">‹</button>
-                    <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
-                    <button class="tl-gal-btn tl-gal-next" data-scene="4">›</button>
+              <div class="tl-scene-gallery">
+                <div class="tl-gallery-main" data-scene="2" data-img="0">
+                  <img src="images/cap_3_1.jpg" alt="Saddam Hussein con militares iraquíes"
+                    class="tl-gallery-img active" data-idx="0">
+                  <img src="images/cap_3_2.jpg" alt="Tanque frente a pozos petroleros en llamas" class="tl-gallery-img"
+                    data-idx="1">
+                  <div class="tl-gallery-overlay">
+                    <div class="tl-gallery-caption" id="tl-gallery-caption-2">Saddam Hussein junto a su estado mayor
+                      durante la guerra Irán–Irak</div>
+                    <div class="tl-gallery-nav">
+                      <button class="tl-gal-btn tl-gal-prev" data-scene="2">‹</button>
+                      <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                      <button class="tl-gal-btn tl-gal-next" data-scene="2">›</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="tl-body">
-              <p>
-                En la madrugada del 3 de enero de 2020, un dron MQ-9 Reaper del ejército
-                estadounidense lanzó un misil sobre un convoy en el aeropuerto de Bagdad.
-                Entre los muertos estaba el general Qasem Soleimani, comandante de la
-                Fuerza Quds del IRGC y <strong>el arquitecto más influyente de la estrategia
-                regional iraní durante dos décadas</strong>.
-              </p>
-              <p>
-                Soleimani había construido y coordinado la red de milicias que hoy constituye
-                el "Eje de Resistencia" iraní: Hezbollah en el Líbano, las milicias chiíes en
-                Irak, los Houthis en Yemen, Hamas y la Yihad Islámica en Gaza. Su eliminación
-                fue el acto más agresivo de Washington contra un oficial iraní en la historia
-                del conflicto bilateral.
-              </p>
-              <p>
-                La respuesta de Irán llegó cinco días después: un bombardeo con misiles balísticos
-                sobre bases estadounidenses en Irak que dejó a <strong>más de 100 soldados con
-                lesiones cerebrales traumáticas</strong>. El mundo contuvo el aliento ante la
-                posibilidad de una guerra abierta. No ocurrió —ninguno de los dos lados quería
-                la escalada total— pero el episodio demostró que el conflicto había entrado en
-                una nueva fase de confrontación directa sin mediaciones.
-              </p>
-            </div>
-            <div class="tl-data-row">
-              <div class="tl-data-pill">
-                <span class="tdp-val">3 ene 2020</span>
-                <span class="tdp-label">ataque en el aeropuerto de Bagdad</span>
+              <div class="tl-body">
+                <p>
+                  En septiembre de 1980, Saddam Hussein invadió Irán con el respaldo tácito de
+                  Washington, que veía en Irak un contrapeso al nuevo régimen islamista. Estados
+                  Unidos proporcionó a Bagdad <strong>inteligencia satelital, créditos y precursores
+                    químicos</strong> que serían usados contra tropas iraníes.
+                </p>
+                <p>
+                  La guerra duró ocho años y costó entre 500,000 y un millón de vidas. Irán la libró
+                  con una combinación de movilización masiva, milicias voluntarias y una doctrina
+                  de "guerra de desgaste" que marcó su pensamiento estratégico posterior. Fue entonces
+                  cuando Teherán comenzó a desarrollar el modelo de <strong>proxy warfare</strong>:
+                  apoyar milicias aliadas en países vecinos como extensión de su propio poder.
+                </p>
+                <p>
+                  Al final del conflicto, Irán no había ganado territorialmente, pero había construido
+                  la infraestructura ideológica y militar que hoy articula su influencia desde el
+                  Líbano hasta Yemen. La <strong>Fuerza Quds del IRGC</strong>, creada en este período,
+                  sería el instrumento central de esa proyección de poder.
+                </p>
               </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">+100</span>
-                <span class="tdp-label">soldados con lesiones cerebrales</span>
+              <div class="tl-data-row">
+                <div class="tl-data-pill">
+                  <span class="tdp-val">~1M</span>
+                  <span class="tdp-label">bajas estimadas en ambos bandos</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">8 años</span>
+                  <span class="tdp-label">el conflicto más largo del siglo XX</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">Fuerza Quds</span>
+                  <span class="tdp-label">creada durante este período</span>
+                </div>
               </div>
-              <div class="tl-data-pill">
-                <span class="tdp-val">20 años</span>
-                <span class="tdp-label">de operaciones dirigidas por Soleimani</span>
-              </div>
-            </div>
-            <div class="tl-footnote">
-              ↓ La red de influencia que Soleimani construyó sigue operativa —
-              el siguiente capítulo la documenta en detalle.
             </div>
           </div>
-        </div>
 
-      </div><!-- /.timeline-scroll-col -->
-    </div><!-- /.timeline-layout -->
+          <!-- ESCENA 4 -->
+          <div class="tl-scene" data-tl="3">
+            <div class="tl-scene-inner">
+              <div class="tl-tag">Escena 4 · El intento de distensión</div>
+              <h3 class="tl-scene-title">El acuerdo que prometió un nuevo capítulo</h3>
+              <div class="tl-event-badge">JCPOA · 2015</div>
 
-  </section>
-<!-- ═══════════════════════════════════════════════════════════════════
+              <div class="tl-scene-gallery">
+                <div class="tl-gallery-main" data-scene="3" data-img="0">
+                  <img src="images/cap_4_1.jpg" alt="Diplomáticos en la firma del JCPOA en Viena"
+                    class="tl-gallery-img active" data-idx="0">
+                  <img src="images/cap_4_2.jpg" alt="Apretón de manos en las negociaciones nucleares"
+                    class="tl-gallery-img" data-idx="1">
+                  <div class="tl-gallery-overlay">
+                    <div class="tl-gallery-caption" id="tl-gallery-caption-3">Los cancilleres del P5+1 e Irán en la
+                      firma del JCPOA, Viena 2015</div>
+                    <div class="tl-gallery-nav">
+                      <button class="tl-gal-btn tl-gal-prev" data-scene="3">‹</button>
+                      <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                      <button class="tl-gal-btn tl-gal-next" data-scene="3">›</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tl-body">
+                <p>
+                  Después de años de sanciones internacionales y tensiones crecientes por el programa
+                  nuclear iraní, el 14 de julio de 2015 se firmó en Viena el <em>Joint Comprehensive
+                    Plan of Action</em>. Irán se comprometía a <strong>reducir su capacidad de enriquecimiento
+                    de uranio y aceptar inspecciones internacionales</strong> a cambio del levantamiento
+                  progresivo de sanciones.
+                </p>
+                <p>
+                  El acuerdo, negociado bajo la administración Obama con la participación del
+                  grupo P5+1 —los cinco miembros permanentes del Consejo de Seguridad más Alemania—,
+                  fue celebrado como un logro diplomático histórico. La economía iraní recibió
+                  un impulso inmediato: el petróleo volvió a fluir hacia Europa y se liberaron
+                  activos congelados por <strong>más de 100,000 millones de dólares</strong>.
+                </p>
+                <p>
+                  Pero el acuerdo no sobrevivió al cambio político en Washington. En mayo de 2018,
+                  la administración Trump se retiró unilateralmente del JCPOA y reimplantó
+                  sanciones máximas. Irán respondió gradualmente reactivando su programa nuclear.
+                  En 2024, la Agencia Internacional de Energía Atómica confirmó que Teherán
+                  <strong>enriquecía uranio al 60%</strong>, a un paso técnico del grado armamentístico.
+                </p>
+              </div>
+              <div class="tl-data-row">
+                <div class="tl-data-pill">
+                  <span class="tdp-val">+$100B</span>
+                  <span class="tdp-label">activos descongelados</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">2018</span>
+                  <span class="tdp-label">retirada unilateral de EE.UU.</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">60%</span>
+                  <span class="tdp-label">enriquecimiento de uranio en 2024</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ESCENA 5 -->
+          <div class="tl-scene" data-tl="4">
+            <div class="tl-scene-inner">
+              <div class="tl-tag">Escena 5 · El retorno de la confrontación directa</div>
+              <h3 class="tl-scene-title">El asesinato que casi desató una guerra</h3>
+              <div class="tl-event-badge">Assassination of Qasem Soleimani · 2020</div>
+
+              <!-- Galería escena 5 -->
+              <div class="tl-scene-gallery">
+                <div class="tl-gallery-main" data-scene="4" data-img="0">
+                  <img src="images/cap_5_1.jpg" alt="Soleimani, líder de las fuerzas iraníes en Irak"
+                    class="tl-gallery-img active" data-idx="0">
+                  <img src="images/cap_5_2.jpg" alt="El asesinato de Soleimani desencadenó una crisis geopolítica"
+                    class="tl-gallery-img" data-idx="1">
+                  <div class="tl-gallery-overlay">
+                    <div class="tl-gallery-caption" id="tl-gallery-caption-4">Soleimani, líder de las fuerzas iraníes en
+                      Irak</div>
+                    <div class="tl-gallery-nav">
+                      <button class="tl-gal-btn tl-gal-prev" data-scene="4">‹</button>
+                      <span class="tl-gal-counter"><span class="tl-gal-cur">1</span> / 2</span>
+                      <button class="tl-gal-btn tl-gal-next" data-scene="4">›</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tl-body">
+                <p>
+                  En la madrugada del 3 de enero de 2020, un dron MQ-9 Reaper del ejército
+                  estadounidense lanzó un misil sobre un convoy en el aeropuerto de Bagdad.
+                  Entre los muertos estaba el general Qasem Soleimani, comandante de la
+                  Fuerza Quds del IRGC y <strong>el arquitecto más influyente de la estrategia
+                    regional iraní durante dos décadas</strong>.
+                </p>
+                <p>
+                  Soleimani había construido y coordinado la red de milicias que hoy constituye
+                  el "Eje de Resistencia" iraní: Hezbollah en el Líbano, las milicias chiíes en
+                  Irak, los Houthis en Yemen, Hamas y la Yihad Islámica en Gaza. Su eliminación
+                  fue el acto más agresivo de Washington contra un oficial iraní en la historia
+                  del conflicto bilateral.
+                </p>
+                <p>
+                  La respuesta de Irán llegó cinco días después: un bombardeo con misiles balísticos
+                  sobre bases estadounidenses en Irak que dejó a <strong>más de 100 soldados con
+                    lesiones cerebrales traumáticas</strong>. El mundo contuvo el aliento ante la
+                  posibilidad de una guerra abierta. No ocurrió —ninguno de los dos lados quería
+                  la escalada total— pero el episodio demostró que el conflicto había entrado en
+                  una nueva fase de confrontación directa sin mediaciones.
+                </p>
+              </div>
+              <div class="tl-data-row">
+                <div class="tl-data-pill">
+                  <span class="tdp-val">3 ene 2020</span>
+                  <span class="tdp-label">ataque en el aeropuerto de Bagdad</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">+100</span>
+                  <span class="tdp-label">soldados con lesiones cerebrales</span>
+                </div>
+                <div class="tl-data-pill">
+                  <span class="tdp-val">20 años</span>
+                  <span class="tdp-label">de operaciones dirigidas por Soleimani</span>
+                </div>
+              </div>
+              <div class="tl-footnote">
+                ↓ La red de influencia que Soleimani construyó sigue operativa —
+                el siguiente capítulo la documenta en detalle.
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.timeline-scroll-col -->
+      </div><!-- /.timeline-layout -->
+
+    </section>
+    <!-- ═══════════════════════════════════════════════════════════════════
      BLOQUE 3 — Estrategia Militar y Modelo de Guerra
      Va después de #timeline-section y antes de #conflict-section
      ════════════════════════════════════════════════════════════════ -->
-<section data-step="0" id="strategy-section">
+    <section data-step="0" id="strategy-section">
 
-  <!-- ── Portada del capítulo ── -->
-  <div class="st-cover">
-    <div class="st-cover-bg-num">II</div>
-    <p class="st-cover-eyebrow">Capítulo II</p>
-    <h2 class="st-cover-title">Dos doctrinas, una <em>guerra asimétrica</em></h2>
-    <p class="st-cover-body">El conflicto entre EE.UU., Israel e Irán no puede entenderse como una guerra convencional. Es el choque entre dos lógicas militares radicalmente distintas: la superioridad tecnológica contra la resistencia estratégica.</p>
-    <div class="st-cover-scroll">
-      <div class="st-cover-scroll-line"></div>
-      Explorar
-    </div>
-  </div>
+      <!-- ── Portada del capítulo ── -->
+      <div class="st-cover">
+        <div class="st-cover-bg-num">II</div>
+        <p class="st-cover-eyebrow">Capítulo II</p>
+        <h2 class="st-cover-title">Dos doctrinas, una <em>guerra asimétrica</em></h2>
+        <p class="st-cover-body">El conflicto entre EE.UU., Israel e Irán no puede entenderse como una guerra
+          convencional. Es el choque entre dos lógicas militares radicalmente distintas: la superioridad tecnológica
+          contra la resistencia estratégica.</p>
+        <div class="st-cover-scroll">
+          <div class="st-cover-scroll-line"></div>
+          Explorar
+        </div>
+      </div>
 
-  <!-- ══════════════════════════════════════════════════════════
+      <!-- ══════════════════════════════════════════════════════════
        PANTALLA 1 · Doctrinas + Matemática asimétrica
        Sin mapa · Tabla de costos triple
        ══════════════════════════════════════════════════════════ -->
-  <div class="st-screen st-screen--solid" data-screen="st-screen-01">
-    <div class="st-editorial">
-      <div class="st-screen-num">01</div>
-      <div class="st-screen-tag">Doctrinas en conflicto</div>
-      <h3 class="st-screen-title">Shock and Awe vs <em>guerra de desgaste</em></h3>
-      <p class="st-body">EE.UU. e Israel construyeron su modelo de guerra sobre el concepto de <strong>"Shock and Awe"</strong>: ataques de precisión, destrucción del mando enemigo, colapso político rápido. Funcionó en Irak 2003. Pero Irán diseñó su doctrina precisamente para neutralizar ese modelo.</p>
-      <p class="st-body">Desde la guerra Irán-Irak, Teherán es consciente que jamás podría sobreponerse a EE.UU. en una guerra convencional. En su lugar desarrolló la <strong>guerra de desgaste</strong>: no derrotar al adversario en el campo de batalla, sino prolongar el conflicto hasta que su costo político, económico y psicológico resulte intolerable.</p>
-      <p class="st-body">El corazón de este modelo es la <strong>economía de la guerra asimétrica</strong>: explotar la brecha de costos entre armas ofensivas baratas y sistemas defensivos extremadamente caros. La guerra se convierte en una batalla de sostenibilidad financiera, no solo militar.</p>
-      <div class="st-pills">
-        <div class="st-pill"><span class="val">Shock and Awe</span><span class="lbl">doctrina EE.UU. / Israel</span></div>
-        <div class="st-pill"><span class="val">Desgaste</span><span class="lbl">doctrina Irán</span></div>
-        <div class="st-pill"><span class="val">40 años</span><span class="lbl">desarrollando la asimetría</span></div>
-      </div>
-    </div>
-
-    <div class="st-visual st-visual--solid">
-      <div style="width:100%;">
-        <div class="st-chart-title">La matemática de la guerra asimétrica</div>
-
-        <div class="st-cost-table">
-          <!-- Fila 1: Caza vs Dron -->
-          <div class="st-cost-row">
-            <div class="st-cost-usa">
-              <div class="st-cost-label">Defensa EE.UU.</div>
-              <div class="st-cost-val st-cost-val--usa">$100M</div>
-              <div class="st-cost-sub">F-35 Lightning II<br>caza de 5ª generación</div>
+      <div class="st-screen st-screen--solid" data-screen="st-screen-01">
+        <div class="st-editorial">
+          <div class="st-screen-num">01</div>
+          <div class="st-screen-tag">Doctrinas en conflicto</div>
+          <h3 class="st-screen-title">Shock and Awe vs <em>guerra de desgaste</em></h3>
+          <p class="st-body">EE.UU. e Israel construyeron su modelo de guerra sobre el concepto de <strong>"Shock and
+              Awe"</strong>: ataques de precisión, destrucción del mando enemigo, colapso político rápido. Funcionó en
+            Irak 2003. Pero Irán diseñó su doctrina precisamente para neutralizar ese modelo.</p>
+          <p class="st-body">Desde la guerra Irán-Irak, Teherán es consciente que jamás podría sobreponerse a EE.UU. en
+            una guerra convencional. En su lugar desarrolló la <strong>guerra de desgaste</strong>: no derrotar al
+            adversario en el campo de batalla, sino prolongar el conflicto hasta que su costo político, económico y
+            psicológico resulte intolerable.</p>
+          <p class="st-body">El corazón de este modelo es la <strong>economía de la guerra asimétrica</strong>: explotar
+            la brecha de costos entre armas ofensivas baratas y sistemas defensivos extremadamente caros. La guerra se
+            convierte en una batalla de sostenibilidad financiera, no solo militar.</p>
+          <div class="st-pills">
+            <div class="st-pill"><span class="val">Shock and Awe</span><span class="lbl">doctrina EE.UU. / Israel</span>
             </div>
-            <div class="st-cost-vs">vs</div>
-            <div class="st-cost-iran">
-              <div class="st-cost-label">Ataque Irán</div>
-              <div class="st-cost-val st-cost-val--iran">$25K</div>
-              <div class="st-cost-sub">Dron Shahed-136<br>producción en serie</div>
-            </div>
-          </div>
-
-          <!-- Fila 2: Interceptor vs Misil -->
-          <div class="st-cost-row">
-            <div class="st-cost-usa">
-              <div class="st-cost-label">Intercepción</div>
-              <div class="st-cost-val st-cost-val--usa">$4M</div>
-              <div class="st-cost-sub">Misil Patriot PAC-3<br>por intercepción</div>
-            </div>
-            <div class="st-cost-vs">vs</div>
-            <div class="st-cost-iran">
-              <div class="st-cost-label">Proyectil atacante</div>
-              <div class="st-cost-val st-cost-val--iran">$50K</div>
-              <div class="st-cost-sub">Misil Fateh-110<br>producción iraní</div>
-            </div>
-          </div>
-
-          <!-- Fila 3: Portaaviones vs Lancha -->
-          <div class="st-cost-row">
-            <div class="st-cost-usa">
-              <div class="st-cost-label">Proyección naval</div>
-              <div class="st-cost-val st-cost-val--usa">$13B</div>
-              <div class="st-cost-sub">Portaaviones clase Ford<br>+ grupo de combate</div>
-            </div>
-            <div class="st-cost-vs">vs</div>
-            <div class="st-cost-iran">
-              <div class="st-cost-label">Saturación naval</div>
-              <div class="st-cost-val st-cost-val--iran">$5M - $10M</div>
-              <div class="st-cost-sub">Flota de lanchas rápidas<br>IRGC · enjambre táctico</div>
+            <div class="st-pill"><span class="val">Desgaste</span><span class="lbl">doctrina Irán</span></div>
+            <div class="st-pill"><span class="val">40 años</span><span class="lbl">desarrollando la asimetría</span>
             </div>
           </div>
         </div>
 
-        <div class="st-cost-ratio">
-          <strong>4,000×</strong>
-          <span>Por el costo de un F-35, Irán puede lanzar 4,000 drones. Defenderse sale más caro que atacar. La lógica del conflicto se invierte.</span>
+        <div class="st-visual st-visual--solid">
+          <div style="width:100%;">
+            <div class="st-chart-title">La matemática de la guerra asimétrica</div>
+
+            <div class="st-cost-table">
+              <!-- Fila 1: Caza vs Dron -->
+              <div class="st-cost-row">
+                <div class="st-cost-usa">
+                  <div class="st-cost-label">Defensa EE.UU.</div>
+                  <div class="st-cost-val st-cost-val--usa">$100M</div>
+                  <div class="st-cost-sub">F-35 Lightning II<br>caza de 5ª generación</div>
+                </div>
+                <div class="st-cost-vs">vs</div>
+                <div class="st-cost-iran">
+                  <div class="st-cost-label">Ataque Irán</div>
+                  <div class="st-cost-val st-cost-val--iran">$25K</div>
+                  <div class="st-cost-sub">Dron Shahed-136<br>producción en serie</div>
+                </div>
+              </div>
+
+              <!-- Fila 2: Interceptor vs Misil -->
+              <div class="st-cost-row">
+                <div class="st-cost-usa">
+                  <div class="st-cost-label">Intercepción</div>
+                  <div class="st-cost-val st-cost-val--usa">$4M</div>
+                  <div class="st-cost-sub">Misil Patriot PAC-3<br>por intercepción</div>
+                </div>
+                <div class="st-cost-vs">vs</div>
+                <div class="st-cost-iran">
+                  <div class="st-cost-label">Proyectil atacante</div>
+                  <div class="st-cost-val st-cost-val--iran">$50K</div>
+                  <div class="st-cost-sub">Misil Fateh-110<br>producción iraní</div>
+                </div>
+              </div>
+
+              <!-- Fila 3: Portaaviones vs Lancha -->
+              <div class="st-cost-row">
+                <div class="st-cost-usa">
+                  <div class="st-cost-label">Proyección naval</div>
+                  <div class="st-cost-val st-cost-val--usa">$13B</div>
+                  <div class="st-cost-sub">Portaaviones clase Ford<br>+ grupo de combate</div>
+                </div>
+                <div class="st-cost-vs">vs</div>
+                <div class="st-cost-iran">
+                  <div class="st-cost-label">Saturación naval</div>
+                  <div class="st-cost-val st-cost-val--iran">$5M - $10M</div>
+                  <div class="st-cost-sub">Flota de lanchas rápidas<br>IRGC · enjambre táctico</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="st-cost-ratio">
+              <strong>4,000×</strong>
+              <span>Por el costo de un F-35, Irán puede lanzar 4,000 drones. Defenderse sale más caro que atacar. La
+                lógica del conflicto se invierte.</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- ══════════════════════════════════════════════════════════
+      <!-- ══════════════════════════════════════════════════════════
        PANTALLA 2 · Arquitectura defensiva
        CON MAPA (c07) · Irán interior: montañas + instalaciones
        ══════════════════════════════════════════════════════════ -->
-  <div class="st-screen st-screen--map st-screen--reverse" data-screen="st-screen-02">
-    <!-- Columna transparente: mapa visible -->
-    <div class="st-visual st-visual--transparent"></div>
-    <div class="st-editorial">
-      <div class="st-screen-num">02</div>
-      <div class="st-screen-tag">Arquitectura defensiva</div>
-      <h3 class="st-screen-title">La fortaleza que no se puede <em>decapitar</em></h3>
-      <p class="st-body">Irán ha construido una arquitectura defensiva diseñada específicamente para sobrevivir al tipo de guerra que EE.UU. sabe hacer. Instalaciones subterráneas excavadas en las montañas Zagros y Alborz almacenan misiles, drones y centros de mando diseñados para resistir bombardeos convencionales.</p>
-      <p class="st-body">Pero la innovación más importante es la <strong>estrategia mosaico</strong>: el territorio iraní está dividido en múltiples regiones militares autónomas, cada una con capacidad operativa, logística y de mando independiente. El objetivo es evitar que eliminar el liderazgo central provoque el colapso del sistema.</p>
-      <p class="st-body">Esta estructura convierte al sistema militar iraní en algo difícil de "decapitar" — frustrando una de las tácticas centrales de la doctrina americana.</p>
-      <div class="st-pills">
-        <div class="st-pill"><span class="val">Natanz</span><span class="lbl">instalación nuclear subterránea</span></div>
-        <div class="st-pill"><span class="val">Fordow</span><span class="lbl">excavado en montaña · 80m profundidad</span></div>
-        <div class="st-pill"><span class="val">Mosaico</span><span class="lbl">mando descentralizado regional</span></div>
+      <div class="st-screen st-screen--map st-screen--reverse" data-screen="st-screen-02">
+        <!-- Columna transparente: mapa visible -->
+        <div class="st-visual st-visual--transparent"></div>
+        <div class="st-editorial">
+          <div class="st-screen-num">02</div>
+          <div class="st-screen-tag">Arquitectura defensiva</div>
+          <h3 class="st-screen-title">La fortaleza que no se puede <em>decapitar</em></h3>
+          <p class="st-body">Irán ha construido una arquitectura defensiva diseñada específicamente para sobrevivir al
+            tipo de guerra que EE.UU. sabe hacer. Instalaciones subterráneas excavadas en las montañas Zagros y Alborz
+            almacenan misiles, drones y centros de mando diseñados para resistir bombardeos convencionales.</p>
+          <p class="st-body">Pero la innovación más importante es la <strong>estrategia mosaico</strong>: el territorio
+            iraní está dividido en múltiples regiones militares autónomas, cada una con capacidad operativa, logística y
+            de mando independiente. El objetivo es evitar que eliminar el liderazgo central provoque el colapso del
+            sistema.</p>
+          <p class="st-body">Esta estructura convierte al sistema militar iraní en algo difícil de "decapitar" —
+            frustrando una de las tácticas centrales de la doctrina americana.</p>
+          <div class="st-pills">
+            <div class="st-pill"><span class="val">Natanz</span><span class="lbl">instalación nuclear subterránea</span>
+            </div>
+            <div class="st-pill"><span class="val">Fordow</span><span class="lbl">excavado en montaña · 80m
+                profundidad</span></div>
+            <div class="st-pill"><span class="val">Mosaico</span><span class="lbl">mando descentralizado regional</span>
+            </div>
+          </div>
+          <div class="st-alert">
+            <div class="st-alert-dot"></div>
+            El mapa muestra las instalaciones clave y las cadenas montañosas Zagros y Alborz que hacen del terreno iraní
+            una fortaleza natural difícil de operar militarmente.
+          </div>
+        </div>
       </div>
-      <div class="st-alert">
-        <div class="st-alert-dot"></div>
-        El mapa muestra las instalaciones clave y las cadenas montañosas Zagros y Alborz que hacen del terreno iraní una fortaleza natural difícil de operar militarmente.
-      </div>
-    </div>
-  </div>
 
-  <!-- ══════════════════════════════════════════════════════════
+      <!-- ══════════════════════════════════════════════════════════
        PANTALLA 3 · La respuesta iraní: guerra indirecta por diseño
        CON MAPA (c03) · Objetivos iraníes en el Golfo
        ══════════════════════════════════════════════════════════ -->
-  <div class="st-screen st-screen--map st-screen--reverse" data-screen="st-screen-03">
-    <!-- Columna transparente: mapa visible -->
-    <div class="st-visual st-visual--transparent"></div>
-    <div class="st-editorial">
-      <div class="st-screen-num">03</div>
-      <div class="st-screen-tag">Doctrina militar iraní</div>
-      <h3 class="st-screen-title">La respuesta iraní: <em>guerra indirecta</em> por diseño también conocida como <strong>guerra triangular</strong></h3>
-      <p class="st-body">Como mencioné anteriormente, Irán no puede enfrentar a EE.UU. en un choque convencional, por lo que, apunta a los socios regionales americanos: Arabia Saudita, Emiratos, Qatar y Bahréin.</p>
-      <p class="st-body">Las <strong>plantas desalinizadoras</strong> son el blanco más estratégico. Un ataque crea crisis humanitaria en 
-        72 horas y fuerza a los aliados a presionar a Washington.
-        El impacto es debastador debido a la geografía del Golfo debido a que países como Emiratos o Qatar, las plantas desalinizadoras producen casi la totalidad del agua potable.
-      </p>
-      <div class="st-pills">
-        <div class="st-pill"><span class="val">💧</span><span class="lbl">Desalinizadoras · Jubail, Jebel Ali, Doha</span></div>
-        <div class="st-pill"><span class="val">⛽</span><span class="lbl">Refinerías · Abqaiq, Ruwais</span></div>
-        <div class="st-pill"><span class="val">1,500km</span><span class="lbl">Radio de alcance de misiles iraníes</span></div>
+      <div class="st-screen st-screen--map st-screen--reverse" data-screen="st-screen-03">
+        <!-- Columna transparente: mapa visible -->
+        <div class="st-visual st-visual--transparent"></div>
+        <div class="st-editorial">
+          <div class="st-screen-num">03</div>
+          <div class="st-screen-tag">Doctrina militar iraní</div>
+          <h3 class="st-screen-title">La respuesta iraní: <em>guerra indirecta</em> por diseño también conocida como
+            <strong>guerra triangular</strong></h3>
+          <p class="st-body">Como mencioné anteriormente, Irán no puede enfrentar a EE.UU. en un choque convencional,
+            por lo que, apunta a los socios regionales americanos: Arabia Saudita, Emiratos, Qatar y Bahréin.</p>
+          <p class="st-body">Las <strong>plantas desalinizadoras</strong> son el blanco más estratégico. Un ataque crea
+            crisis humanitaria en
+            72 horas y fuerza a los aliados a presionar a Washington.
+            El impacto es debastador debido a la geografía del Golfo debido a que países como Emiratos o Qatar, las
+            plantas desalinizadoras producen casi la totalidad del agua potable.
+          </p>
+          <div class="st-pills">
+            <div class="st-pill"><span class="val">💧</span><span class="lbl">Desalinizadoras · Jubail, Jebel Ali,
+                Doha</span></div>
+            <div class="st-pill"><span class="val">⛽</span><span class="lbl">Refinerías · Abqaiq, Ruwais</span></div>
+            <div class="st-pill"><span class="val">1,500km</span><span class="lbl">Radio de alcance de misiles
+                iraníes</span></div>
+          </div>
+          <div class="st-alert">
+            <div class="st-alert-dot"></div>
+            El mapa muestra los objetivos reales con su radio de amenaza. Todo el Golfo entra dentro del alcance iraní.
+          </div>
+        </div>
       </div>
-      <div class="st-alert">
-        <div class="st-alert-dot"></div>
-        El mapa muestra los objetivos reales con su radio de amenaza. Todo el Golfo entra dentro del alcance iraní.
-      </div>
-    </div>
-  </div>
 
-  <!-- ══════════════════════════════════════════════════════════
+      <!-- ══════════════════════════════════════════════════════════
        PANTALLA 4 · Eje de Resistencia + Red de proxies
        CON MAPA (c08) · Red de proxies desde Teherán
        ══════════════════════════════════════════════════════════ -->
-  <div class="st-screen st-screen--map" data-screen="st-screen-04">
-    <div class="st-editorial">
-      <div class="st-screen-num">04</div>
-      <div class="st-screen-tag">El eje de resistencia</div>
-      <h3 class="st-screen-title">La red que convierte un conflicto bilateral en <em>guerra regional</em></h3>
-      <p class="st-body">Una característica fundamental de la estrategia iraní es expandir el conflicto más allá del enfrentamiento directo. Irán transforma la guerra en <strong>multipolar</strong>: los ataques se dirigen frecuentemente contra aliados regionales en lugar de contra el adversario principal.</p>
-      <p class="st-body">Para esto, Teherán cultivó durante décadas el <strong>Eje de Resistencia</strong>: Hezbollah en Líbano, Hamas en Gaza, Houthis en Yemen, milicias chiitas en Irak y Siria. Cada uno con agenda propia, todos conectados financiera, militar e ideológicamente con Teherán.</p>
-      <p class="st-body">Esta red funciona como un <strong>multiplicador estratégico</strong>: en lugar de concentrar el conflicto en un frente, Irán puede activarlo simultáneamente en múltiples puntos, obligando a EE.UU. e Israel a dispersar recursos y atención estratégica en cuatro direcciones a la vez.</p>
-      <div class="st-pills">
-        <div class="st-pill"><span class="val">160+</span><span class="lbl">ataques a bases US en 2023–24</span></div>
-        <div class="st-pill"><span class="val">4</span><span class="lbl">frentes activos simultáneos</span></div>
-        <div class="st-pill"><span class="val">+20%</span><span class="lbl">costos flete Mar Rojo (Houthis)</span></div>
+      <div class="st-screen st-screen--map" data-screen="st-screen-04">
+        <div class="st-editorial">
+          <div class="st-screen-num">04</div>
+          <div class="st-screen-tag">El eje de resistencia</div>
+          <h3 class="st-screen-title">La red que convierte un conflicto bilateral en <em>guerra regional</em></h3>
+          <p class="st-body">Una característica fundamental de la estrategia iraní es expandir el conflicto más allá del
+            enfrentamiento directo. Irán transforma la guerra en <strong>multipolar</strong>: los ataques se dirigen
+            frecuentemente contra aliados regionales en lugar de contra el adversario principal.</p>
+          <p class="st-body">Para esto, Teherán cultivó durante décadas el <strong>Eje de Resistencia</strong>:
+            Hezbollah en Líbano, Hamas en Gaza, Houthis en Yemen, milicias chiitas en Irak y Siria. Cada uno con agenda
+            propia, todos conectados financiera, militar e ideológicamente con Teherán.</p>
+          <p class="st-body">Esta red funciona como un <strong>multiplicador estratégico</strong>: en lugar de
+            concentrar el conflicto en un frente, Irán puede activarlo simultáneamente en múltiples puntos, obligando a
+            EE.UU. e Israel a dispersar recursos y atención estratégica en cuatro direcciones a la vez.</p>
+          <div class="st-pills">
+            <div class="st-pill"><span class="val">160+</span><span class="lbl">ataques a bases US en 2023–24</span>
+            </div>
+            <div class="st-pill"><span class="val">4</span><span class="lbl">frentes activos simultáneos</span></div>
+            <div class="st-pill"><span class="val">+20%</span><span class="lbl">costos flete Mar Rojo (Houthis)</span>
+            </div>
+          </div>
+          <div class="st-alert">
+            <div class="st-alert-dot"></div>
+            El mapa muestra las líneas de comando desde Teherán hacia cada proxy. La "media luna chiíta" no es metáfora
+            — es una red militar real y operativa.
+          </div>
+        </div>
+        <!-- Columna transparente: mapa visible -->
+        <div class="st-visual st-visual--transparent"></div>
       </div>
-      <div class="st-alert">
-        <div class="st-alert-dot"></div>
-        El mapa muestra las líneas de comando desde Teherán hacia cada proxy. La "media luna chiíta" no es metáfora — es una red militar real y operativa.
-      </div>
-    </div>
-    <!-- Columna transparente: mapa visible -->
-    <div class="st-visual st-visual--transparent"></div>
-  </div>
 
-  <!-- ══════════════════════════════════════════════════════════
+      <!-- ══════════════════════════════════════════════════════════
        GRAFO INTERACTIVO — Red de influencia iraní
        Va al final de la sección estrategia, después del mapa-texto
        ══════════════════════════════════════════════════════════ -->
-  <div id="graph-section">
-    <div class="graph-layout">
+      <div id="graph-section">
+        <div class="graph-layout">
 
-      <!-- Columna editorial (lateral breve) -->
-      <div class="graph-editorial">
-        <div class="graph-eyebrow">Eje de Resistencia · Capítulo II</div>
-        <h2 class="graph-title">El mapa de <em>conexiones</em> que nadie muestra</h2>
-        <p class="graph-body">Los estados, organizaciones y milicias vinculados al conflicto no actúan de forma aislada. Esta red revela <strong>quién financia, ataca o coopera con quién</strong> en el ecosistema geopolítico más complejo del planeta.</p>
-        <p class="graph-body">Cada nodo es un actor. Cada línea, una relación documentada: alianza, financiación, ataque o designación terrorista.</p>
+          <!-- Columna editorial (lateral breve) -->
+          <div class="graph-editorial">
+            <div class="graph-eyebrow">Eje de Resistencia · Capítulo II</div>
+            <h2 class="graph-title">El mapa de <em>conexiones</em> que nadie muestra</h2>
+            <p class="graph-body">Los estados, organizaciones y milicias vinculados al conflicto no actúan de forma
+              aislada. Esta red revela <strong>quién financia, ataca o coopera con quién</strong> en el ecosistema
+              geopolítico más complejo del planeta.</p>
+            <p class="graph-body">Cada nodo es un actor. Cada línea, una relación documentada: alianza, financiación,
+              ataque o designación terrorista.</p>
+          </div>
+
+          <!-- Canvas del grafo -->
+          <div class="graph-canvas-wrap">
+            <svg id="graph-svg"></svg>
+            <div id="graph-tooltip"></div>
+          </div>
+
+        </div>
       </div>
 
-      <!-- Canvas del grafo -->
-      <div class="graph-canvas-wrap">
-        <svg id="graph-svg"></svg>
-        <div id="graph-tooltip"></div>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-<!-- ══════════════════════════════════════════════════════
+    </section>
+    <!-- ══════════════════════════════════════════════════════
      CAPÍTULO III — El Estrecho de Ormuz
      Insertar en index.html DESPUÉS de #strategy-section
      ══════════════════════════════════════════════════════ -->
-<section data-step="0" id="ormuz-section">
+    <section data-step="0" id="ormuz-section">
 
-  <!-- ── Portada del capítulo ── -->
-  <div class="oz-cover">
-    <div class="oz-cover-bg-num">III</div>
-    <p class="oz-cover-eyebrow">Capítulo III</p>
-    <h2 class="oz-cover-title">El Estrecho de <em>Ormuz</em></h2>
-    <p class="oz-cover-body">Un canal de apenas 33 kilómetros que concentra el nervio energético del planeta. Quien controla Ormuz, controla el pulso de la economía global.</p>
-    <div class="oz-cover-scroll">
-      <div class="oz-cover-scroll-line"></div>
-      Explorar
-    </div>
-  </div>
-
-  <!-- Pantalla 01: Dimensiones físicas + volumen -->
-  <div class="oz-screen oz-screen--map" data-screen="oz-screen-01">
-    <div class="oz-editorial">
-      <div class="oz-screen-num">01</div>
-      <p class="oz-screen-tag">El cuello de botella</p>
-      <h3 class="oz-screen-title">33 km que mueven el <em>mundo</em></h3>
-      <p class="oz-body">El Estrecho de Ormuz, con apenas <strong>33 km en su punto más angosto</strong>, es el corredor marítimo más estratégico del planeta. Por él transitan dos canales de navegación de apenas 3 km de ancho cada uno.</p>
-      <p class="oz-body">En términos de volumen, ningún otro chokepoint se le acerca: <strong>21 millones de barriles</strong> de petróleo cruzan este estrecho cada día.</p>
-
-      <div class="oz-stat-hero">
-        <span class="oz-stat-number">21M</span>
-        <div>
-          <span class="oz-stat-unit">barriles<br>diarios</span>
-        </div>
-      </div>
-      <p class="oz-stat-label">20% del petróleo mundial · 25% del LNG global</p>
-
-      <div class="oz-pills">
-        <div class="oz-pill"><span class="val">33 km</span><span class="lbl">ancho mínimo</span></div>
-        <div class="oz-pill"><span class="val">20%</span><span class="lbl">petróleo mundial</span></div>
-        <div class="oz-pill"><span class="val">25%</span><span class="lbl">LNG global</span></div>
-      </div>
-    </div>
-    <div class="oz-visual oz-visual--transparent"></div>
-  </div>
-
-  <!-- Pantalla 02: Dependencia por país -->
-  <div class="oz-screen oz-screen--data oz-screen--reverse" data-screen="oz-screen-02">
-    <div class="oz-editorial">
-      <div class="oz-screen-num">02</div>
-      <p class="oz-screen-tag">Dependencia energética</p>
-      <h3 class="oz-screen-title">¿Quién pierde más si <em>Ormuz cierra</em>?</h3>
-      <p class="oz-body">Las economías de Asia-Pacífico son las más expuestas. Japón, con <strong>95% de su crudo</strong> procedente del Golfo Pérsico, enfrentaría una crisis energética inmediata. Corea del Sur e India no están lejos de ese umbral.</p>
-      <p class="oz-body">China, con el <strong>44% de su petróleo</strong> dependiente del estrecho, tiene tanto incentivo geopolítico para mantenerlo abierto como Irán para usarlo de palanca.</p>
-      <p class="oz-body">Pero el mayor riesgo a corto plazo es el <strong>Gas Natural Licuado (GNL)</strong>. Sin reservas estratégicas, Singapur (94% de su electricidad), Tailandia (2/3 de Catar) y Taiwán (1/3 de su red) enfrentarían apagones en semanas.</p>
-      <div class="oz-alert">
-        <div class="oz-alert-dot"></div>
-        <span>Un cierre de 30 días provocaría reservas estratégicas insuficientes en Japón, Corea y partes de la India.</span>
-      </div>
-    </div>
-    <div class="oz-visual oz-visual--data">
-      <div style="width:100%;">
-        <p class="oz-chart-title">% del crudo importado vía Ormuz</p>
-        <div class="oz-dep-list">
-          <div class="oz-dep-item">
-            <div class="oz-dep-header">
-              <span class="oz-dep-name">🇯🇵 Japón</span>
-              <span class="oz-dep-pct">95%</span>
-            </div>
-            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:95%"></div></div>
-          </div>
-          <div class="oz-dep-item">
-            <div class="oz-dep-header">
-              <span class="oz-dep-name">🇰🇷 Corea del Sur</span>
-              <span class="oz-dep-pct">70%</span>
-            </div>
-            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:70%"></div></div>
-          </div>
-          <div class="oz-dep-item">
-            <div class="oz-dep-header">
-              <span class="oz-dep-name">🇮🇳 India</span>
-              <span class="oz-dep-pct">55%</span>
-            </div>
-            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:55%"></div></div>
-          </div>
-          <div class="oz-dep-item">
-            <div class="oz-dep-header">
-              <span class="oz-dep-name">🇨🇳 China</span>
-              <span class="oz-dep-pct">44%</span>
-            </div>
-            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:44%"></div></div>
-          </div>
-          <div class="oz-dep-item">
-            <div class="oz-dep-header">
-              <span class="oz-dep-name">🇪🇺 Europa (promedio)</span>
-              <span class="oz-dep-pct">28%</span>
-            </div>
-            <div class="oz-dep-track"><div class="oz-dep-fill" style="--dep-w:28%"></div></div>
-          </div>
-          <div class="oz-dep-item">
-            <div class="oz-dep-header">
-              <span class="oz-dep-name">🇺🇸 EE.UU.</span>
-              <span class="oz-dep-pct">14%</span>
-            </div>
-            <div class="oz-dep-track"><div class="oz-dep-fill oz-dep-fill--usa" style="--dep-w:14%"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Pantalla 03: Peajes en yuanes / petroyuan -->
-  <div class="oz-screen oz-screen--map" data-screen="oz-screen-03">
-    <div class="oz-editorial">
-      <div class="oz-screen-num">03</div>
-      <p class="oz-screen-tag">El arma financiera</p>
-      <h3 class="oz-screen-title">Peajes en <em>yuanes</em>: atacando el dólar</h3>
-      <p class="oz-body">Teherán está aplicando tasas de hasta <strong>2 millones de dólares</strong> por cada petrolero que cruza el estrecho. Se estima que esto podría generar ingresos de hasta <strong>$20-25 mil millones de dólares</strong>.</p>
-      <p class="oz-body">La exigencia más disruptiva: que el peaje se pague en <strong>yuanes chinos, riales iraníes o stablecoins</strong>, excluyendo al dólar. Al menos dos buques ya han pagado en yuanes a través de intermediarios vinculados a la IRGC. Esto acelera la transición hacia un "petroyuan".</p>
-
-      <div class="oz-toll-card">
-        <p class="oz-toll-header">Tasa por petrolero</p>
-        <div class="oz-toll-amount">$2M</div>
-        <p class="oz-toll-desc">por tránsito · pagado en yuanes</p>
-      </div>
-
-      <div class="oz-alert oz-alert--gold">
-        <div class="oz-alert-dot"></div>
-        <span>Si consolida el sistema, Irán recaudaría <strong>$20-25 mil millones</strong> anuales</span>
-      </div>
-    </div>
-    <div class="oz-visual oz-visual--transparent"></div>
-  </div>
-
-  <!-- Pantalla 04: Isla Kharg — punto crítico -->
-  <div class="oz-screen oz-screen--map" data-screen="oz-screen-04">
-    <div class="oz-editorial">
-      <div class="oz-screen-num">04</div>
-      <p class="oz-screen-tag">El talón de Aquiles iraní</p>
-      <h3 class="oz-screen-title"><em>Isla Kharg</em>: el punto más vulnerable</h3>
-      <p class="oz-body">Ormuz es el arma de Irán, pero tiene su propio punto ciego: la <strong>Isla Kharg</strong>. Esta pequeña isla en el Golfo Pérsico concentra <strong>~90% de las exportaciones petroleras iraníes</strong>
-      <p class="oz-body">Cualquier ataque sostenido contra Kharg colapsaría los ingresos de petróleo del régimen en semanas. Es el contra-leverage que equilibra la ecuación estratégica.</p>
-      
-      <p class="oz-body">El dilema de EE.UU.: destruir Kharg paralizaría a Irán, pero <strong>dispararía la inflación global</strong> y dejaría sin ingresos a un futuro gobierno iraní. Por eso Trump solo ha atacado objetivos militares en la isla, preservando la infraestructura petrolera.</p>
-      <div class="oz-kharg">
-        <span class="oz-kharg-icon">🛢️</span>
-        <div>
-          <div class="oz-kharg-title">Terminal de exportación Kharg</div>
-          <p class="oz-kharg-sub">Principal instalación de exportación petrolera del país. Gran parte del crudo iraní destinado a mercados internacionales sale a través de esta terminal en la Isla Kharg (29°N, 50°E).</p>
+      <!-- ── Portada del capítulo ── -->
+      <div class="oz-cover">
+        <div class="oz-cover-bg-num">III</div>
+        <p class="oz-cover-eyebrow">Capítulo III</p>
+        <h2 class="oz-cover-title">El Estrecho de <em>Ormuz</em></h2>
+        <p class="oz-cover-body">Un canal de apenas 33 kilómetros que concentra el nervio energético del planeta. Quien
+          controla Ormuz, controla el pulso de la economía global.</p>
+        <div class="oz-cover-scroll">
+          <div class="oz-cover-scroll-line"></div>
+          Explorar
         </div>
       </div>
 
-      <div class="oz-alert">
-        <div class="oz-alert-icon">⚠️</div>
-        <span>Si Kharg es neutralizada, Irán pierde ~1.6 millones de barriles diarios de exportación. El precio del petróleo podría saltar de $100-115 a <strong>$130-150 por barril</strong> [citation:8].</span>
-      </div>
-    </div>
-    <div class="oz-visual oz-visual--transparent"></div>
-  </div>
+      <!-- Pantalla 01: Dimensiones físicas + volumen -->
+      <div class="oz-screen oz-screen--map" data-screen="oz-screen-01">
+        <div class="oz-editorial">
+          <div class="oz-screen-num">01</div>
+          <p class="oz-screen-tag">El cuello de botella</p>
+          <h3 class="oz-screen-title">33 km que mueven el <em>mundo</em></h3>
+          <p class="oz-body">El Estrecho de Ormuz, con apenas <strong>33 km en su punto más angosto</strong>, es el
+            corredor marítimo más estratégico del planeta. Por él transitan dos canales de navegación de apenas 3 km de
+            ancho cada uno.</p>
+          <p class="oz-body">En términos de volumen, ningún otro chokepoint se le acerca: <strong>21 millones de
+              barriles</strong> de petróleo cruzan este estrecho cada día.</p>
 
-  <!-- Pantalla 05: Síntesis final del capítulo -->
-  <div class="oz-screen oz-screen--data" data-screen="oz-screen-05">
-    <div class="oz-editorial">
-      <div class="oz-screen-num">05</div>
-      <p class="oz-screen-tag">El equilibrio del terror</p>
-      <h3 class="oz-screen-title">Ormuz como <em>arma de destrucción</em> mutua</h3>
-      <p class="oz-body">Irán tiene el poder de cerrar Ormuz y paralizar la economía global. Pero un cierre total también destruiría sus ingresos petroleros y desencadenaría una respuesta militar inmediata de EE.UU.</p>
-      <p class="oz-body">El resultado actual no es el "estrecho abierto", sino un <strong>cierre selectivo</strong>: Irán permite el paso solo a países aliados (China, Japón, Omán) previo pago de peajes en yuanes.</p>
-      
-      <div class="oz-alert">
-        <div class="oz-alert-icon">⚖️</div>
-        <span>El dilema iraní: si cierra totalmente → guerra y colapso de ingresos. Si mantiene la amenaza → peajes rentables, influencia máxima, presión sin confrontación directa. El cierre selectivo es su estrategia óptima.</span>
-      </div>
-
-      <div class="oz-pills">
-        <div class="oz-pill"><span class="val">$20MM - $25MM</span><span class="lbl">potencial ingreso anual</span></div>
-        <div class="oz-pill"><span class="val">+17</span><span class="lbl">países afectados</span></div>
-        <div class="oz-pill"><span class="val">3 km</span><span class="lbl">canal navegable</span></div>
-      </div>
-    </div>
-    <div class="oz-visual oz-visual--data">
-      <div style="width:100%;text-align:center;">
-        <p class="oz-chart-title">El dilema iraní</p>
-        <div style="display:flex;flex-direction:column;gap:16px;">
-          <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);padding:20px 24px;text-align:left;">
-            <p style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:8px;">Si cierra totalmente Ormuz</p>
-            <p style="font-family:'Source Serif 4',serif;font-size:13px;line-height:1.7;color:rgba(245,240,232,0.65);">Crisis energética global · respuesta militar EE.UU. · colapso de ingresos propios · aislamiento total</p>
+          <div class="oz-stat-hero">
+            <span class="oz-stat-number">21M</span>
+            <div>
+              <span class="oz-stat-unit">barriles<br>diarios</span>
+            </div>
           </div>
-          <div style="background:rgba(212,160,23,0.06);border:1px solid rgba(212,160,23,0.18);padding:20px 24px;text-align:left;">
-            <p style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:8px;">Si mantiene cierre selectivo</p>
-            <p style="font-family:'Source Serif 4',serif;font-size:13px;line-height:1.7;color:rgba(245,240,232,0.65);">Prima de riesgo sostenida · peajes rentables · influencia geopolítica máxima · presión sin confrontación directa</p>
+          <p class="oz-stat-label">20% del petróleo mundial · 25% del LNG global</p>
+
+          <div class="oz-pills">
+            <div class="oz-pill"><span class="val">33 km</span><span class="lbl">ancho mínimo</span></div>
+            <div class="oz-pill"><span class="val">20%</span><span class="lbl">petróleo mundial</span></div>
+            <div class="oz-pill"><span class="val">25%</span><span class="lbl">LNG global</span></div>
+          </div>
+        </div>
+        <div class="oz-visual oz-visual--transparent"></div>
+      </div>
+
+      <!-- Pantalla 02: Dependencia por país -->
+      <div class="oz-screen oz-screen--data oz-screen--reverse" data-screen="oz-screen-02">
+        <div class="oz-editorial">
+          <div class="oz-screen-num">02</div>
+          <p class="oz-screen-tag">Dependencia energética</p>
+          <h3 class="oz-screen-title">¿Quién pierde más si <em>Ormuz cierra</em>?</h3>
+          <p class="oz-body">Las economías de Asia-Pacífico son las más expuestas. Japón, con <strong>95% de su
+              crudo</strong> procedente del Golfo Pérsico, enfrentaría una crisis energética inmediata. Corea del Sur e
+            India no están lejos de ese umbral.</p>
+          <p class="oz-body">China, con el <strong>44% de su petróleo</strong> dependiente del estrecho, tiene tanto
+            incentivo geopolítico para mantenerlo abierto como Irán para usarlo de palanca.</p>
+          <p class="oz-body">Pero el mayor riesgo a corto plazo es el <strong>Gas Natural Licuado (GNL)</strong>. Sin
+            reservas estratégicas, Singapur (94% de su electricidad), Tailandia (2/3 de Catar) y Taiwán (1/3 de su red)
+            enfrentarían apagones en semanas.</p>
+          <div class="oz-alert">
+            <div class="oz-alert-dot"></div>
+            <span>Un cierre de 30 días provocaría reservas estratégicas insuficientes en Japón, Corea y partes de la
+              India.</span>
+          </div>
+        </div>
+        <div class="oz-visual oz-visual--data">
+          <div style="width:100%;">
+            <p class="oz-chart-title">% del crudo importado vía Ormuz</p>
+            <div class="oz-dep-list">
+              <div class="oz-dep-item">
+                <div class="oz-dep-header">
+                  <span class="oz-dep-name">🇯🇵 Japón</span>
+                  <span class="oz-dep-pct">95%</span>
+                </div>
+                <div class="oz-dep-track">
+                  <div class="oz-dep-fill" style="--dep-w:95%"></div>
+                </div>
+              </div>
+              <div class="oz-dep-item">
+                <div class="oz-dep-header">
+                  <span class="oz-dep-name">🇰🇷 Corea del Sur</span>
+                  <span class="oz-dep-pct">70%</span>
+                </div>
+                <div class="oz-dep-track">
+                  <div class="oz-dep-fill" style="--dep-w:70%"></div>
+                </div>
+              </div>
+              <div class="oz-dep-item">
+                <div class="oz-dep-header">
+                  <span class="oz-dep-name">🇮🇳 India</span>
+                  <span class="oz-dep-pct">55%</span>
+                </div>
+                <div class="oz-dep-track">
+                  <div class="oz-dep-fill" style="--dep-w:55%"></div>
+                </div>
+              </div>
+              <div class="oz-dep-item">
+                <div class="oz-dep-header">
+                  <span class="oz-dep-name">🇨🇳 China</span>
+                  <span class="oz-dep-pct">44%</span>
+                </div>
+                <div class="oz-dep-track">
+                  <div class="oz-dep-fill" style="--dep-w:44%"></div>
+                </div>
+              </div>
+              <div class="oz-dep-item">
+                <div class="oz-dep-header">
+                  <span class="oz-dep-name">🇪🇺 Europa (promedio)</span>
+                  <span class="oz-dep-pct">28%</span>
+                </div>
+                <div class="oz-dep-track">
+                  <div class="oz-dep-fill" style="--dep-w:28%"></div>
+                </div>
+              </div>
+              <div class="oz-dep-item">
+                <div class="oz-dep-header">
+                  <span class="oz-dep-name">🇺🇸 EE.UU.</span>
+                  <span class="oz-dep-pct">14%</span>
+                </div>
+                <div class="oz-dep-track">
+                  <div class="oz-dep-fill oz-dep-fill--usa" style="--dep-w:14%"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-</section>
+      <!-- Pantalla 03: Peajes en yuanes / petroyuan -->
+      <div class="oz-screen oz-screen--map" data-screen="oz-screen-03">
+        <div class="oz-editorial">
+          <div class="oz-screen-num">03</div>
+          <p class="oz-screen-tag">El arma financiera</p>
+          <h3 class="oz-screen-title">Peajes en <em>yuanes</em>: atacando el dólar</h3>
+          <p class="oz-body">Teherán está aplicando tasas de hasta <strong>2 millones de dólares</strong> por cada
+            petrolero que cruza el estrecho. Se estima que esto podría generar ingresos de hasta <strong>$20-25 mil
+              millones de dólares</strong>.</p>
+          <p class="oz-body">La exigencia más disruptiva: que el peaje se pague en <strong>yuanes chinos, riales iraníes
+              o stablecoins</strong>, excluyendo al dólar. Al menos dos buques ya han pagado en yuanes a través de
+            intermediarios vinculados a la IRGC. Esto acelera la transición hacia un "petroyuan".</p>
+
+          <div class="oz-toll-card">
+            <p class="oz-toll-header">Tasa por petrolero</p>
+            <div class="oz-toll-amount">$2M</div>
+            <p class="oz-toll-desc">por tránsito · pagado en yuanes</p>
+          </div>
+
+          <div class="oz-alert oz-alert--gold">
+            <div class="oz-alert-dot"></div>
+            <span>Si consolida el sistema, Irán recaudaría <strong>$20-25 mil millones</strong> anuales</span>
+          </div>
+        </div>
+        <div class="oz-visual oz-visual--transparent"></div>
+      </div>
+
+      <!-- Pantalla 04: Isla Kharg — punto crítico -->
+      <div class="oz-screen oz-screen--map" data-screen="oz-screen-04">
+        <div class="oz-editorial">
+          <div class="oz-screen-num">04</div>
+          <p class="oz-screen-tag">El talón de Aquiles iraní</p>
+          <h3 class="oz-screen-title"><em>Isla Kharg</em>: el punto más vulnerable</h3>
+          <p class="oz-body">Ormuz es el arma de Irán, pero tiene su propio punto ciego: la <strong>Isla Kharg</strong>.
+            Esta pequeña isla en el Golfo Pérsico concentra <strong>~90% de las exportaciones petroleras
+              iraníes</strong>
+          <p class="oz-body">Cualquier ataque sostenido contra Kharg colapsaría los ingresos de petróleo del régimen en
+            semanas. Es el contra-leverage que equilibra la ecuación estratégica.</p>
+
+          <p class="oz-body">El dilema de EE.UU.: destruir Kharg paralizaría a Irán, pero <strong>dispararía la
+              inflación global</strong> y dejaría sin ingresos a un futuro gobierno iraní. Por eso Trump solo ha atacado
+            objetivos militares en la isla, preservando la infraestructura petrolera.</p>
+          <div class="oz-kharg">
+            <span class="oz-kharg-icon">🛢️</span>
+            <div>
+              <div class="oz-kharg-title">Terminal de exportación Kharg</div>
+              <p class="oz-kharg-sub">Principal instalación de exportación petrolera del país. Gran parte del crudo
+                iraní destinado a mercados internacionales sale a través de esta terminal en la Isla Kharg (29°N, 50°E).
+              </p>
+            </div>
+          </div>
+
+          <div class="oz-alert">
+            <div class="oz-alert-icon">⚠️</div>
+            <span>Si Kharg es neutralizada, Irán pierde ~1.6 millones de barriles diarios de exportación. El precio del
+              petróleo podría saltar de $100-115 a <strong>$130-150 por barril</strong> [citation:8].</span>
+          </div>
+        </div>
+        <div class="oz-visual oz-visual--transparent"></div>
+      </div>
+
+      <!-- Pantalla 05: Síntesis final del capítulo -->
+      <div class="oz-screen oz-screen--data" data-screen="oz-screen-05">
+        <div class="oz-editorial">
+          <div class="oz-screen-num">05</div>
+          <p class="oz-screen-tag">El equilibrio del terror</p>
+          <h3 class="oz-screen-title">Ormuz como <em>arma de destrucción</em> mutua</h3>
+          <p class="oz-body">Irán tiene el poder de cerrar Ormuz y paralizar la economía global. Pero un cierre total
+            también destruiría sus ingresos petroleros y desencadenaría una respuesta militar inmediata de EE.UU.</p>
+          <p class="oz-body">El resultado actual no es el "estrecho abierto", sino un <strong>cierre selectivo</strong>:
+            Irán permite el paso solo a países aliados (China, Japón, Omán) previo pago de peajes en yuanes.</p>
+
+          <div class="oz-alert">
+            <div class="oz-alert-icon">⚖️</div>
+            <span>El dilema iraní: si cierra totalmente → guerra y colapso de ingresos. Si mantiene la amenaza → peajes
+              rentables, influencia máxima, presión sin confrontación directa. El cierre selectivo es su estrategia
+              óptima.</span>
+          </div>
+
+          <div class="oz-pills">
+            <div class="oz-pill"><span class="val">$20MM - $25MM</span><span class="lbl">potencial ingreso anual</span>
+            </div>
+            <div class="oz-pill"><span class="val">+17</span><span class="lbl">países afectados</span></div>
+            <div class="oz-pill"><span class="val">3 km</span><span class="lbl">canal navegable</span></div>
+          </div>
+        </div>
+        <div class="oz-visual oz-visual--data">
+          <div style="width:100%;text-align:center;">
+            <p class="oz-chart-title">El dilema iraní</p>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div
+                style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);padding:20px 24px;text-align:left;">
+                <p
+                  style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:8px;">
+                  Si cierra totalmente Ormuz</p>
+                <p
+                  style="font-family:'Source Serif 4',serif;font-size:13px;line-height:1.7;color:rgba(245,240,232,0.65);">
+                  Crisis energética global · respuesta militar EE.UU. · colapso de ingresos propios · aislamiento total
+                </p>
+              </div>
+              <div
+                style="background:rgba(212,160,23,0.06);border:1px solid rgba(212,160,23,0.18);padding:20px 24px;text-align:left;">
+                <p
+                  style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:8px;">
+                  Si mantiene cierre selectivo</p>
+                <p
+                  style="font-family:'Source Serif 4',serif;font-size:13px;line-height:1.7;color:rgba(245,240,232,0.65);">
+                  Prima de riesgo sostenida · peajes rentables · influencia geopolítica máxima · presión sin
+                  confrontación directa</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
 
 
-<!-- ══════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════
      CAPÍTULO IV — Impacto Económico Global
      ══════════════════════════════════════════════════════ -->
-<section data-step="0" id="economic-section">
+    <section data-step="0" id="economic-section">
 
-  <!-- ── Portada del capítulo ── -->
-  <div class="ec-cover">
-    <div class="ec-cover-bg-num">IV</div>
-    <p class="ec-cover-eyebrow">Capítulo IV</p>
-    <h2 class="ec-cover-title">El impacto <em>económico</em> global</h2>
-    <p class="ec-cover-body">Del mercado energético a los precios de los alimentos: cómo el conflicto reconfiguró la economía mundial en tiempo real.</p>
-    <div class="ec-cover-scroll">
-      <div class="ec-cover-scroll-line"></div>
-      Explorar
-    </div>
-  </div>
-
-  <!-- Pantalla 1: Gráfico histórico Brent -->
-  <div class="ec-screen" id="ec-screen-historic">
-    <div class="ec-chart-sticky">  
-      <div class="ec-chart-header">
-        <div>
-          <p class="ec-chart-tag">Petróleo Brent · 1987–2025</p>
-          <h3 class="ec-chart-title">Cuatro décadas de <em>shocks energéticos</em></h3>
-          <p class="oz-body"><strong>Históricamente,</strong> el precio del petróleo siempre ha sido sensible a diversos eventos geopolíticos. En el siguiente gráfico se observan cuatro décadas de volatilidad impulsada por guerras, revoluciones y tensiones en el Golfo Pérsico.</p>
+      <!-- ── Portada del capítulo ── -->
+      <div class="ec-cover">
+        <div class="ec-cover-bg-num">IV</div>
+        <p class="ec-cover-eyebrow">Capítulo IV</p>
+        <h2 class="ec-cover-title">El impacto <em>económico</em> global</h2>
+        <p class="ec-cover-body">Del mercado energético a los precios de los alimentos: cómo el conflicto reconfiguró la
+          economía mundial en tiempo real.</p>
+        <div class="ec-cover-scroll">
+          <div class="ec-cover-scroll-line"></div>
+          Explorar
         </div>
-        <span class="ec-chart-note">Precio mensual en USD/barril. Selecciona un periodo para ampliar.</span>
       </div>
 
-      <div class="ec-canvas-wrap">
-        <canvas id="ec-historic-canvas"></canvas>
+      <!-- Pantalla 1: Gráfico histórico Brent -->
+      <div class="ec-screen" id="ec-screen-historic">
+        <div class="ec-chart-sticky">
+          <div class="ec-chart-header">
+            <div>
+              <p class="ec-chart-tag">Petróleo Brent · 1987–2025</p>
+              <h3 class="ec-chart-title">Cuatro décadas de <em>shocks energéticos</em></h3>
+              <p class="oz-body"><strong>Históricamente,</strong> el precio del petróleo siempre ha sido sensible a
+                diversos eventos geopolíticos. En el siguiente gráfico se observan cuatro décadas de volatilidad
+                impulsada por guerras, revoluciones y tensiones en el Golfo Pérsico.</p>
+            </div>
+            <span class="ec-chart-note">Precio mensual en USD/barril. Selecciona un periodo para ampliar.</span>
+          </div>
+
+          <div class="ec-canvas-wrap">
+            <canvas id="ec-historic-canvas"></canvas>
+          </div>
+
+          <div id="ec-period-cards"></div>
+
+          <div id="ec-narration"></div>
+        </div>
       </div>
 
-      <div id="ec-period-cards"></div>
+      <!-- Pantalla 2: Zoom 2025–2026 + impact cards -->
+      <div class="ec-screen" id="ec-screen-recent">
+        <div class="ec-recent-editorial">
+          <div class="ec-recent-screen-num">25</div>
+          <p class="ec-recent-tag">2025 – 2026</p>
+          <h3 class="ec-recent-title">El shock del <em>conflicto</em></h3>
+          <p class="ec-body">En menos de un mes el Brent pasó de <strong>72 a más de 120 dólares</strong> — un salto del
+            66% que se transmitió inmediatamente a energía, alimentos y mercados financieros globales.</p>
+          <p class="ec-body">El mundo enfrenta un escenario de <strong>alta inflación, bajo crecimiento</strong> y
+            aumento del desempleo. Los mercados financieros acumulan pérdidas masivas mientras la cadena de suministros
+            se resquebraja.</p>
+        </div>
 
-      <div id="ec-narration"></div>
-    </div>
-  </div>
-
-  <!-- Pantalla 2: Zoom 2025–2026 + impact cards -->
-  <div class="ec-screen" id="ec-screen-recent">
-    <div class="ec-recent-editorial">
-      <div class="ec-recent-screen-num">25</div>
-      <p class="ec-recent-tag">2025 – 2026</p>
-      <h3 class="ec-recent-title">El shock del <em>conflicto</em></h3>
-      <p class="ec-body">En menos de un mes el Brent pasó de <strong>72 a más de 120 dólares</strong> — un salto del 66% que se transmitió inmediatamente a energía, alimentos y mercados financieros globales.</p>
-      <p class="ec-body">El mundo enfrenta un escenario de <strong>alta inflación, bajo crecimiento</strong> y aumento del desempleo. Los mercados financieros acumulan pérdidas masivas mientras la cadena de suministros se resquebraja.</p>
-    </div>
-
-    <div class="ec-recent-visual">
-      <div class="ec-recent-canvas-wrap">
-        <canvas id="ec-recent-canvas"></canvas>
+        <div class="ec-recent-visual">
+          <div class="ec-recent-canvas-wrap">
+            <canvas id="ec-recent-canvas"></canvas>
+          </div>
+          <div id="ec-recent-cards"></div>
+        </div>
       </div>
-      <div id="ec-recent-cards"></div>
-    </div>
-  </div>
 
-</section>
+    </section>
 
-<!-- ══════════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════
      CAPÍTULO V — ACTORES
      ══════════════════════════════════════════════════════ -->
 
-<section data-step="0" id="actors-section">
- 
-  <!-- Portada del capítulo -->
-  <div class="ac-cover">
-    <div class="ac-cover-chapter">V</div>
-    <p class="ac-cover-eyebrow">Capítulo V</p>
-    <h2 class="ac-cover-title">Análisis e intereses de los <em>actores globales</em></h2>
-    <p class="ac-cover-body">Irán, China, Rusia, EE.UU. e Israel no actúan por impulso. Cada decisión responde a intereses estratégicos precisos. Este capítulo mapea quién gana, quién pierde y por qué.</p>
-    <div class="ac-cover-scroll">
-      <div class="ac-cover-scroll-line"></div>
-      Explorar
-    </div>
-  </div>
- 
-  <!-- Bloque 1: El eje de evasión -->
-  <div class="ac-block" id="ac-block-01">
-    <div class="ac-editorial">
-      <div class="ac-block-num">01</div>
-      <div class="ac-block-tag">El eje de evasión</div>
-      <h3 class="ac-block-title">Irán – China – Rusia: <em>arquitectura económica paralela</em></h3>
-      <p class="ac-body">A lo largo del conflicto ha tomado forma una estructura menos visible que el campo de batalla: una red económica y tecnológica diseñada para mantener a Irán operando a pesar de las sanciones occidentales.</p>
-      <p class="ac-body">No funciona como alianza militar formal. Lo que existe es una <strong>red flexible de cooperación tecnológica, logística y financiera</strong>. Irán diseña y ensambla, Rusia aporta experiencia militar e industrial, y China actúa como nodo tecnológico y comercial.</p>
-      <p class="ac-body">Con el tiempo, este eje ha dejado de ser solo una estrategia para sobrevivir a las sanciones. Es cada vez más un intento de construir una <strong>arquitectura económica paralela</strong> al sistema dominado por Occidente.</p>
-      <div class="ac-pills">
-        <div class="ac-pill"><span class="val">Shahed-136</span><span class="lbl">dron iraní con chips globales</span></div>
-        <div class="ac-pill"><span class="val">Yuan</span><span class="lbl">moneda de comercio energético</span></div>
-        <div class="ac-pill"><span class="val">3 nodos</span><span class="lbl">Irán · China · Rusia</span></div>
-      </div>
-    </div>
-    <div class="ac-visual">
-      <div class="ac-actor-cards">
-        <div class="ac-actor-card" style="--ac: var(--red);">
-          <span class="ac-actor-icon">🇮🇷</span>
-          <div>
-            <div class="ac-actor-name">Irán — El resistente estratégico</div>
-            <div class="ac-actor-desc">Diseña y ensambla. Sobrevivir a las sanciones durante décadas le ha dado capacidad de improvisar, producir en serie y exportar doctrina de guerra asimétrica.</div>
-          </div>
-        </div>
-        <div class="ac-actor-card" style="--ac: rgba(200,30,30,0.7);">
-          <span class="ac-actor-icon">🇷🇺</span>
-          <div>
-            <div class="ac-actor-name">Rusia — El socio industrial</div>
-            <div class="ac-actor-desc">Aporta experiencia militar, bases industriales y cobertura diplomática en el Consejo de Seguridad. Además, cada escalada en el Golfo sube el precio del crudo y refuerza sus ingresos fiscales.</div>
-          </div>
-        </div>
-        <div class="ac-actor-card" style="--ac: rgba(200,30,30,0.5);">
-          <span class="ac-actor-icon">🇨🇳</span>
-          <div>
-            <div class="ac-actor-name">China — El nodo tecnológico y financiero</div>
-            <div class="ac-actor-desc">China, con la mayor reserva estratégica de petróleo del mundo (~1.300 millones de barriles) , puede resistir una crisis que colapsaría a otras economías. No solo sobrevive al cierre: puede salir fortalecida mientras sus competidores asiáticos se desangran.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-  <!-- Bloque 2: El bloque occidental -->
-  <div class="ac-block ac-block--reverse" id="ac-block-02">
-    <div class="ac-visual">
-      <div class="ac-actor-cards">
-        <div class="ac-actor-card" style="--ac: rgba(80,130,255,0.8);">
-          <span class="ac-actor-icon">🇺🇸</span>
-          <div>
-            <div class="ac-actor-name">EE.UU. — La superpotencia en dilema</div>
-            <div class="ac-actor-desc">Ventaja tecnológica y aérea aplastante. Pero la opinión pública y el Congreso toleran escaladas breves, no guerras prolongadas. La experiencia de Irak y Afganistán pesa en cada decisión.</div>
-          </div>
-        </div>
-        <div class="ac-actor-card" style="--ac: rgba(80,130,255,0.5);">
-          <span class="ac-actor-icon">🇮🇱</span>
-          <div>
-            <div class="ac-actor-name">Israel — El actor más expuesto</div>
-            <div class="ac-actor-desc">Primera línea de ataque de misiles, drones y proxies iraníes. Su seguridad depende directamente de la capacidad de Irán para proyectar fuerza. El conflicto existencial lo convierte en el aliado más comprometido.</div>
-          </div>
-        </div>
-        <div class="ac-actor-card" style="--ac: rgba(80,130,255,0.3);">
-          <span class="ac-actor-icon">🛢️</span>
-          <div>
-            <div class="ac-actor-name">Aliados del Golfo — Los que más temen</div>
-            <div class="ac-actor-desc">Arabia Saudita, EAU y Qatar dependen del estrecho de Ormuz. Un cierre los golpea antes que a cualquier otro. Silenciosamente, algunos diversifican sus relaciones hacia China como plan B.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="ac-editorial">
-      <div class="ac-block-num">02</div>
-      <div class="ac-block-tag">El bloque occidental</div>
-      <h3 class="ac-block-title">EE.UU. e Israel: <em>superioridad sin garantía</em></h3>
-      <p class="ac-body">La coalición liderada por Washington ha apostado por ataques de precisión, inteligencia satelital y operaciones aéreas para golpear infraestructuras militares iraníes. Nadie en el mundo hace esto mejor.</p>
-      <p class="ac-body">Pero la estrategia occidental enfrenta dos dilemas estructurales. El primero es político: una intervención terrestre en Oriente Medio tendría un <strong>costo político enorme</strong>. El segundo es económico: las tensiones en el Golfo generan shocks energéticos que impactan a los propios aliados de Washington.</p>
-      <div class="ac-alert">
-        <div class="ac-alert-dot"></div>
-        El equilibrio es difícil: debilitar a Irán sin escalar hacia una guerra regional o una ocupación prolongada. Hasta ahora, nadie ha encontrado esa fórmula en Oriente Medio.
-      </div>
-    </div>
-  </div>
- 
-  <!-- Bloque 3: Ganadores y perdedores económicos -->
-  <div class="ac-block" id="ac-block-03">
-    <div class="ac-editorial">
-      <div class="ac-block-num">03</div>
-      <div class="ac-block-tag">Redistribución económica</div>
-      <h3 class="ac-block-title">Los <em>ganadores inesperados</em> de la crisis energética</h3>
-      <p class="ac-body">Las guerras modernas generan destrucción, pero también redistribuyen riqueza. Cada escalada en el Golfo sube el precio del crudo, y cuando el crudo sube, ciertos países experimentan un inesperado beneficio.</p>
-      <p class="ac-body"><strong>Rusia</strong> es el caso más paradójico: aunque mantiene relación estratégica con Irán, el alza del crudo refuerza sus ingresos fiscales. <strong>Noruega</strong> se consolida como proveedor energético alternativo para Europa. <strong>Canadá</strong> busca posicionarse como socio estable. Incluso <strong>Indonesia</strong> ve crecer la demanda de carbón en Asia.</p>
-      <p class="ac-body">La paradoja es evidente: mientras las economías del campo de batalla sufren, algunos productores de energía experimentan un <strong>auge económico impulsado por la misma crisis</strong>.</p>
-      <div class="ac-alert" style="background:rgba(212,160,23,0.07);border-color:rgba(212,160,23,0.2);">
-        <div class="ac-alert-dot" style="background:var(--gold);"></div>
-        Las guerras energéticas rara vez tienen solo perdedores. La pregunta es quién está posicionado para beneficiarse cuando la crisis llegue.
-      </div>
-    </div>
-    <div class="ac-visual">
-      <div style="width:100%;">
-        <div style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:16px;">Impacto por actor</div>
-        <div class="ac-actor-cards">
-          <div class="ac-actor-card" style="--ac: rgba(192,57,43,0.7);">
-            <span class="ac-actor-icon">💀</span>
-            <div>
-              <div class="ac-actor-name">Perdedores regionales directos</div>
-              <div class="ac-actor-desc">Irán, Israel, Líbano, Siria, Irak: destrucción de infraestructura, desplazamientos masivos, caída del PIB, colapso del comercio.</div>
-            </div>
-          </div>
-          <div class="ac-actor-card" style="--ac: rgba(212,160,23,0.7);">
-            <span class="ac-actor-icon">📊</span>
-            <div>
-              <div class="ac-actor-name">Impacto mixto: Golfo</div>
-              <div class="ac-actor-desc">Arabia Saudita, EAU, Qatar se benefician del precio alto del crudo pero sufren inestabilidad en inversiones, transporte y turismo regional.</div>
-            </div>
-          </div>
-          <div class="ac-actor-card" style="--ac: rgba(100,180,100,0.7);">
-            <span class="ac-actor-icon">📈</span>
-            <div>
-              <div class="ac-actor-name">Beneficiarios energéticos</div>
-              <div class="ac-actor-desc">Noruega, Canadá, EE.UU. (shale), Indonesia (carbón): mayores ingresos, demanda creciente, posicionamiento como alternativas estables.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-</section>
+    <section data-step="0" id="actors-section">
 
-<!-- ══════════════════════════════════════════════════════
+      <!-- Portada del capítulo -->
+      <div class="ac-cover">
+        <div class="ac-cover-chapter">V</div>
+        <p class="ac-cover-eyebrow">Capítulo V</p>
+        <h2 class="ac-cover-title">Análisis e intereses de los <em>actores globales</em></h2>
+        <p class="ac-cover-body">Irán, China, Rusia, EE.UU. e Israel no actúan por impulso. Cada decisión responde a
+          intereses estratégicos precisos. Este capítulo mapea quién gana, quién pierde y por qué.</p>
+        <div class="ac-cover-scroll">
+          <div class="ac-cover-scroll-line"></div>
+          Explorar
+        </div>
+      </div>
+
+      <!-- Bloque 1: El eje de evasión -->
+      <div class="ac-block" id="ac-block-01">
+        <div class="ac-editorial">
+          <div class="ac-block-num">01</div>
+          <div class="ac-block-tag">El eje de evasión</div>
+          <h3 class="ac-block-title">Irán – China – Rusia: <em>arquitectura económica paralela</em></h3>
+          <p class="ac-body">A lo largo del conflicto ha tomado forma una estructura menos visible que el campo de
+            batalla: una red económica y tecnológica diseñada para mantener a Irán operando a pesar de las sanciones
+            occidentales.</p>
+          <p class="ac-body">No funciona como alianza militar formal. Lo que existe es una <strong>red flexible de
+              cooperación tecnológica, logística y financiera</strong>. Irán diseña y ensambla, Rusia aporta experiencia
+            militar e industrial, y China actúa como nodo tecnológico y comercial.</p>
+          <p class="ac-body">Con el tiempo, este eje ha dejado de ser solo una estrategia para sobrevivir a las
+            sanciones. Es cada vez más un intento de construir una <strong>arquitectura económica paralela</strong> al
+            sistema dominado por Occidente.</p>
+          <div class="ac-pills">
+            <div class="ac-pill"><span class="val">Shahed-136</span><span class="lbl">dron iraní con chips
+                globales</span></div>
+            <div class="ac-pill"><span class="val">Yuan</span><span class="lbl">moneda de comercio energético</span>
+            </div>
+            <div class="ac-pill"><span class="val">3 nodos</span><span class="lbl">Irán · China · Rusia</span></div>
+          </div>
+        </div>
+        <div class="ac-visual">
+          <div class="ac-actor-cards">
+            <div class="ac-actor-card" style="--ac: var(--red);">
+              <span class="ac-actor-icon">🇮🇷</span>
+              <div>
+                <div class="ac-actor-name">Irán — El resistente estratégico</div>
+                <div class="ac-actor-desc">Diseña y ensambla. Sobrevivir a las sanciones durante décadas le ha dado
+                  capacidad de improvisar, producir en serie y exportar doctrina de guerra asimétrica.</div>
+              </div>
+            </div>
+            <div class="ac-actor-card" style="--ac: rgba(200,30,30,0.7);">
+              <span class="ac-actor-icon">🇷🇺</span>
+              <div>
+                <div class="ac-actor-name">Rusia — El socio industrial</div>
+                <div class="ac-actor-desc">Aporta experiencia militar, bases industriales y cobertura diplomática en el
+                  Consejo de Seguridad. Además, cada escalada en el Golfo sube el precio del crudo y refuerza sus
+                  ingresos fiscales.</div>
+              </div>
+            </div>
+            <div class="ac-actor-card" style="--ac: rgba(200,30,30,0.5);">
+              <span class="ac-actor-icon">🇨🇳</span>
+              <div>
+                <div class="ac-actor-name">China — El nodo tecnológico y financiero</div>
+                <div class="ac-actor-desc">China, con la mayor reserva estratégica de petróleo del mundo (~1.300
+                  millones de barriles) , puede resistir una crisis que colapsaría a otras economías. No solo sobrevive
+                  al cierre: puede salir fortalecida mientras sus competidores asiáticos se desangran.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloque 2: El bloque occidental -->
+      <div class="ac-block ac-block--reverse" id="ac-block-02">
+        <div class="ac-visual">
+          <div class="ac-actor-cards">
+            <div class="ac-actor-card" style="--ac: rgba(80,130,255,0.8);">
+              <span class="ac-actor-icon">🇺🇸</span>
+              <div>
+                <div class="ac-actor-name">EE.UU. — La superpotencia en dilema</div>
+                <div class="ac-actor-desc">Ventaja tecnológica y aérea aplastante. Pero la opinión pública y el Congreso
+                  toleran escaladas breves, no guerras prolongadas. La experiencia de Irak y Afganistán pesa en cada
+                  decisión.</div>
+              </div>
+            </div>
+            <div class="ac-actor-card" style="--ac: rgba(80,130,255,0.5);">
+              <span class="ac-actor-icon">🇮🇱</span>
+              <div>
+                <div class="ac-actor-name">Israel — El actor más expuesto</div>
+                <div class="ac-actor-desc">Primera línea de ataque de misiles, drones y proxies iraníes. Su seguridad
+                  depende directamente de la capacidad de Irán para proyectar fuerza. El conflicto existencial lo
+                  convierte en el aliado más comprometido.</div>
+              </div>
+            </div>
+            <div class="ac-actor-card" style="--ac: rgba(80,130,255,0.3);">
+              <span class="ac-actor-icon">🛢️</span>
+              <div>
+                <div class="ac-actor-name">Aliados del Golfo — Los que más temen</div>
+                <div class="ac-actor-desc">Arabia Saudita, EAU y Qatar dependen del estrecho de Ormuz. Un cierre los
+                  golpea antes que a cualquier otro. Silenciosamente, algunos diversifican sus relaciones hacia China
+                  como plan B.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-editorial">
+          <div class="ac-block-num">02</div>
+          <div class="ac-block-tag">El bloque occidental</div>
+          <h3 class="ac-block-title">EE.UU. e Israel: <em>superioridad sin garantía</em></h3>
+          <p class="ac-body">La coalición liderada por Washington ha apostado por ataques de precisión, inteligencia
+            satelital y operaciones aéreas para golpear infraestructuras militares iraníes. Nadie en el mundo hace esto
+            mejor.</p>
+          <p class="ac-body">Pero la estrategia occidental enfrenta dos dilemas estructurales. El primero es político:
+            una intervención terrestre en Oriente Medio tendría un <strong>costo político enorme</strong>. El segundo es
+            económico: las tensiones en el Golfo generan shocks energéticos que impactan a los propios aliados de
+            Washington.</p>
+          <div class="ac-alert">
+            <div class="ac-alert-dot"></div>
+            El equilibrio es difícil: debilitar a Irán sin escalar hacia una guerra regional o una ocupación prolongada.
+            Hasta ahora, nadie ha encontrado esa fórmula en Oriente Medio.
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloque 3: Ganadores y perdedores económicos -->
+      <div class="ac-block" id="ac-block-03">
+        <div class="ac-editorial">
+          <div class="ac-block-num">03</div>
+          <div class="ac-block-tag">Redistribución económica</div>
+          <h3 class="ac-block-title">Los <em>ganadores inesperados</em> de la crisis energética</h3>
+          <p class="ac-body">Las guerras modernas generan destrucción, pero también redistribuyen riqueza. Cada escalada
+            en el Golfo sube el precio del crudo, y cuando el crudo sube, ciertos países experimentan un inesperado
+            beneficio.</p>
+          <p class="ac-body"><strong>Rusia</strong> es el caso más paradójico: aunque mantiene relación estratégica con
+            Irán, el alza del crudo refuerza sus ingresos fiscales. <strong>Noruega</strong> se consolida como proveedor
+            energético alternativo para Europa. <strong>Canadá</strong> busca posicionarse como socio estable. Incluso
+            <strong>Indonesia</strong> ve crecer la demanda de carbón en Asia.</p>
+          <p class="ac-body">La paradoja es evidente: mientras las economías del campo de batalla sufren, algunos
+            productores de energía experimentan un <strong>auge económico impulsado por la misma crisis</strong>.</p>
+          <div class="ac-alert" style="background:rgba(212,160,23,0.07);border-color:rgba(212,160,23,0.2);">
+            <div class="ac-alert-dot" style="background:var(--gold);"></div>
+            Las guerras energéticas rara vez tienen solo perdedores. La pregunta es quién está posicionado para
+            beneficiarse cuando la crisis llegue.
+          </div>
+        </div>
+        <div class="ac-visual">
+          <div style="width:100%;">
+            <div
+              style="font-family:'Source Serif 4',serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:16px;">
+              Impacto por actor</div>
+            <div class="ac-actor-cards">
+              <div class="ac-actor-card" style="--ac: rgba(192,57,43,0.7);">
+                <span class="ac-actor-icon">💀</span>
+                <div>
+                  <div class="ac-actor-name">Perdedores regionales directos</div>
+                  <div class="ac-actor-desc">Irán, Israel, Líbano, Siria, Irak: destrucción de infraestructura,
+                    desplazamientos masivos, caída del PIB, colapso del comercio.</div>
+                </div>
+              </div>
+              <div class="ac-actor-card" style="--ac: rgba(212,160,23,0.7);">
+                <span class="ac-actor-icon">📊</span>
+                <div>
+                  <div class="ac-actor-name">Impacto mixto: Golfo</div>
+                  <div class="ac-actor-desc">Arabia Saudita, EAU, Qatar se benefician del precio alto del crudo pero
+                    sufren inestabilidad en inversiones, transporte y turismo regional.</div>
+                </div>
+              </div>
+              <div class="ac-actor-card" style="--ac: rgba(100,180,100,0.7);">
+                <span class="ac-actor-icon">📈</span>
+                <div>
+                  <div class="ac-actor-name">Beneficiarios energéticos</div>
+                  <div class="ac-actor-desc">Noruega, Canadá, EE.UU. (shale), Indonesia (carbón): mayores ingresos,
+                    demanda creciente, posicionamiento como alternativas estables.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
      CAPÍTULO VI — ACTORES
      ══════════════════════════════════════════════════════ -->
 
 
-<section data-step="0" id="scenarios-section">
- 
-  <div class="sc-cover">
-    <div class="sc-cover-bg-num">VI</div>
-    <p class="sc-cover-eyebrow">Capítulo VI</p>
-    <h2 class="sc-cover-title">Los <em>escenarios posibles</em> del conflicto</h2>
-    <p class="sc-cover-body">Ninguna guerra termina como quienes la empiezan imaginan. Cuatro interpretaciones de hacia dónde podría evolucionar el enfrentamiento entre Washington y Teherán, con sus plazos y probabilidades.</p>
-    <div class="sc-cover-scroll">
-      <div class="sc-cover-scroll-line"></div>
-      Explorar
-    </div>
-  </div>
- 
-  <div class="sc-content">
- 
-    <!-- Intro -->
-    <div class="sc-intro-grid">
-      <div>
-        <p class="sc-section-tag">El marco analítico</p>
-        <h3 class="sc-section-title">Por qué los <em>escenarios</em> importan más que las predicciones</h3>
-        <p class="sc-body">Los escenarios no son predicciones. Son marcos para pensar qué condiciones hacen probable cada resultado, y qué señales deben monitorearse. En un conflicto de esta complejidad, la utilidad no está en apostar por uno, sino en entender qué lo desencadenaría.</p>
-      </div>
-      <div>
-        <p class="sc-section-tag">El factor clave</p>
-        <h3 class="sc-section-title">La variable que más importa: la <em>tolerancia al costo</em></h3>
-        <p class="sc-body">Irán puede absorber sufrimiento durante años sin elecciones que lo castiguen. EE.UU. tiene una ventana política de meses antes de que el Congreso y los mercados presionen. Esta asimetría de tolerancia al costo es el factor que más determina cuál escenario se materializa.</p>
-      </div>
-    </div>
- 
-    <!-- Cards de escenarios -->
-    <div class="sc-scenarios-grid">
- 
-      <div class="sc-scenario-card sc-scenario-card--a">
-        <div class="sc-scenario-bg-letter">A</div>
-        <div class="sc-scenario-header">
-          <span class="sc-scenario-icon">⚡</span>
-          <div class="sc-scenario-meta">
-            <div class="sc-scenario-label">Escenario A · Corto plazo · Baja probabilidad</div>
-            <div class="sc-scenario-title">Victoria rápida de EE.UU. — Colapso del régimen iraní</div>
-          </div>
-          <div class="sc-scenario-prob">~10%</div>
-        </div>
-        <p class="sc-scenario-body">Una campaña aérea de alta intensidad logra destruir las capacidades nucleares y militares de Irán, y provoca el colapso de la cúpula del régimen 
-          <strong>Probabilidad baja</strong>: la experiencia de Irak 2003 demuestra que derrocar un gobierno no garantiza el orden posterior. Además, sin una invasión terrestre —una opción extremadamente costosa— el colapso completo del régimen iraní es poco probable. 
-          En caso de producirse, el resultado más probable sería un vacío de poder y una etapa prolongada de inestabilidad, con luchas internas entre facciones militares, religiosas y políticas.
+    <section data-step="0" id="scenarios-section">
+
+      <div class="sc-cover">
+        <div class="sc-cover-bg-num">VI</div>
+        <p class="sc-cover-eyebrow">Capítulo VI</p>
+        <h2 class="sc-cover-title">Los <em>escenarios posibles</em> del conflicto</h2>
+        <p class="sc-cover-body">Ninguna guerra termina como quienes la empiezan imaginan. Cuatro interpretaciones de
+          hacia dónde podría evolucionar el enfrentamiento entre Washington y Teherán, con sus plazos y probabilidades.
         </p>
-      </div>
- 
-      <div class="sc-scenario-card sc-scenario-card--d">
-        <div class="sc-scenario-bg-letter">B</div>
-        <div class="sc-scenario-header">
-          <span class="sc-scenario-icon">🏚️</span>
-          <div class="sc-scenario-meta">
-            <div class="sc-scenario-label">Escenario B · Medio plazo · Posible</div>
-            <div class="sc-scenario-title">Fragmentación Periférica — El riesgo separatista</div>
-          </div>
-          <div class="sc-scenario-prob">~15%</div>
+        <div class="sc-cover-scroll">
+          <div class="sc-cover-scroll-line"></div>
+          Explorar
         </div>
-        <p class="sc-scenario-body">Las tensiones internas de Irán podrían intensificarse en regiones periféricas con identidades étnicas diferenciadas —kurdos en el noroeste, baluchis en el sureste, azeríes en el norte— 
-          y potencias externas podrían apoyar indirectamente a estos movimientos para debilitar estructuralmente al Estado iraní. 
-          No obstante, una fragmentación territorial completa es <strong>improbable</strong>, ya que el régimen mantiene una fuerte capacidad coercitiva y un aparato de seguridad consolidado. El escenario más plausible es una desestabilización localizada, con insurgencias intermitentes que erosionan la capacidad estatal sin provocar una ruptura territorial inmediata.</p>
       </div>
- 
-      <div class="sc-scenario-card sc-scenario-card--b">
-        <div class="sc-scenario-bg-letter">C</div>
-        <div class="sc-scenario-header">
-          <span class="sc-scenario-icon">⏳</span>
-          <div class="sc-scenario-meta">
-            <div class="sc-scenario-label">Escenario C · 18–36 meses · Más probable</div>
-            <div class="sc-scenario-title">La trampa del desgaste — Irán sobrevive</div>
+
+      <div class="sc-content">
+
+        <!-- Intro -->
+        <div class="sc-intro-grid">
+          <div>
+            <p class="sc-section-tag">El marco analítico</p>
+            <h3 class="sc-section-title">Por qué los <em>escenarios</em> importan más que las predicciones</h3>
+            <p class="sc-body">Los escenarios no son predicciones. Son marcos para pensar qué condiciones hacen probable
+              cada resultado, y qué señales deben monitorearse. En un conflicto de esta complejidad, la utilidad no está
+              en apostar por uno, sino en entender qué lo desencadenaría.</p>
           </div>
-          <div class="sc-scenario-prob">~45%</div>
-        </div>
-        <p class="sc-scenario-body">Irán evita una confrontación militar directa y apuesta por una estrategia de desgaste prolongado. Mediante ataques indirectos a infraestructuras energéticas, presión sobre el estrecho de Ormuz y el uso de aliados regionales, busca aumentar gradualmente los costos económicos y políticos del conflicto para Estados Unidos y sus socios. Con el tiempo, el desgaste militar, la presión económica global y la fatiga política reducen el apoyo internacional a la guerra. Luego de 18 a 36 meses, se abre una fase de negociación. Irán no obtiene una victoria militar directa, pero logra sobrevivir al conflicto y preservar su estructura estatal.</p>
-      </div>
- 
-      <div class="sc-scenario-card sc-scenario-card--e">
-        <div class="sc-scenario-bg-letter">D</div>
-        <div class="sc-scenario-header">
-          <span class="sc-scenario-icon">🔭</span>
-          <div class="sc-scenario-meta">
-            <div class="sc-scenario-label">Escenario E · Largo plazo · Estructural</div>
-            <div class="sc-scenario-title">El fin de la era unipolar — Nueva arquitectura global</div>
+          <div>
+            <p class="sc-section-tag">El factor clave</p>
+            <h3 class="sc-section-title">La variable que más importa: la <em>tolerancia al costo</em></h3>
+            <p class="sc-body">Irán puede absorber sufrimiento durante años sin elecciones que lo castiguen. EE.UU.
+              tiene una ventana política de meses antes de que el Congreso y los mercados presionen. Esta asimetría de
+              tolerancia al costo es el factor que más determina cuál escenario se materializa.</p>
           </div>
-          <div class="sc-scenario-prob">Tendencia</div>
         </div>
-        <p class="sc-scenario-body">A más largo plazo —medido en décadas— el conflicto podría convertirse en uno de los episodios que simbolicen el cierre de la era de hegemonía estadounidense iniciada tras la Guerra Fría. Esto no implica el colapso del poder americano, sino la consolidación de un <strong>sistema internacional multipolar</strong> donde la estabilidad depende menos de una potencia dominante y más de un equilibrio dinámico entre múltiples actores. Resiliencia nacional, autonomía energética y seguridad de infraestructuras críticas adquieren mayor importancia que la integración global.</p>
+
+        <!-- Cards de escenarios -->
+        <div class="sc-scenarios-grid">
+
+          <div class="sc-scenario-card sc-scenario-card--a">
+            <div class="sc-scenario-bg-letter">A</div>
+            <div class="sc-scenario-header">
+              <span class="sc-scenario-icon">⚡</span>
+              <div class="sc-scenario-meta">
+                <div class="sc-scenario-label">Escenario A · Corto plazo · Baja probabilidad</div>
+                <div class="sc-scenario-title">Victoria rápida de EE.UU. — Colapso del régimen iraní</div>
+              </div>
+              <div class="sc-scenario-prob">~10%</div>
+            </div>
+            <p class="sc-scenario-body">Una campaña aérea de alta intensidad logra destruir las capacidades nucleares y
+              militares de Irán, y provoca el colapso de la cúpula del régimen
+              <strong>Probabilidad baja</strong>: la experiencia de Irak 2003 demuestra que derrocar un gobierno no
+              garantiza el orden posterior. Además, sin una invasión terrestre —una opción extremadamente costosa— el
+              colapso completo del régimen iraní es poco probable.
+              En caso de producirse, el resultado más probable sería un vacío de poder y una etapa prolongada de
+              inestabilidad, con luchas internas entre facciones militares, religiosas y políticas.
+            </p>
+          </div>
+
+          <div class="sc-scenario-card sc-scenario-card--d">
+            <div class="sc-scenario-bg-letter">B</div>
+            <div class="sc-scenario-header">
+              <span class="sc-scenario-icon">🏚️</span>
+              <div class="sc-scenario-meta">
+                <div class="sc-scenario-label">Escenario B · Medio plazo · Posible</div>
+                <div class="sc-scenario-title">Fragmentación Periférica — El riesgo separatista</div>
+              </div>
+              <div class="sc-scenario-prob">~15%</div>
+            </div>
+            <p class="sc-scenario-body">Las tensiones internas de Irán podrían intensificarse en regiones periféricas
+              con identidades étnicas diferenciadas —kurdos en el noroeste, baluchis en el sureste, azeríes en el norte—
+              y potencias externas podrían apoyar indirectamente a estos movimientos para debilitar estructuralmente al
+              Estado iraní.
+              No obstante, una fragmentación territorial completa es <strong>improbable</strong>, ya que el régimen
+              mantiene una fuerte capacidad coercitiva y un aparato de seguridad consolidado. El escenario más plausible
+              es una desestabilización localizada, con insurgencias intermitentes que erosionan la capacidad estatal sin
+              provocar una ruptura territorial inmediata.</p>
+          </div>
+
+          <div class="sc-scenario-card sc-scenario-card--b">
+            <div class="sc-scenario-bg-letter">C</div>
+            <div class="sc-scenario-header">
+              <span class="sc-scenario-icon">⏳</span>
+              <div class="sc-scenario-meta">
+                <div class="sc-scenario-label">Escenario C · 18–36 meses · Más probable</div>
+                <div class="sc-scenario-title">La trampa del desgaste — Irán sobrevive</div>
+              </div>
+              <div class="sc-scenario-prob">~45%</div>
+            </div>
+            <p class="sc-scenario-body">Irán evita una confrontación militar directa y apuesta por una estrategia de
+              desgaste prolongado. Mediante ataques indirectos a infraestructuras energéticas, presión sobre el estrecho
+              de Ormuz y el uso de aliados regionales, busca aumentar gradualmente los costos económicos y políticos del
+              conflicto para Estados Unidos y sus socios. Con el tiempo, el desgaste militar, la presión económica
+              global y la fatiga política reducen el apoyo internacional a la guerra. Luego de 18 a 36 meses, se abre
+              una fase de negociación. Irán no obtiene una victoria militar directa, pero logra sobrevivir al conflicto
+              y preservar su estructura estatal.</p>
+          </div>
+
+          <div class="sc-scenario-card sc-scenario-card--e">
+            <div class="sc-scenario-bg-letter">D</div>
+            <div class="sc-scenario-header">
+              <span class="sc-scenario-icon">🔭</span>
+              <div class="sc-scenario-meta">
+                <div class="sc-scenario-label">Escenario E · Largo plazo · Estructural</div>
+                <div class="sc-scenario-title">El fin de la era unipolar — Nueva arquitectura global</div>
+              </div>
+              <div class="sc-scenario-prob">Tendencia</div>
+            </div>
+            <p class="sc-scenario-body">A más largo plazo —medido en décadas— el conflicto podría convertirse en uno de
+              los episodios que simbolicen el cierre de la era de hegemonía estadounidense iniciada tras la Guerra Fría.
+              Esto no implica el colapso del poder americano, sino la consolidación de un <strong>sistema internacional
+                multipolar</strong> donde la estabilidad depende menos de una potencia dominante y más de un equilibrio
+              dinámico entre múltiples actores. Resiliencia nacional, autonomía energética y seguridad de
+              infraestructuras críticas adquieren mayor importancia que la integración global.</p>
+          </div>
+
+        </div>
+
       </div>
- 
-    </div>
- 
-  </div>
-</section>
- 
- 
-<!-- ══════════════════════════════════════════════════════
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
      8. CONCLUSIONES
      ══════════════════════════════════════════════════════ -->
-<section data-step="0" id="conclusions-section">
- 
-  <div class="cn-cover">
-    <div class="cn-cover-bg-num">VII</div>
-    <p class="cn-cover-eyebrow">Conclusiones · Capítulo VII</p>
-    <h2 class="cn-cover-title">Lo que este conflicto <em>revela</em> del mundo</h2>
-    <p class="cn-cover-body">Más allá del teatro militar, la guerra entre EE.UU. e Irán revela tendencias estructurales que redefinen el equilibrio global. Cuatro conclusiones que trascienden el conflicto bilateral.</p>
-  </div>
+    <section data-step="0" id="conclusions-section">
 
-</section>
-
-<section data-step="0" id="conclusions-section_content">
-  <div class="cn-content">
-    <div class="cn-points">
- 
-      <div class="cn-point" style="--cp: var(--red);">
-        <div class="cn-point-num">01</div>
-        <div class="cn-point-body">
-          <div class="cn-point-title">La guerra asimétrica redefine el equilibrio militar</div>
-          <p class="cn-point-text">Un dron de <strong>$25,000</strong> puede obligar a emplear un misil Patriot de <strong>$4 millones</strong>. La superioridad tecnológica deja de ser garantía cuando el adversario explota la brecha de costos. En los conflictos contemporáneos, el que resiste más tiempo —no necesariamente el más avanzado— puede terminar inclinando el resultado.</p>
-        </div>
-      </div>
- 
-      <div class="cn-point" style="--cp: var(--gold);">
-        <div class="cn-point-num">02</div>
-        <div class="cn-point-body">
-          <div class="cn-point-title">La geopolítica de la energía sigue determinando la economía global</div>
-          <p class="cn-point-text">El estrecho de Ormuz —apenas <strong>33 km</strong> en su punto más angosto— transporta cerca del <strong>20% del petróleo mundial</strong>. Cada tensión en el Golfo se transmite rápidamente a los precios de la energía, el transporte y los alimentos. En un mundo interconectado, la seguridad energética es también estabilidad política.</p>
-        </div>
+      <div class="cn-cover">
+        <div class="cn-cover-bg-num">VII</div>
+        <p class="cn-cover-eyebrow">Conclusiones · Capítulo VII</p>
+        <h2 class="cn-cover-title">Lo que este conflicto <em>revela</em> del mundo</h2>
+        <p class="cn-cover-body">Más allá del teatro militar, la guerra entre EE.UU. e Irán revela tendencias
+          estructurales que redefinen el equilibrio global. Cuatro conclusiones que trascienden el conflicto bilateral.
+        </p>
       </div>
 
-      <div class="cn-point" style="--cp: rgba(80,130,255,0.8);">
-        <div class="cn-point-num">03</div>
-        <div class="cn-point-body">
-          <div class="cn-point-title">China emerge como el beneficiario estratégico indirecto</div>
-          <p class="cn-point-text">Mientras Estados Unidos y sus aliados gestionan crisis regionales, China consolida su presencia económica en Medio Oriente. Compra energía, amplía inversiones e incrementa su influencia diplomática sin involucrarse directamente en el conflicto. En geopolítica, a veces la ventaja proviene de mantenerse fuera de la confrontación.</p>
+    </section>
+
+    <section data-step="0" id="conclusions-section_content">
+      <div class="cn-content">
+        <div class="cn-points">
+
+          <div class="cn-point" style="--cp: var(--red);">
+            <div class="cn-point-num">01</div>
+            <div class="cn-point-body">
+              <div class="cn-point-title">La guerra asimétrica redefine el equilibrio militar</div>
+              <p class="cn-point-text">Un dron de <strong>$25,000</strong> puede obligar a emplear un misil Patriot de
+                <strong>$4 millones</strong>. La superioridad tecnológica deja de ser garantía cuando el adversario
+                explota la brecha de costos. En los conflictos contemporáneos, el que resiste más tiempo —no
+                necesariamente el más avanzado— puede terminar inclinando el resultado.</p>
+            </div>
+          </div>
+
+          <div class="cn-point" style="--cp: var(--gold);">
+            <div class="cn-point-num">02</div>
+            <div class="cn-point-body">
+              <div class="cn-point-title">La geopolítica de la energía sigue determinando la economía global</div>
+              <p class="cn-point-text">El estrecho de Ormuz —apenas <strong>33 km</strong> en su punto más angosto—
+                transporta cerca del <strong>20% del petróleo mundial</strong>. Cada tensión en el Golfo se transmite
+                rápidamente a los precios de la energía, el transporte y los alimentos. En un mundo interconectado, la
+                seguridad energética es también estabilidad política.</p>
+            </div>
+          </div>
+
+          <div class="cn-point" style="--cp: rgba(80,130,255,0.8);">
+            <div class="cn-point-num">03</div>
+            <div class="cn-point-body">
+              <div class="cn-point-title">China emerge como el beneficiario estratégico indirecto</div>
+              <p class="cn-point-text">Mientras Estados Unidos y sus aliados gestionan crisis regionales, China
+                consolida su presencia económica en Medio Oriente. Compra energía, amplía inversiones e incrementa su
+                influencia diplomática sin involucrarse directamente en el conflicto. En geopolítica, a veces la ventaja
+                proviene de mantenerse fuera de la confrontación.</p>
+            </div>
+          </div>
+
+          <div class="cn-point" style="--cp: rgba(150,50,150,0.7);">
+            <div class="cn-point-num">04</div>
+            <div class="cn-point-body">
+              <div class="cn-point-title">El sistema internacional avanza hacia una estructura multipolar</div>
+              <p class="cn-point-text">El conflicto no señala el colapso del poder estadounidense, sino la transición
+                hacia un orden más complejo. Ninguna potencia puede gestionar sola la estabilidad global. El equilibrio
+                internacional dependerá cada vez más de la interacción entre múltiples centros de poder y de la
+                capacidad de evitar escaladas incontrolables.</p>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div class="cn-point" style="--cp: rgba(150,50,150,0.7);">
-        <div class="cn-point-num">04</div>
-        <div class="cn-point-body">
-          <div class="cn-point-title">El sistema internacional avanza hacia una estructura multipolar</div>
-          <p class="cn-point-text">El conflicto no señala el colapso del poder estadounidense, sino la transición hacia un orden más complejo. Ninguna potencia puede gestionar sola la estabilidad global. El equilibrio internacional dependerá cada vez más de la interacción entre múltiples centros de poder y de la capacidad de evitar escaladas incontrolables.</p>
-        </div>
-      </div>
- 
-    </div>
-  </div>
- 
-</section>
- 
- 
-<!-- ══════════════════════════════════════════════════════
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
      9. AUTOR
      Insertar DESPUÉS de #conclusions-section, ANTES del cierre de #scroll-wrapper
      ══════════════════════════════════════════════════════ -->
-<section id="author-section">
-  <div class="au-inner">
-    <p class="au-eyebrow">Desarrollado por</p>
-    <img src="images/profile.jpeg" alt="Tato Warthon" class="au-photo">
-    <h2 class="au-name">Tato Warthon</h2>
-    <p class="au-title">Data Science &amp; Economics</p>
-    <div class="au-divider"></div>
-    <p class="au-bio">Apasionado por la geopolítica y las dinámicas que pocos miran de frente. Mezclo economía, datos y estrategia para descifrar las dinámicas que mueven a millones —y que nadie quiere que entiendas.</p>
-    <div class="au-links">
-      <a class="au-link au-link--linkedin" href="https://linkedin.com/in/tato-warthon/" target="_blank" rel="noopener">
-        <span class="au-link-icon">💼</span> LinkedIn
-      </a>
-      <a class="au-link au-link--github" href="https://github.com/warthon-190399" target="_blank" rel="noopener">
-        <span class="au-link-icon">⌨️</span> GitHub
-      </a>
-      <a class="au-link au-link--medium" href="https://medium.com/@warthon.123" target="_blank" rel="noopener">
-        <span class="au-link-icon">✍️</span> Medium
-      </a>
-    </div>
-  </div>
-</section>
-</div><!-- /#scroll-wrapper -->
+    <section id="author-section">
+      <div class="au-inner">
+        <p class="au-eyebrow">Desarrollado por</p>
+        <img src="images/profile.jpeg" alt="Tato Warthon" class="au-photo">
+        <h2 class="au-name">Tato Warthon</h2>
+        <p class="au-title">Data Science &amp; Economics</p>
+        <div class="au-divider"></div>
+        <p class="au-bio">Apasionado por la geopolítica y las dinámicas que pocos miran de frente. Mezclo economía,
+          datos y estrategia para descifrar las dinámicas que mueven a millones —y que nadie quiere que entiendas.</p>
+        <div class="au-links">
+          <a class="au-link au-link--linkedin" href="https://linkedin.com/in/tato-warthon/" target="_blank"
+            rel="noopener">
+            <span class="au-link-icon">💼</span> LinkedIn
+          </a>
+          <a class="au-link au-link--github" href="https://github.com/warthon-190399" target="_blank" rel="noopener">
+            <span class="au-link-icon">⌨️</span> GitHub
+          </a>
+          <a class="au-link au-link--medium" href="https://medium.com/@warthon.123" target="_blank" rel="noopener">
+            <span class="au-link-icon">✍️</span> Medium
+          </a>
+        </div>
+      </div>
+    </section>
+  </div><!-- /#scroll-wrapper -->
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/leaflet.geodesic/dist/leaflet.geodesic.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script type="module" src="js/main.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.geodesic/dist/leaflet.geodesic.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/main.js"></script>
 
 </body>
+
 </html>
