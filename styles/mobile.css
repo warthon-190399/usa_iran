@@ -1,0 +1,487 @@
+/* ════════════════════════════════════════════
+   MOBILE RESPONSIVE — Fixes globales
+   Agregar como ÚLTIMO stylesheet en index.html:
+   <link rel="stylesheet" href="mobile.css">
+   ════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   BREAKPOINT TABLET  ≤ 960px
+   ══════════════════════════════════════ */
+
+/* ==============================================
+   FIX GLOBAL — todos los breakpoints
+   main.css: "section { height: 100vh }" corta
+   las secciones de conclusiones y autor.
+   ============================================== */
+#conclusions-section,
+#conclusions-section_content,
+#author-section {
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  display: block !important;
+  pointer-events: auto !important;
+  align-items: flex-start !important;
+}
+
+@media (max-width: 960px) {
+
+  /* ── Hero ── */
+  .hero-title    { font-size: clamp(32px, 7vw, 60px); }
+  .hero-sub      { font-size: 15px; }
+  .hero-intro-wrap { margin: 14px 20px 28px; padding: 16px 20px; }
+
+  /* ── Cards flotantes (capítulos 1-4 sobre el mapa) ── */
+  .card {
+    left: 24px;
+    right: 24px;
+    width: auto;
+    top: auto;
+    bottom: 32px;
+    transform: none !important;
+    transition: opacity 0.6s ease;
+  }
+  .card.active { transform: none !important; }
+
+  /* ── Chapter counter / navigation dots ── */
+  #chapter-counter,
+  #chapter-index {
+    right: 12px;
+    gap: 4px;
+  }
+  .ci-label { display: none; }
+
+  /* ── Timeline ── */
+  .timeline-layout { grid-template-columns: 1fr; }
+  .timeline-sticky-col {
+    position: relative;
+    height: auto;
+    padding: 40px 24px 20px;
+    border-right: none;
+    border-bottom: 1px solid rgba(212,160,23,0.10);
+  }
+  .tl-dots      { flex-direction: row; flex-wrap: wrap; gap: 6px 14px; }
+  .tl-dot-label { font-size: 10px; }
+  .tl-scene     { padding: 48px 28px; opacity: 1; }
+
+  /* ── Graph section ── */
+  .graph-layout { grid-template-columns: 1fr; }
+  .graph-editorial {
+    padding: 48px 24px 28px;
+    border-right: none;
+    border-bottom: 1px solid rgba(212,160,23,0.12);
+  }
+  #graph-svg { min-height: 65vh; }
+
+  /* ── Conflict blocks ── */
+  .cf-block,
+  .cf-block--map,
+  .cf-block--reverse {
+    display: flex !important;
+    flex-direction: column !important;
+    direction: ltr !important;
+    min-height: auto;
+  }
+  .cf-editorial          { order: 1; padding: 52px 28px 36px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .cf-visual             { order: 2; padding: 32px 28px 44px; min-height: 260px; }
+  .cf-visual--transparent { order: 2; min-height: 200px; }
+
+  /* ═══════════════════════════════════════════════════════════
+     STRATEGY — texto SIEMPRE arriba, mapa SIEMPRE abajo
+     Las pantallas --reverse tienen st-visual PRIMERO en el DOM.
+     direction:rtl no reordena en columna única → usamos flex+order
+  ═══════════════════════════════════════════════════════════ */
+  .st-screen,
+  .st-screen--map,
+  .st-screen--solid,
+  .st-screen--reverse {
+    display: flex !important;
+    flex-direction: column !important;
+    direction: ltr !important;
+    min-height: auto;
+  }
+  .st-editorial                          { order: 1 !important; padding: 52px 28px 36px; }
+  .st-visual                             { order: 2 !important; padding: 32px 28px 44px; border-left: none; border-top: 1px solid rgba(255,255,255,0.04); }
+  .st-visual--transparent                { order: 2 !important; min-height: 56vw; height: 280px; padding: 0 !important; border-top: none; }
+  .st-visual--solid                      { order: 2 !important; }
+  .st-header { padding: 56px 28px 44px; }
+  .st-cover  { padding: 60px 28px; min-height: 80vh; }
+
+  /* ═══════════════════════════════════════════════════════════
+     ORMUZ — mismo patrón: editorial primero, mapa después
+  ═══════════════════════════════════════════════════════════ */
+  .oz-screen,
+  .oz-screen--map,
+  .oz-screen--data,
+  .oz-screen--reverse {
+    display: flex !important;
+    flex-direction: column !important;
+    direction: ltr !important;
+    min-height: auto;
+  }
+  .oz-editorial          { order: 1 !important; padding: 52px 28px 36px; }
+  .oz-visual             { order: 2 !important; padding: 32px 28px 44px; border-left: none; border-top: 1px solid rgba(255,255,255,0.04); }
+  .oz-visual--transparent { order: 2 !important; min-height: 56vw; height: 280px; padding: 0 !important; border-top: none; }
+  .oz-visual--data       { order: 2 !important; }
+  .oz-header { padding: 56px 28px 44px; }
+  .oz-cover  { padding: 60px 28px; min-height: 80vh; }
+
+  /* ── Economic ── */
+  #ec-screen-recent {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: auto;
+  }
+  .ec-recent-editorial   { order: 1; padding: 52px 28px 36px; }
+  .ec-recent-visual      { order: 2; padding: 32px 28px 44px; border-left: none; border-top: 1px solid rgba(255,255,255,0.04); }
+  .ec-chart-sticky       { padding: 36px 28px 40px; }
+  .ec-header             { padding: 56px 28px 44px; }
+  #ec-screen-historic    { min-height: 450vh; }
+
+  /* ── Actors ── */
+  .ac-block,
+  .ac-block--reverse {
+    display: flex !important;
+    flex-direction: column !important;
+    direction: ltr !important;
+    min-height: auto;
+  }
+  .ac-editorial          { order: 1; padding: 52px 28px 36px; }
+  .ac-block--reverse .ac-editorial { order: 1; padding: 52px 28px 36px; }
+  .ac-visual             { order: 2; padding: 32px 28px 44px; border-left: none; border-top: 1px solid rgba(255,255,255,0.04); }
+  .ac-cover              { padding: 60px 28px; }
+
+  /* ── Scenarios ── */
+  .sc-intro-grid         { grid-template-columns: 1fr; gap: 24px; }
+  .sc-horizon-grid       { grid-template-columns: 1fr; }
+  .sc-content            { padding: 52px 28px 72px; }
+  .sc-cover              { padding: 60px 28px; min-height: 80vh; }
+
+  #scenarios-section,
+  #conclusions-section {
+    position: relative !important;
+    z-index: 10 !important;
+    isolation: isolate;
+  }
+
+  /* ════════════════════════════════════════
+     CONCLUSIONES — layout completo
+     Sobrescribir "section { height: 100vh }" de main.css
+  ════════════════════════════════════════ */
+  #conclusions-section,
+  #conclusions-section_content {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+    display: block !important;
+    width: 100% !important;
+    pointer-events: auto !important;
+    align-items: flex-start !important;
+  }
+
+  /* Portada: full width, bien dimensionada */
+  .cn-cover {
+    width: 100% !important;
+    min-height: 90vh;
+    padding: 72px 28px 60px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    overflow: hidden;
+  }
+  .cn-cover-title {
+    font-size: clamp(32px, 8vw, 56px) !important;
+    max-width: 100% !important;
+    margin-bottom: 20px;
+  }
+  .cn-cover-body  { font-size: 14px; max-width: 100%; }
+  .cn-cover-bg-num { font-size: clamp(80px, 28vw, 160px) !important; }
+
+  /* Contenido: una columna, puntos siempre visibles */
+  .cn-content {
+    padding: 52px 28px 72px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .cn-points {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    background: none !important;
+    border: none !important;
+    margin-bottom: 40px;
+  }
+  /* Forzar visibilidad: el JS puede no disparar en mobile */
+  .cn-point {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    padding: 32px 24px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 3px solid var(--cp, var(--gold));
+    margin-bottom: 2px;
+    transition: none !important;
+  }
+  .cn-point-num   { font-size: 44px; opacity: 0.1 !important; margin-bottom: 12px; }
+  .cn-point-title { font-size: 17px; }
+  .cn-point-text  { font-size: 13.5px; }
+  .cn-closing {
+    opacity: 1 !important;
+    padding: 32px 28px;
+  }
+
+  /* ── Author ── */
+  #author-section { padding: 56px 28px 60px; position: relative; z-index: 10; }
+  .au-photo       { width: 180px; height: 180px; }
+  .au-inner       { opacity: 1 !important; transform: none !important; }
+
+  /* ── Bridge ── */
+  #bridge-section { padding: 72px 24px; }
+
+  /* ── Cover pages ── */
+  .oz-cover, .ec-cover,
+  .cf-cover, .st-cover,
+  .ac-cover, .sc-cover { padding: 60px 28px; min-height: 80vh; }
+}
+
+
+/* ══════════════════════════════════════
+   BREAKPOINT MOBILE  ≤ 600px
+   ══════════════════════════════════════ */
+@media (max-width: 600px) {
+
+  html { font-size: 15px; }
+
+  /* ── Hero ── */
+  .hero-title    { font-size: clamp(28px, 9vw, 42px); padding: 0 16px; }
+  .hero-sub      { font-size: 13px; padding: 0 20px; }
+  .hero-eyebrow  { font-size: 11px; letter-spacing: 0.2em; }
+  .hero-scroll   { margin-top: 36px; }
+  .hero-intro-wrap { margin: 10px 14px 20px; padding: 14px 16px; }
+  .hero-intro    { font-size: 13px; }
+
+  /* ── Cards flotantes ── */
+  .card {
+    left: 12px;
+    right: 12px;
+    bottom: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  .card-title { font-size: 17px; }
+  .card-text  { font-size: 13px; line-height: 1.7; }
+
+  #progress-bar    { height: 2px; }
+  #chapter-counter { display: none; }
+  #chapter-index   { display: none; }
+
+  /* ── Timeline ── */
+  .tl-active-year  { font-size: 44px; }
+  .tl-scene        { padding: 36px 16px; }
+  .tl-scene-title  { font-size: 19px; }
+  .tl-body p       { font-size: 13px; }
+  .tl-data-row     { gap: 6px; }
+  .tl-data-pill    { padding: 7px 10px; min-width: 76px; }
+  .tdp-val         { font-size: 14px; }
+  .tdp-label       { font-size: 10px; }
+
+  /* ── Graph ── */
+  .graph-editorial { padding: 32px 16px 20px; }
+  .graph-title     { font-size: clamp(22px, 6vw, 32px); }
+  #graph-svg       { min-height: 55vh; }
+
+  /* ── Conflict ── */
+  .cf-editorial    { padding: 44px 16px 24px; }
+  .cf-visual       { padding: 24px 16px 36px; }
+  .cf-block-num    { font-size: 52px; }
+  .cf-block-title  { font-size: clamp(18px, 5vw, 24px); }
+  .cf-body         { font-size: 13px; }
+  .cf-pills        { gap: 6px; }
+  .cf-pill .val    { font-size: 16px; }
+  .cf-header-inner { padding: 0 16px; }
+  .cf-title        { font-size: clamp(30px, 8vw, 48px); }
+  .cf-subtitle     { font-size: 13px; }
+  .cf-timeline-transition { padding: 32px 16px; }
+
+  /* ── Strategy ── */
+  .st-editorial    { order: 1 !important; padding: 36px 16px 24px; }
+  .st-visual,
+  .st-visual--transparent,
+  .st-visual--solid { order: 2 !important; }
+  .st-visual       { padding: 24px 16px 36px; }
+  .st-visual--transparent {
+    min-height: 56vw !important;
+    height: 800px !important;
+    padding: 0 !important;
+  }
+  .st-header       { padding: 40px 16px 32px; }
+  .st-cover        { padding: 40px 16px; min-height: 70vh; }
+  .st-cover-body   { font-size: 13px; }
+  .st-body         { font-size: 13px; }
+  .st-cost-row     { gap: 0; padding: 14px 0; }
+  .st-cost-usa,
+  .st-cost-iran    { padding-left: 10px; padding-right: 10px; }
+  .st-cost-val     { font-size: clamp(13px, 3.5vw, 18px); }
+  .st-cost-label   { font-size: 9px; }
+  .st-cost-sub     { font-size: 9px; }
+
+  /* ── Ormuz ── */
+  .oz-editorial    { order: 1 !important; padding: 36px 16px 24px; }
+  .oz-visual,
+  .oz-visual--transparent,
+  .oz-visual--data  { order: 2 !important; }
+  .oz-visual       { padding: 24px 16px 36px; }
+  .oz-visual--transparent {
+    min-height: 56vw !important;
+    height: 600px !important;
+    padding: 0 !important;
+  }
+  .oz-header       { padding: 40px 16px 32px; }
+  .oz-cover        { padding: 40px 16px; min-height: 70vh; }
+  .oz-stat-number  { font-size: clamp(44px, 12vw, 72px); }
+  .oz-body         { font-size: 13px; }
+  .oz-dep-list     { gap: 10px; }
+  .oz-dep-pct      { font-size: 14px; }
+
+  /* ── Economic ── */
+  .ec-recent-editorial { padding: 36px 16px 24px; }
+  .ec-recent-visual    { padding: 24px 16px 36px; }
+  .ec-header           { padding: 40px 16px 32px; }
+  .ec-chart-sticky     { padding: 24px 16px 28px; }
+  .ec-title            { font-size: clamp(24px, 7vw, 40px); }
+  .ec-body             { font-size: 13px; }
+  #ec-period-cards     { gap: 4px; }
+  .ec-period-card      { min-width: 80px; padding: 6px 8px; }
+  .ec-period-title     { font-size: 10px; }
+  #ec-screen-historic  { min-height: 350vh; }
+
+  /* ── Actors ── */
+  .ac-editorial    { order: 1; padding: 36px 16px 24px; }
+  .ac-visual       { order: 2; padding: 24px 16px 36px; }
+  .ac-cover        { padding: 40px 16px; min-height: 70vh; }
+  .ac-block-title  { font-size: clamp(17px, 5vw, 24px); }
+  .ac-body         { font-size: 13px; }
+  .ac-actor-card   { padding: 12px 12px; }
+  .ac-actor-desc   { font-size: 10px; }
+
+  /* ── Scenarios ── */
+  .sc-content        { padding: 36px 16px 56px; }
+  .sc-cover          { padding: 40px 16px; min-height: 70vh; }
+  .sc-scenario-card  { padding: 20px 16px; }
+  .sc-scenario-title { font-size: clamp(15px, 4.5vw, 20px); }
+  .sc-scenario-body  { font-size: 12.5px; }
+  .sc-scenario-prob  { font-size: 22px; }
+  .sc-scenario-bg-letter { font-size: 56px; right: 12px; }
+  .sc-horizon-card   { padding: 18px 16px; }
+  .sc-body           { font-size: 13px; }
+
+  /* ── Conclusions ── */
+  .cn-cover {
+    padding: 56px 16px 48px !important;
+    min-height: 85vh;
+  }
+  .cn-cover-title {
+    font-size: clamp(28px, 8.5vw, 44px) !important;
+    line-height: 1.05;
+  }
+  .cn-cover-body    { font-size: 13px; }
+  .cn-cover-eyebrow { font-size: 9px; letter-spacing: 0.3em; }
+  .cn-cover-bg-num  { font-size: clamp(70px, 28vw, 130px) !important; }
+
+  .cn-content   { padding: 36px 16px 56px !important; }
+  .cn-point     { padding: 24px 14px 20px !important; }
+  .cn-point-num { font-size: 36px; }
+  .cn-closing   { padding: 28px 16px; }
+  .cn-closing-quote { font-size: clamp(15px, 4vw, 20px); }
+
+  /* ── Author ── */
+  #author-section { padding: 44px 16px 60px; }
+  .au-photo       { width: 140px; height: 140px; }
+  .au-name        { font-size: clamp(22px, 6vw, 32px); }
+  .au-bio         { font-size: 13px; }
+  .au-links       { gap: 8px; }
+  .au-link        { padding: 8px 14px; font-size: 11px; }
+
+  #scroll-wrapper { padding-bottom: 0 !important; }
+  #author-section:last-child,
+  #conclusions-section:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 56px !important;
+  }
+
+  /* ── Bridge ── */
+  #bridge-section   { padding: 56px 16px; }
+  .bridge-question  { font-size: clamp(24px, 7vw, 36px); }
+  .bridge-body      { font-size: 13px; margin-bottom: 36px; }
+  .bridge-hito-year { width: 50px; font-size: 11px; }
+  .bridge-hitos::before { left: 50px; }
+  .bridge-hito-label { font-size: 11px; }
+
+  /* ── Cover pages ── */
+  .oz-cover, .ec-cover,
+  .cf-cover, .st-cover,
+  .ac-cover, .sc-cover { padding: 40px 16px; min-height: 70vh; }
+
+  /* ── Stat pills genéricas ── */
+  .stat-row   { gap: 6px; }
+  .stat-pill  { padding: 6px 10px; font-size: 11px; }
+  .stat-pill .val { font-size: 15px; }
+
+  /* ── Pills oz / st / ac ── */
+  .oz-pills, .st-pills, .ac-pills { gap: 6px; }
+  .oz-pill, .st-pill, .ac-pill    { padding: 6px 10px; }
+  .oz-pill .val, .st-pill .val    { font-size: 15px; }
+
+  /* ── Alert bars ── */
+  .oz-alert, .st-alert,
+  .cf-alert, .ac-alert { font-size: 11px; padding: 10px 12px; }
+
+  /* ── Force layers ── */
+  .cf-force-layer:nth-child(2) { margin-left: 0; }
+  .cf-force-layer:nth-child(3) { margin-left: 0; }
+
+  /* ── Chart headers económico ── */
+  .ec-chart-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .ec-chart-note   { align-self: flex-start; }
+
+  /* ── Narration box ── */
+  .ec-narration-title { font-size: clamp(13px, 4vw, 17px); }
+  .ec-narration-body  { font-size: 12px; }
+}
+
+
+/* ══════════════════════════════════════
+   BREAKPOINT EXTRA PEQUEÑO  ≤ 380px
+   ══════════════════════════════════════ */
+@media (max-width: 380px) {
+  .hero-title { font-size: 26px; }
+  .cf-title   { font-size: 28px; }
+  .card       { max-height: 55vh; }
+
+  .sc-scenario-header { flex-direction: column; gap: 10px; }
+  .sc-scenario-prob   { align-self: flex-start; }
+
+  .st-cost-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px 0;
+  }
+  .st-cost-vs   { display: none; }
+  .st-cost-usa,
+  .st-cost-iran { text-align: left; padding: 0; }
+
+  .tl-sticky-image-wrap { display: none; }
+
+  .cn-cover-title { font-size: 26px !important; }
+  .cn-point       { padding: 18px 12px 16px !important; }
+}
