@@ -982,7 +982,7 @@ export function updateMap(step) {
     mapEl.style.opacity = '1'
     _map.addLayer(conflictC03)
     // Golfo Pérsico: el Golfo debe quedar en la mitad derecha
-    flyOffset(_map, [26, 50], 5.5, { duration: 1.8 })
+    flyOffset(_map, [26, 55], 5.5, { duration: 1.8 })
   }
   if (step === 'c07') {
     mapEl.style.opacity = '1'
