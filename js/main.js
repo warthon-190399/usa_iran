@@ -1,31 +1,32 @@
-import { initMap, updateMap } from "./map.js"
-import { initScroll }         from "./scroll.js"
-import { initGraph }          from "./graph.js"
-import { initTimeline }       from "./timeline.js"
-import { initConflict }       from "./conflict.js"
-import { initBridge }         from "./bridge.js"
-import { initStrategy }       from "./strategy.js"
-import { initOrmuz }          from "./ormuz.js"
-import { initEconomic }       from "./economic.js"
-import { initActors }         from "./actors.js"
-import { initScenarios }      from "./scenarios.js"
-import { initConclusions }    from "./conclusions.js"
+// ── Estilos (Vite los empaqueta en un solo CSS; el orden importa) ────────
+import '../styles/main.css'
+import 'leaflet/dist/leaflet.css'
+import '../styles/timeline.css'
+import '../styles/bridge.css'
+import '../styles/strategy.css'
+import '../styles/ormuz.css'
+import '../styles/economic.css'
+import '../styles/actors.css'
+import '../styles/scenarios.css'
+import '../styles/conclusions.css'
+import '../styles/hero-cta.css'
+import '../styles/mobile.css'
+import '../styles/map.css'
+import '../styles/graph.css'
 
-// Inicializar mapa
-const map = initMap()
+// ── Módulos ───────────────────────────────────────────────────────────────
+import { initMap, updateMap } from './map/index.js'
+import { initScroll } from './scroll.js'
+import { initReveals } from './reveals.js'
+import { initTimeline } from './timeline.js'
+import { initGraph } from './graph.js'
+import { initEconomic } from './economic.js'
+import { initChapterIndex } from './chapters.js'
 
-// Scroll (pasos 0-3 controlan el mapa)
-initScroll(updateMap)
+initMap()
+initScroll(updateMap)   // pasos data-map-step → mapa
+initReveals()           // animaciones de aparición
 initTimeline()
-initBridge()
-initStrategy(updateMap)
-initConflict(updateMap)
-initOrmuz(updateMap)
+initGraph()
 initEconomic()
-initGraph("data/graph.json")
-initActors()
-initScenarios()
-initConclusions()
-
-// Debug
-window._updateMap = updateMap
+initChapterIndex()

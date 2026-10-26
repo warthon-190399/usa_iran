@@ -18,13 +18,13 @@
   box-sizing: border-box;
 }
 
+/* El documento hace scroll normal (no el body): así IntersectionObserver
+   y Scrollama ven bien las secciones altas. */
 html,
 body {
-  height: 100%;
   font-family: 'Source Serif 4', Georgia, serif;
   background: var(--ink);
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: clip; /* clip (no hidden): no crea un contenedor de scroll y no rompe position: sticky */
 }
 
 /* ── MAP ── */
@@ -1144,4 +1144,4 @@ section.trail {
 }
 @media (max-width: 600px) {
   .oz-cover, .ec-cover { padding: 44px 20px; min-height: 70vh; }
-}
+}

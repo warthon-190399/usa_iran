@@ -1,0 +1,204 @@
+/* map.css — marcadores y animaciones del mapa Leaflet (antes inyectado desde map.js) */
+
+@keyframes routeDash {
+  to { stroke-dashoffset: -120; }
+}
+.route-animated path {
+  animation: routeDash 3s linear infinite;
+}
+.route-delay-1 path { animation-delay: -1s; }
+.route-delay-2 path { animation-delay: -2s; }
+.route-delay-3 path { animation-delay: -0.5s; }
+
+.route-label {
+  background: rgba(13,13,13,0.82);
+  border: 1px solid var(--rc, #f39c12);
+  border-radius: 2px;
+  color: var(--rc, #f39c12);
+  font-family: 'Source Serif 4', serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+/* Hormuz pulse rings */
+@keyframes hormuzPulse {
+  0%   { r: 14px; opacity: 0.8; }
+  100% { r: 42px; opacity: 0;   }
+}
+.hormuz-pulse circle.ring {
+  animation: hormuzPulse 2.4s ease-out infinite;
+}
+.hormuz-pulse circle.ring2 {
+  animation: hormuzPulse 2.4s ease-out infinite;
+  animation-delay: 1.2s;
+}
+
+/* Target markers (bloque 03) */
+@keyframes targetPulse {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  50%  { transform: scale(1.5); opacity: 0;   }
+  100% { transform: scale(1);   opacity: 0;   }
+}
+.target-marker {
+  position: relative;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+}
+.target-marker-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--tc, #c0392b);
+  animation: targetPulse 2.2s ease-out infinite;
+}
+.target-marker-core {
+  position: relative;
+  z-index: 1;
+  width: 24px; height: 24px;
+  background: rgba(13,13,13,0.88);
+  border: 1.5px solid var(--tc, #c0392b);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+/* Proxy pulse dot */
+@keyframes proxyPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,160,23,0.6); }
+  50%       { box-shadow: 0 0 0 8px rgba(212,160,23,0); }
+}
+.proxy-pulse-dot {
+  animation: proxyPulse 2s ease-in-out infinite;
+}
+
+/* Iran facility markers */
+.iran-facility {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.iran-facility-core {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #c0392b;
+  border: 1.5px solid rgba(255,100,100,0.8);
+  box-shadow: 0 0 8px rgba(192,57,43,0.8);
+  flex-shrink: 0;
+}
+.iran-facility-label {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.ifl-name {
+  font-family: 'Source Serif 4', serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(245,240,232,0.85);
+  white-space: nowrap;
+  text-shadow: 0 1px 6px #000, 0 0 12px #000;
+}
+.ifl-sub {
+  font-family: 'Source Serif 4', serif;
+  font-size: 9px;
+  font-weight: 300;
+  color: rgba(245,240,232,0.4);
+  white-space: nowrap;
+  text-shadow: 0 1px 4px #000;
+}
+
+/* Proxy zone label */
+.proxy-zone-label {
+  background: rgba(13,13,13,0.85);
+  border: 1px solid var(--pzc, #d4a017);
+  border-radius: 2px;
+  color: var(--pzc, #d4a017);
+  font-family: 'Source Serif 4', serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+}
+
+/* Ukraine highlight */
+.ukraine-label {
+  background: rgba(13,13,13,0.85);
+  border: 1px solid rgba(100,140,200,0.5);
+  border-radius: 2px;
+  color: rgba(100,160,220,0.9);
+  font-family: 'Source Serif 4', serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+/* Ormuz heatmap — círculos concéntricos de calor */
+@keyframes heatExpand {
+  0%   { stroke-opacity: 0.7; stroke-width: 2; }
+  100% { stroke-opacity: 0;   stroke-width: 0.5; }
+}
+@keyframes heatExpand2 {
+  0%   { stroke-opacity: 0.5; stroke-width: 1.5; }
+  100% { stroke-opacity: 0;   stroke-width: 0.5; }
+}
+.heat-ring-1 { animation: heatExpand  3.5s ease-out infinite; }
+.heat-ring-2 { animation: heatExpand  3.5s ease-out infinite; animation-delay: 0.7s; }
+.heat-ring-3 { animation: heatExpand2 3.5s ease-out infinite; animation-delay: 1.4s; }
+.heat-ring-4 { animation: heatExpand2 3.5s ease-out infinite; animation-delay: 2.1s; }
+.heat-ring-5 { animation: heatExpand2 3.5s ease-out infinite; animation-delay: 2.8s; }
+
+/* Fleet marker */
+@keyframes fleetPulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  50%  { transform: scale(1.8); opacity: 0;   }
+  100% { transform: scale(1);   opacity: 0;   }
+}
+.fleet-marker {
+  position: relative;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+}
+.fleet-marker-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(80,130,255,0.6);
+  animation: fleetPulse 2.8s ease-out infinite;
+}
+.fleet-marker-ring--2 {
+  animation-delay: 1.4s;
+}
+.fleet-marker-core {
+  position: relative;
+  z-index: 1;
+  width: 28px; height: 28px;
+  background: rgba(20,50,120,0.92);
+  border: 2px solid rgba(80,130,255,0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  box-shadow: 0 0 16px rgba(80,130,255,0.5), 0 0 32px rgba(80,130,255,0.2);
+  backdrop-filter: blur(4px);
+}
+
+/* Map fade transition */
+#map {
+  transition: opacity 0.6s ease;
+}

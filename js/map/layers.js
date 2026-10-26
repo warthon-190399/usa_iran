@@ -1,4 +1,11 @@
-let _map = null
+/**
+ * map/layers.js — Construcción de todas las capas del mapa.
+ * Solo crea objetos Leaflet; qué capa se muestra en cada paso se decide en
+ * la tabla STEPS de map/index.js.
+ */
+import L from 'leaflet'
+import { GeodesicLine } from 'leaflet.geodesic'
+import countriesUrl from '../../data/countries.geojson?url'
 
 // ── Animated polyline factory (geodésica) ────────────────────────────────
 function animatedRoute(waypoints, color, label, delay = 0) {
@@ -12,9 +19,9 @@ function animatedRoute(waypoints, color, label, delay = 0) {
     smoothFactor: 1
   }
 
-  L.geodesic(waypoints, { ...base, weight: 10, opacity: 0.10 }).addTo(group)
-  L.geodesic(waypoints, { ...base, weight: 2, opacity: 0.30 }).addTo(group)
-  L.geodesic(waypoints, {
+  new GeodesicLine(waypoints, { ...base, weight: 10, opacity: 0.10 }).addTo(group)
+  new GeodesicLine(waypoints, { ...base, weight: 2, opacity: 0.30 }).addTo(group)
+  new GeodesicLine(waypoints, {
     ...base,
     weight: 3,
     opacity: 0.90,
@@ -52,11 +59,11 @@ function proxyLine(from, to, color, delay = 0) {
   const base = { color, steps: 40, wrap: false, interactive: false }
 
   // Glow
-  L.geodesic([from, to], { ...base, weight: 8, opacity: 0.08 }).addTo(group)
+  new GeodesicLine([from, to], { ...base, weight: 8, opacity: 0.08 }).addTo(group)
   // Track
-  L.geodesic([from, to], { ...base, weight: 1.5, opacity: 0.25 }).addTo(group)
+  new GeodesicLine([from, to], { ...base, weight: 1.5, opacity: 0.25 }).addTo(group)
   // Animated dash
-  L.geodesic([from, to], {
+  new GeodesicLine([from, to], {
     ...base,
     weight: 2,
     opacity: 0.75,
@@ -137,238 +144,8 @@ function iranFacilityMarker(latlng, label, sublabel) {
   })
 }
 
-// ── Inject CSS ─────────────────────────────────────────────────────────────
-function injectRouteCSS() {
-  if (document.getElementById('route-anim-css')) return
-  const style = document.createElement('style')
-  style.id = 'route-anim-css'
-  style.textContent = `
-    @keyframes routeDash {
-      to { stroke-dashoffset: -120; }
-    }
-    .route-animated path {
-      animation: routeDash 3s linear infinite;
-    }
-    .route-delay-1 path { animation-delay: -1s; }
-    .route-delay-2 path { animation-delay: -2s; }
-    .route-delay-3 path { animation-delay: -0.5s; }
-
-    .route-label {
-      background: rgba(13,13,13,0.82);
-      border: 1px solid var(--rc, #f39c12);
-      border-radius: 2px;
-      color: var(--rc, #f39c12);
-      font-family: 'Source Serif 4', serif;
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      white-space: nowrap;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.6);
-    }
-
-    /* Hormuz pulse rings */
-    @keyframes hormuzPulse {
-      0%   { r: 14px; opacity: 0.8; }
-      100% { r: 42px; opacity: 0;   }
-    }
-    .hormuz-pulse circle.ring {
-      animation: hormuzPulse 2.4s ease-out infinite;
-    }
-    .hormuz-pulse circle.ring2 {
-      animation: hormuzPulse 2.4s ease-out infinite;
-      animation-delay: 1.2s;
-    }
-
-    /* Target markers (bloque 03) */
-    @keyframes targetPulse {
-      0%   { transform: scale(1);   opacity: 0.8; }
-      50%  { transform: scale(1.5); opacity: 0;   }
-      100% { transform: scale(1);   opacity: 0;   }
-    }
-    .target-marker {
-      position: relative;
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .target-marker-ring {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 1.5px solid var(--tc, #c0392b);
-      animation: targetPulse 2.2s ease-out infinite;
-    }
-    .target-marker-core {
-      position: relative;
-      z-index: 1;
-      width: 24px; height: 24px;
-      background: rgba(13,13,13,0.88);
-      border: 1.5px solid var(--tc, #c0392b);
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 0 10px rgba(0,0,0,0.6);
-    }
-
-    /* Proxy pulse dot */
-    @keyframes proxyPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(212,160,23,0.6); }
-      50%       { box-shadow: 0 0 0 8px rgba(212,160,23,0); }
-    }
-    .proxy-pulse-dot {
-      animation: proxyPulse 2s ease-in-out infinite;
-    }
-
-    /* Iran facility markers */
-    .iran-facility {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      pointer-events: none;
-    }
-    .iran-facility-core {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: #c0392b;
-      border: 1.5px solid rgba(255,100,100,0.8);
-      box-shadow: 0 0 8px rgba(192,57,43,0.8);
-      flex-shrink: 0;
-    }
-    .iran-facility-label {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-    .ifl-name {
-      font-family: 'Source Serif 4', serif;
-      font-size: 10px;
-      font-weight: 400;
-      color: rgba(245,240,232,0.85);
-      white-space: nowrap;
-      text-shadow: 0 1px 6px #000, 0 0 12px #000;
-    }
-    .ifl-sub {
-      font-family: 'Source Serif 4', serif;
-      font-size: 9px;
-      font-weight: 300;
-      color: rgba(245,240,232,0.4);
-      white-space: nowrap;
-      text-shadow: 0 1px 4px #000;
-    }
-
-    /* Proxy zone label */
-    .proxy-zone-label {
-      background: rgba(13,13,13,0.85);
-      border: 1px solid var(--pzc, #d4a017);
-      border-radius: 2px;
-      color: var(--pzc, #d4a017);
-      font-family: 'Source Serif 4', serif;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      white-space: nowrap;
-      backdrop-filter: blur(6px);
-    }
-
-    /* Ukraine highlight */
-    .ukraine-label {
-      background: rgba(13,13,13,0.85);
-      border: 1px solid rgba(100,140,200,0.5);
-      border-radius: 2px;
-      color: rgba(100,160,220,0.9);
-      font-family: 'Source Serif 4', serif;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      white-space: nowrap;
-    }
-
-
-
-    /* Ormuz heatmap — círculos concéntricos de calor */
-    @keyframes heatExpand {
-      0%   { stroke-opacity: 0.7; stroke-width: 2; }
-      100% { stroke-opacity: 0;   stroke-width: 0.5; }
-    }
-    @keyframes heatExpand2 {
-      0%   { stroke-opacity: 0.5; stroke-width: 1.5; }
-      100% { stroke-opacity: 0;   stroke-width: 0.5; }
-    }
-    .heat-ring-1 { animation: heatExpand  3.5s ease-out infinite; }
-    .heat-ring-2 { animation: heatExpand  3.5s ease-out infinite; animation-delay: 0.7s; }
-    .heat-ring-3 { animation: heatExpand2 3.5s ease-out infinite; animation-delay: 1.4s; }
-    .heat-ring-4 { animation: heatExpand2 3.5s ease-out infinite; animation-delay: 2.1s; }
-    .heat-ring-5 { animation: heatExpand2 3.5s ease-out infinite; animation-delay: 2.8s; }
-
-    /* Fleet marker */
-    @keyframes fleetPulse {
-      0%   { transform: scale(1);   opacity: 0.7; }
-      50%  { transform: scale(1.8); opacity: 0;   }
-      100% { transform: scale(1);   opacity: 0;   }
-    }
-    .fleet-marker {
-      position: relative;
-      width: 44px; height: 44px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .fleet-marker-ring {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 1.5px solid rgba(80,130,255,0.6);
-      animation: fleetPulse 2.8s ease-out infinite;
-    }
-    .fleet-marker-ring--2 {
-      animation-delay: 1.4s;
-    }
-    .fleet-marker-core {
-      position: relative;
-      z-index: 1;
-      width: 28px; height: 28px;
-      background: rgba(20,50,120,0.92);
-      border: 2px solid rgba(80,130,255,0.8);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      box-shadow: 0 0 16px rgba(80,130,255,0.5), 0 0 32px rgba(80,130,255,0.2);
-      backdrop-filter: blur(4px);
-    }
-
-    /* Map fade transition */
-    #map {
-      transition: opacity 0.6s ease;
-    }
-  `
-  document.head.appendChild(style)
-}
-
-export function initMap() {
-  injectRouteCSS()
-
-  _map = L.map('map', {
-    zoomControl: false,
-    attributionControl: false,
-    scrollWheelZoom: false,
-    dragging: false,
-    doubleClickZoom: false,
-    touchZoom: false,
-    keyboard: false
-  }).setView([28, 50], 4)
-
-  L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    { maxZoom: 18 }
-  ).addTo(_map)
-
+// ══════════════════════════════════════════════════════════════════════════
+export function buildLayers() {
   /* ── Capas base de países ── */
   const COUNTRY_LAYERS = {
     iran: { iso: 'IRN', color: '#e84040', fillColor: '#c0392b', fillOpacity: 0.35, weight: 1.8, opacity: 0.9 },
@@ -382,9 +159,6 @@ export function initMap() {
     turkmen: { iso: 'TKM', color: '#888', fillColor: '#999', fillOpacity: 0.22, weight: 0.6, opacity: 0.6 },
     afghanistan: { iso: 'AFG', color: '#888', fillColor: '#999', fillOpacity: 0.22, weight: 0.6, opacity: 0.6 },
     azerbaijan: { iso: 'AZE', color: '#888', fillColor: '#999', fillOpacity: 0.22, weight: 0.6, opacity: 0.6 },
-    // Nuevos para bloque 01
-    ukraine: { iso: 'UKR', color: '#5580b0', fillColor: '#4a70a0', fillOpacity: 0.30, weight: 1.2, opacity: 0.7 },
-    russia: { iso: 'RUS', color: '#666', fillColor: '#555', fillOpacity: 0.20, weight: 0.8, opacity: 0.5 },
     syria: { iso: 'SYR', color: '#8a5040', fillColor: '#7a4535', fillOpacity: 0.28, weight: 0.8, opacity: 0.5 },
     lebanon: { iso: 'LBN', color: '#c06030', fillColor: '#b05528', fillOpacity: 0.35, weight: 1.0, opacity: 0.7 },
     yemen: { iso: 'YEM', color: '#c0a030', fillColor: '#b09025', fillOpacity: 0.32, weight: 1.0, opacity: 0.7 },
@@ -394,57 +168,24 @@ export function initMap() {
   const iranPoly = L.layerGroup()
   const neighbors = L.layerGroup()
 
-  // Capas nuevas para conflict section
-  const ukrainePoly = L.layerGroup()
-  const russiaPoly = L.layerGroup()
-  const proxyCountries = L.layerGroup() // líbano, yemen, siria, israel
+  const proxyCountries = L.layerGroup()
+  const PROXY_COUNTRIES = ['lebanon', 'yemen', 'syria', 'israel']
 
-  let _geojsonCache = null
-
-  async function loadGeoJSON() {
-    if (_geojsonCache) return _geojsonCache
-    const res = await fetch('./data/countries.geojson')
-    if (!res.ok) throw new Error('No se pudo cargar countries.geojson')
-    _geojsonCache = await res.json()
-    return _geojsonCache
-  }
-
-  async function fetchCountry(key) {
-    const { iso, color, fillColor, fillOpacity, weight, opacity } = COUNTRY_LAYERS[key]
-    try {
-      const allData = await loadGeoJSON()
-      const filtered = {
-        type: 'FeatureCollection',
-        features: allData.features.filter(f => f.properties['ISO3166-1-Alpha-3'] === iso)
+  // Polígonos de países: se cargan en segundo plano. Como se agregan a
+  // LayerGroups, aparecen solos en el mapa si su grupo ya está visible.
+  fetch(countriesUrl)
+    .then(res => res.json())
+    .then(geo => {
+      for (const [key, { iso, ...style }] of Object.entries(COUNTRY_LAYERS)) {
+        const features = geo.features.filter(f => f.properties['ISO3166-1-Alpha-3'] === iso)
+        if (!features.length) continue
+        const layer = L.geoJSON({ type: 'FeatureCollection', features }, { style, interactive: false })
+        if (key === 'iran') iranPoly.addLayer(layer)
+        else if (PROXY_COUNTRIES.includes(key)) proxyCountries.addLayer(layer)
+        else neighbors.addLayer(layer)
       }
-      if (!filtered.features.length) return null
-      return L.geoJSON(filtered, {
-        style: { color, weight, opacity, fillColor, fillOpacity },
-        interactive: false
-      })
-    } catch (e) {
-      console.warn(`countries.geojson: no se pudo cargar ${iso}`, e)
-      return null
-    }
-  }
-
-  Promise.all(
-    Object.keys(COUNTRY_LAYERS).map(key => fetchCountry(key).then(layer => ({ key, layer })))
-  ).then(results => {
-    results.forEach(({ key, layer }) => {
-      if (!layer) return
-      if (key === 'iran') iranPoly.addLayer(layer)
-      else if (key === 'ukraine') ukrainePoly.addLayer(layer)
-      else if (key === 'russia') russiaPoly.addLayer(layer)
-      else if (['lebanon', 'yemen', 'syria', 'israel'].includes(key)) proxyCountries.addLayer(layer)
-      else neighbors.addLayer(layer)
     })
-    if (_map._currentStep >= 0) {
-      const step = _map._currentStep
-      _map._currentStep = -1
-      updateMap(step)
-    }
-  })
+    .catch(e => console.warn('countries.geojson: no se pudo cargar', e))
 
   /* ── Bases militares ── */
   function baseMarker(latlng, label, country) {
@@ -539,50 +280,7 @@ export function initMap() {
   const hormuz = L.layerGroup([hormuzSVG, hormuzLabel, volumeBadge])
   const routes = L.layerGroup([routeAsia, routeEurope, routeAmerica])
 
-  /* ══════════════════════════════════════════════════
-     CAPAS EXCLUSIVAS DE LA CONFLICT SECTION
-     ══════════════════════════════════════════════════ */
-
-  // ── BLOQUE C01: Dos teatros (Ucrania + Golfo) ────────────────────────────
-  const warUkraine = animatedRoute(
-    [L.latLng(55.75, 37.6), L.latLng(50.45, 30.52)],  // Moscú → Kiev
-    '#5580b0', 'Frente Ucrania', 0
-  )
-
-  const ukraineLabel = L.marker([49.5, 31.0], {
-    icon: L.divIcon({
-      className: '',
-      html: `<div class="ukraine-label">Ucrania · frente activo</div>`,
-      iconSize: [160, 20], iconAnchor: [80, 10]
-    }),
-    interactive: false
-  })
-
-  // Vacío estratégico: área difusa sobre Siria/Iraq/Líbano
-  const strategicVoid = L.circle([34.0, 38.0], {
-    color: 'rgba(212,160,23,0.15)',
-    weight: 1,
-    fillColor: 'rgba(212,160,23,0.04)',
-    fillOpacity: 1,
-    radius: 900000,
-    interactive: false
-  })
-
-  const voidLabel = L.marker([35.0, 38.5], {
-    icon: L.divIcon({
-      className: '',
-      html: `<div style="color:rgba(212,160,23,0.5);font-family:'Source Serif 4',serif;
-             font-size:10px;letter-spacing:0.25em;text-transform:uppercase;
-             text-shadow:0 1px 6px #000;white-space:nowrap;">Vacío estratégico</div>`,
-      iconSize: [160, 16], iconAnchor: [80, 8]
-    }),
-    interactive: false
-  })
-
-  const conflictC01 = L.layerGroup([
-    ukrainePoly, russiaPoly, warUkraine, ukraineLabel,
-    strategicVoid, voidLabel
-  ])
+  /* ══ Capas del Capítulo II (estrategia): c03, c07, c08 ══ */
 
   // ── BLOQUE C03: Objetivos iraníes en el Golfo ────────────────────────────
   const targetDesalinization = L.layerGroup([
@@ -722,9 +420,6 @@ export function initMap() {
     lineHezbollah, lineHouthis, lineIraqMilitias, lineHamas,
     proxyLabels
   ])
-
-  /* ── Store ── */
-
 
   /* ── Ormuz Heatmap — calor de tráfico (step 2) ── */
   const ormuzHeat = L.layerGroup()
@@ -878,202 +573,48 @@ export function initMap() {
 
   const fleet = L.layerGroup([fleetRange, fleetMarker, fleetLabel])
 
-  _map._layers_store = {
-    iranPoly, neighbors, bases, baseRanges, routes, hormuz, fleet, ormuzHeat,
-    // conflict
-    conflictC01, conflictC03, conflictC07, conflictC08
-  }
-  _map._currentStep = -1
+  /* ── Isla Kharg (paso oz04) ── */
+  const khargLabel = L.marker([29.24, 50.32], {
+    icon: L.divIcon({
+      className: '',
+      html: `<div style="
+        background: rgba(192,57,43,0.92);
+        border: 1.5px solid rgba(255,120,80,0.9);
+        border-radius: 3px;
+        padding: 8px 14px;
+        font-family: 'Source Serif 4', serif;
+        color: rgba(245,240,232,0.95);
+        white-space: nowrap;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 20px rgba(192,57,43,0.6);
+        transform: translateX(-50%) translateY(-110%);
+        text-align: center;
+      ">
+        <span style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;display:block;">🛢️ Isla Kharg</span>
+        <span style="font-size:10px;opacity:0.75;letter-spacing:0.1em;text-transform:uppercase;">Terminal exportación iraní</span>
+      </div>`,
+      iconSize: [160, 50],
+      iconAnchor: [80, 50]
+    }),
+    interactive: false
+  })
+  const khargDot = L.circleMarker([29.24, 50.32], {
+    radius: 10,
+    color: '#c0392b',
+    fillColor: '#c0392b',
+    fillOpacity: 0.9,
+    weight: 2,
+    interactive: true,
+    className: 'proxy-pulse-dot'
+  }).bindPopup(`<b style="color:#d4a017;">Isla Kharg</b><br>
+    <span style="opacity:0.7;font-size:12px;">Principal terminal de exportación petrolera irań. 
+    Gran parte del crudo iraní destinado a mercados internacionales sale por aquí.</span>`)
 
-  return _map
-}
+  const kharg = L.layerGroup([khargDot, khargLabel])
 
-// ── updateMap: pasos originales (0-4) + pasos conflicto (c01,c03,c07,c08) ─
-
-// ── flyOffset: compensa la columna editorial (~50% izq) desplazando el centro ──
-// Mueve el punto de interés hacia la columna derecha usando paddingTopLeft
-function flyOffset(map, latlng, zoom, options = {}) {
-  const colWidth = Math.round(window.innerWidth * 0.50)
-  const point = map.project(L.latLng(latlng), zoom)
-  // Desplazar medio ancho de columna hacia la izquierda en píxeles de mapa
-  const shifted = L.point(point.x - colWidth / 2, point.y)
-  const shiftedLatLng = map.unproject(shifted, zoom)
-  map.flyTo(shiftedLatLng, zoom, { duration: options.duration || 1.8, easeLinearity: 0.35 })
-}
-
-export function updateMap(step) {
-  if (!_map) return
-  if (step === _map._currentStep) return
-  _map._currentStep = step
-
-  const {
-    iranPoly, neighbors, bases, baseRanges, routes, hormuz, fleet, ormuzHeat,
-    conflictC01, conflictC03, conflictC07, conflictC08
-  } = _map._layers_store
-
-  const mapEl = document.getElementById('map')
-
-  // Todas las capas posibles
-  const allLayers = [
-    iranPoly, neighbors, bases, baseRanges, routes, hormuz, fleet, ormuzHeat,
-    conflictC01, conflictC03, conflictC07, conflictC08
-  ]
-  allLayers.forEach(l => { if (_map.hasLayer(l)) _map.removeLayer(l) })
-
-  // ── Pasos originales ─────────────────────────────────────────────────────
-  if (step === 0) {
-    mapEl.style.opacity = '1'
-    _map.flyTo([28, 50], 3, { duration: 1.6 })
-  }
-
-  // Step 1: Rutas comerciales — Irán + vecinos + rutas geodésicas
-  if (step === 1) {
-    mapEl.style.opacity = '1'
-    _map.addLayer(neighbors)
-    _map.addLayer(iranPoly)
-    _map.addLayer(routes)
-    _map.flyTo([15, 62], 3, { duration: 1.8 })
-  }
-
-  // Step 2: Ormuz — zoom cerrado + heatmap de tráfico (sin rutas)
-  if (step === 2) {
-    mapEl.style.opacity = '1'
-    _map.addLayer(iranPoly)
-    _map.addLayer(ormuzHeat)
-    _map.flyTo([26.5, 56.5], 7, { duration: 2.0 })
-  }
-
-  // Step 3: Presencia militar EE.UU. + 5ª Flota destacada
-  if (step === 3) {
-    mapEl.style.opacity = '1'
-    _map.addLayer(iranPoly)
-    _map.addLayer(neighbors)
-    _map.addLayer(bases)
-    _map.addLayer(baseRanges)
-    _map.addLayer(fleet)
-    _map.flyTo([28, 50], 4.5, { duration: 1.6 })
-  }
-
-  // Step 4 eliminado — absorbido por step 2
-
-  // ── Sin mapa: fade out ───────────────────────────────────────────────────
-  if (step === 'off') {
-    mapEl.style.opacity = '0'
-  }
-
-  // ── Paso estrategia s04: Ormuz heatmap (reutiliza ormuzHeat + step 2) ──
-  if (step === 's04') {
-    mapEl.style.opacity = '1'
-    _map.addLayer(iranPoly)
-    _map.addLayer(ormuzHeat)
-    _map.flyTo([26.5, 51.5], 6, { duration: 2.0 })
-  }
-
-  // ── Pasos conflict section ───────────────────────────────────────────────
-  if (step === 'c01') {
-    mapEl.style.opacity = '1'
-    _map.addLayer(conflictC01)
-    _map.addLayer(iranPoly)
-    // Vista amplia Europa+Oriente Medio: centrar en área visible (col derecha ~50%)
-    // Desplazamos el centro hacia la izquierda para que el interés quede en col derecha
-    flyOffset(_map, [38, 52], 3, { duration: 2.0 })
-  }
-  if (step === 'c03') {
-    mapEl.style.opacity = '1'
-    _map.addLayer(conflictC03)
-    // Golfo Pérsico: el Golfo debe quedar en la mitad derecha
-    flyOffset(_map, [26, 55], 5.5, { duration: 1.8 })
-  }
-  if (step === 'c07') {
-    mapEl.style.opacity = '1'
-    _map.addLayer(conflictC07)
-    // Irán completo: centrar Irán en la columna derecha
-    flyOffset(_map, [32.5, 54], 5.5, { duration: 1.8 })
-  }
-  if (step === 'c08') {
-    mapEl.style.opacity = '1'
-    _map.addLayer(conflictC08)
-    // Levante + Golfo: la red proxy debe quedar en col derecha
-    flyOffset(_map, [30, 46], 4, { duration: 2.0 })
-  }
-
-  // ── Pasos Capítulo Ormuz ─────────────────────────────────────────────────
-  // oz01: Zoom cerrado Estrecho de Ormuz + heatmap de tráfico
-  if (step === 'oz01') {
-    mapEl.style.opacity = '1'
-    _map.addLayer(iranPoly)
-    _map.addLayer(ormuzHeat)
-    _map.addLayer(hormuz)
-    flyOffset(_map, [26.5, 56.5], 7.5, { duration: 2.0 })
-  }
-
-  // oz02: Vista media del Golfo — dependencia por país
-  if (step === 'oz02') {
-    mapEl.style.opacity = '1'
-    _map.addLayer(iranPoly)
-    _map.addLayer(neighbors)
-    _map.addLayer(ormuzHeat)
-    flyOffset(_map, [25, 54], 5, { duration: 2.0 })
-  }
-
-  // oz03: Heatmap con énfasis en Ormuz — contexto de peajes
-  if (step === 'oz03') {
-    mapEl.style.opacity = '1'
-    _map.addLayer(iranPoly)
-    _map.addLayer(ormuzHeat)
-    _map.addLayer(hormuzSVG)
-    flyOffset(_map, [26.8, 56.0], 7, { duration: 1.8 })
-  }
-
-  // oz04: Zoom a Isla Kharg (29.24°N, 50.32°E) — terminal exportación iraní
-  if (step === 'oz04') {
-    mapEl.style.opacity = '1'
-    _map.addLayer(iranPoly)
-    _map.addLayer(neighbors)
-    // Punto especial: isla Kharg
-    const khargLabel = L.marker([29.24, 50.32], {
-      icon: L.divIcon({
-        className: '',
-        html: `<div style="
-          background: rgba(192,57,43,0.92);
-          border: 1.5px solid rgba(255,120,80,0.9);
-          border-radius: 3px;
-          padding: 8px 14px;
-          font-family: 'Source Serif 4', serif;
-          color: rgba(245,240,232,0.95);
-          white-space: nowrap;
-          backdrop-filter: blur(8px);
-          box-shadow: 0 0 20px rgba(192,57,43,0.6);
-          transform: translateX(-50%) translateY(-110%);
-          text-align: center;
-        ">
-          <span style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;display:block;">🛢️ Isla Kharg</span>
-          <span style="font-size:10px;opacity:0.75;letter-spacing:0.1em;text-transform:uppercase;">Terminal exportación iraní</span>
-        </div>`,
-        iconSize: [160, 50],
-        iconAnchor: [80, 50]
-      }),
-      interactive: false
-    })
-    const khargDot = L.circleMarker([29.24, 50.32], {
-      radius: 10,
-      color: '#c0392b',
-      fillColor: '#c0392b',
-      fillOpacity: 0.9,
-      weight: 2,
-      interactive: true,
-      className: 'proxy-pulse-dot'
-    }).bindPopup(`<b style="color:#d4a017;">Isla Kharg</b><br>
-      <span style="opacity:0.7;font-size:12px;">Principal terminal de exportación petrolera irań. 
-      Gran parte del crudo iraní destinado a mercados internacionales sale por aquí.</span>`)
-
-    const khargLayer = L.layerGroup([khargDot, khargLabel])
-    _map.addLayer(khargLayer)
-    flyOffset(_map, [28.5, 51.0], 7, { duration: 2.0 })
-    // Limpiar la layer kharg cuando se cambie de paso
-    _map._khargLayer = khargLayer
-  } else if (_map._khargLayer) {
-    if (_map.hasLayer(_map._khargLayer)) _map.removeLayer(_map._khargLayer)
-    _map._khargLayer = null
+  return {
+    iranPoly, neighbors, bases, baseRanges, routes, hormuz, hormuzMarker: hormuzSVG,
+    fleet, ormuzHeat, kharg,
+    conflictC03, conflictC07, conflictC08,
   }
 }

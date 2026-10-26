@@ -1,43 +1,48 @@
 /**
  * timeline.js
  * Controla el comportamiento sticky + scroll del timeline histórico.
- * Las escenas se activan con IntersectionObserver al cruzar el 50% del viewport.
+ * Las escenas se activan (Scrollama) cuando cruzan la mitad del viewport.
  */
+import scrollama from "scrollama"
+
+// Vite resuelve las imágenes y les pone hash en el build
+const IMAGES = import.meta.glob("../images/*.{jpg,jpeg,png}", { eager: true, import: "default" })
+const img = (name) => IMAGES[`../images/${name}`]
 
 const TL_SCENES = [
   { year: "1979",      label: "La revolución iraní",        shortDot: "Revolución",
-    img: "images/cap_1_1.jpg", imgCaption: "El ayatolá Khomeini, líder de la revolución" },
+    img: img("cap_1_1.jpg"), imgCaption: "El ayatolá Khomeini, líder de la revolución" },
   { year: "1979–81",   label: "Crisis de los rehenes",       shortDot: "Rehenes",
-    img: "images/cap_2_1.jpg", imgCaption: "Operación Eagle Claw — el rescate fallido" },
+    img: img("cap_2_1.jpg"), imgCaption: "Operación Eagle Claw — el rescate fallido" },
   { year: "1980–88",   label: "Guerra Irán–Irak",            shortDot: "Guerra Iraq",
-    img: "images/cap_3_1.jpg", imgCaption: "Saddam Hussein en el frente de guerra Irán–Irak" },
+    img: img("cap_3_1.jpg"), imgCaption: "Saddam Hussein en el frente de guerra Irán–Irak" },
   { year: "2015",      label: "Acuerdo nuclear JCPOA",       shortDot: "JCPOA",
-    img: "images/cap_4_1.jpg", imgCaption: "Firma del JCPOA en Viena, julio de 2015" },
+    img: img("cap_4_1.jpg"), imgCaption: "Firma del JCPOA en Viena, julio de 2015" },
   { year: "2020",      label: "Asesinato de Soleimani",      shortDot: "Soleimani",
-    img: "images/cap_5_1.jpg", imgCaption: "Soleimani, líder de las fuerzas iraníes en Irak" }
+    img: img("cap_5_1.jpg"), imgCaption: "Soleimani, líder de las fuerzas iraníes en Irak" }
 ]
 
 // Galería por escena: imágenes y pies de foto
 const TL_GALLERY = [
   [
-    { img: "images/cap_1_1.jpg", caption: "El ayatolá Khomeini, figura central de la revolución islámica" },
-    { img: "images/cap_1_2.jpg", caption: "Masas revolucionarias toman las calles de Teherán, 1979" }
+    { img: img("cap_1_1.jpg"), caption: "El ayatolá Khomeini, figura central de la revolución islámica" },
+    { img: img("cap_1_2.jpg"), caption: "Masas revolucionarias toman las calles de Teherán, 1979" }
   ],
   [
-    { img: "images/cap_2_1.jpg", caption: "Restos del helicóptero en la Operación Eagle Claw, el rescate fallido" },
-    { img: "images/cap_2_2.jpg", caption: "Los rehenes liberados abordan el avión rumbo a EE.UU., enero 1981" }
+    { img: img("cap_2_1.jpg"), caption: "Restos del helicóptero en la Operación Eagle Claw, el rescate fallido" },
+    { img: img("cap_2_2.jpg"), caption: "Los rehenes liberados abordan el avión rumbo a EE.UU., enero 1981" }
   ],
   [
-    { img: "images/cap_3_1.jpg", caption: "Saddam Hussein junto a su estado mayor durante la guerra Irán–Irak" },
-    { img: "images/cap_3_2.jpg", caption: "Tanque iraquí frente a pozos de petróleo en llamas, 1991" }
+    { img: img("cap_3_1.jpg"), caption: "Saddam Hussein junto a su estado mayor durante la guerra Irán–Irak" },
+    { img: img("cap_3_2.jpg"), caption: "Tanque iraquí frente a pozos de petróleo en llamas, 1991" }
   ],
   [
-    { img: "images/cap_4_1.jpg", caption: "Los cancilleres del P5+1 e Irán en la firma del JCPOA, Viena 2015" },
-    { img: "images/cap_4_2.jpg", caption: "Zarif y Kerry se estrechan la mano tras semanas de negociaciones" }
+    { img: img("cap_4_1.jpg"), caption: "Los cancilleres del P5+1 e Irán en la firma del JCPOA, Viena 2015" },
+    { img: img("cap_4_2.jpg"), caption: "Zarif y Kerry se estrechan la mano tras semanas de negociaciones" }
   ],
   [
-    { img: "images/cap_5_1.jpg", caption: "Soleimani, líder de las fuerzas iraníes en Irak" },
-    { img: "images/cap_5_2.jpg", caption: "El asesinato de Soleimani desencadenó una crisis geopolítica" }
+    { img: img("cap_5_1.jpg"), caption: "Soleimani, líder de las fuerzas iraníes en Irak" },
+    { img: img("cap_5_2.jpg"), caption: "El asesinato de Soleimani desencadenó una crisis geopolítica" }
   ]
 ]
 
@@ -191,21 +196,12 @@ export function initTimeline() {
     })
   }
 
-  // ── IntersectionObserver ─────────────────────────────────────────────────
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return
-      const index = parseInt(entry.target.dataset.tl)
-      activateScene(index)
-    })
-  }, {
-    threshold: 0.45,
-    rootMargin: "0px 0px -10% 0px"
-  })
-
-  scenes.forEach(sc => observer.observe(sc))
+  // ── Scroll ──────────────────────────────────────────────────────────────
+  scrollama()
+    .setup({ step: ".tl-scene[data-tl]", offset: 0.5 })
+    .onStepEnter(({ element }) => activateScene(parseInt(element.dataset.tl)))
 
   // Activar la primera escena al init
   activateScene(0)
   scenes[0]?.classList.add("active")
-}
+}

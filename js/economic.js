@@ -3,6 +3,14 @@
  * Gráfico histórico del Brent (1987–2025) + zoom 2025–2026
  * Scroll activa periodos en secuencia · highlight plugin integrado
  */
+import {
+  Chart, LineController, LineElement, PointElement,
+  LinearScale, CategoryScale, Filler, Tooltip,
+} from 'chart.js'
+import scrollama from 'scrollama'
+import { revealGroup } from './lib/inview.js'
+import brentMonthlyCSV from '../data/brent_monthly.csv?raw'
+import brentRecentCSV from '../data/brent_recent.csv?raw'
 
 // ── Periodos históricos con narrativa ─────────────────────────────────────
 const PERIODS = [
@@ -136,34 +144,24 @@ export function initEconomic() {
   const section = document.getElementById('economic-section')
   if (!section) return
 
-  loadData().then(() => {
-    registerHighlightPlugin()
-    renderHistoricChart()
-    renderRecentChart()
-    buildPeriodCards()
-    buildRecentCards()
-    initReveal()
-    initPeriodObserver()
-  })
-}
+  _historicData = parseCSV(brentMonthlyCSV)
+  _recentData   = parseCSV(brentRecentCSV)
 
-async function loadData() {
-  try {
-    const [mRes, rRes] = await Promise.all([
-      fetch('./data/brent_monthly.csv'),
-      fetch('./data/brent_recent.csv'),
-    ])
-    _historicData = parseCSV(await mRes.text())
-    _recentData   = parseCSV(await rRes.text())
-  } catch (e) {
-    console.warn('economic.js: no se pudieron cargar los CSV', e)
-  }
+  registerHighlightPlugin()
+  renderHistoricChart()
+  renderRecentChart()
+  buildPeriodCards()
+  buildRecentCards()
+  initPeriodScroll()
 }
 
 // ── Plugin Chart.js: rectángulo de resaltado sobre el periodo activo ──────
 function registerHighlightPlugin() {
   if (_pluginRegistered) return
   _pluginRegistered = true
+
+  // Solo los componentes que usan estos gráficos (bundle más liviano)
+  Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip)
 
   Chart.register({
     id: 'periodHighlight',
@@ -472,91 +470,25 @@ function buildRecentCards() {
   })
 }
 
-// ── Scroll reveal ─────────────────────────────────────────────────────────
-function initReveal() {
-  const els = document.querySelectorAll('.ec-screen, .ec-header')
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible')
-        obs.unobserve(e.target)
-      }
-    })
-  }, { threshold: 0.05 })
-  els.forEach(el => obs.observe(el))
-}
-
 // ── Scroll activa periodos en secuencia ───────────────────────────────────
-// La sección #ec-screen-historic tiene min-height: 700vh (CSS).
-// Dentro colocamos sentinels invisibles distribuidos en altura.
-// Al scrollear, cada sentinel que entra al centro del viewport
-// activa el periodo correspondiente.
-function initPeriodObserver() {
-  const historicSection = document.getElementById('ec-screen-historic')
-  if (!historicSection) return
-
-  // Contenedor de sentinels (position:absolute dentro de la sección)
-  historicSection.style.position = 'relative'
-  const sc = document.createElement('div')
-  sc.setAttribute('aria-hidden', 'true')
-  sc.style.cssText = `
-    position: absolute;
-    top: 0; left: 0;
-    width: 1px; height: 100%;
-    pointer-events: none;
-  `
-  historicSection.appendChild(sc)
-
-  // Distribuir un sentinel por periodo, espaciados uniformemente
-  PERIODS.forEach((p, i) => {
-    const s = document.createElement('div')
-    // Offset: deja un margen de 5% al inicio y al final
-    const pct = 5 + (i / Math.max(PERIODS.length - 1, 1)) * 90
-    s.style.cssText = `
-      position: absolute;
-      top: ${pct}%;
-      left: 0;
-      width: 1px; height: 1px;
-    `
-    s.dataset.periodIndex = i
-    sc.appendChild(s)
-  })
-
-  const sentinels = sc.querySelectorAll('[data-period-index]')
-
-  const obs = new IntersectionObserver((entries) => {
-    // Elegir el sentinel más avanzado (mayor índice) que esté en el viewport
-    const visible = entries
-      .filter(e => e.isIntersecting)
-      .sort((a, b) =>
-        parseInt(b.target.dataset.periodIndex) - parseInt(a.target.dataset.periodIndex)
-      )
-    if (visible.length > 0) {
-      const idx = parseInt(visible[0].target.dataset.periodIndex)
-      activatePeriod(PERIODS[idx].id)
-    }
-  }, {
-    threshold: 0,
-    rootMargin: '-38% 0px -38% 0px',  // activa cuando el sentinel pasa por la franja central
-  })
-
-  sentinels.forEach(s => obs.observe(s))
-
-  // ── Impact cards (pantalla reciente) ────────────────────────────────────
-  const impactCards   = document.querySelectorAll('.ec-impact-card')
-  const recentSection = document.getElementById('ec-screen-recent')
-
-  if (recentSection && impactCards.length) {
-    const cardObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          impactCards.forEach((c, i) => {
-            setTimeout(() => c.classList.add('visible'), i * 130)
-          })
-          cardObs.unobserve(e.target)
-        }
+// #ec-screen-historic es alto (min-height en CSS). Scrollama reporta qué
+// fracción de la sección ya cruzó la mitad de la pantalla; cada periodo
+// ocupa un tramo de esa fracción (del 5% al 95%).
+function initPeriodScroll() {
+  if (document.getElementById('ec-screen-historic')) {
+    const n = PERIODS.length
+    let lastIdx = 0
+    scrollama()
+      .setup({ step: '#ec-screen-historic', offset: 0.5, progress: true })
+      .onStepProgress(({ progress }) => {
+        const raw = Math.floor(((progress * 100 - 5) / 90) * (n - 1))
+        const idx = Math.max(0, Math.min(n - 1, raw))
+        if (idx === lastIdx) return // solo al cruzar a otro tramo (respeta los clics)
+        lastIdx = idx
+        activatePeriod(PERIODS[idx].id)
       })
-    }, { threshold: 0.12 })
-    cardObs.observe(recentSection)
   }
+
+  // Impact cards (pantalla reciente) en cascada
+  revealGroup('#ec-screen-recent', '.ec-impact-card', { threshold: 0.12, stagger: 130 })
 }

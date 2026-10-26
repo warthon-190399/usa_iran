@@ -16,25 +16,10 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles/timeline.css">
-  <!-- <link rel="stylesheet" href="styles/conflict.css"> -->
-  <link rel="stylesheet" href="styles/bridge.css">
-  <link rel="stylesheet" href="styles/strategy.css">
-  <link rel="stylesheet" href="styles/ormuz.css">
-  <link rel="stylesheet" href="styles/economic.css">
-  <link rel="stylesheet" href="styles/actors.css">
-  <link rel="stylesheet" href="styles/scenarios.css">
-  <link rel="stylesheet" href="styles/conclusions.css">
-  <link rel="stylesheet" href="styles/news-timeline.css">
-  <link rel="stylesheet" href="styles/hero-cta.css">
-  <link rel="stylesheet" href="styles/mobile.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
 
 <body>
@@ -74,10 +59,6 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
           Explorar el análisis
         </a>
-        <a href="news.html" class="hero-btn hero-btn--secondary">
-          El conflicto hoy
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
         <span class="hero-btn-live">
           <span class="hero-btn-live-dot"></span>
           En curso
@@ -101,13 +82,13 @@
   <!-- SCROLL WRAPPER -->
   <div id="scroll-wrapper">
 
-    <section data-step="0"></section>
+    <section data-step="0" data-map-step="0"></section>
 
     <!-- ═══════════════════════════════════════════════════════
        STEP 1 · Rutas comerciales del Golfo
        Mapa: iranPoly + neighbors + routes (rutas geodésicas)
        ═══════════════════════════════════════════════════════ -->
-    <section data-step="1">
+    <section data-step="1" data-map-step="1">
       <div class="card" id="card-1">
         <div class="card-header">
           <div class="card-icon oil">🛢️</div>
@@ -158,7 +139,7 @@
        STEP 2 · Estrecho de Ormuz — cuello de botella
        Mapa: zoom cerrado + heatmap de tráfico
        ═══════════════════════════════════════════════════════ -->
-    <section data-step="2">
+    <section data-step="2" data-map-step="2">
       <div class="card" id="card-2">
         <div class="card-header">
           <div class="card-icon warn">⚡</div>
@@ -196,7 +177,7 @@
        STEP 3 · Presencia militar EE.UU. + 5ª Flota
        Mapa: bases + baseRanges + fleet (5ª Flota destacada)
        ═══════════════════════════════════════════════════════ -->
-    <section data-step="3">
+    <section data-step="3" data-map-step="3">
       <div class="card" id="card-3">
         <div class="card-header">
           <div class="card-icon usa">🏴</div>
@@ -261,7 +242,7 @@
      BRIDGE SECTION — Conecta intro (pasos 1-3) con timeline
      Va después del cierre del step 3 y antes de #timeline-section
      ═══════════════════════════════════════════════════════ -->
-    <section id="bridge-section">
+    <section id="bridge-section" data-map-step="off">
 
       <div class="bridge-inner">
         <p class="st-cover-eyebrow">Capítulo I</p>
@@ -327,7 +308,7 @@
     <!-- ═══════════════════════════════════════════════════════
        TIMELINE SECTION — Entre mapa (step 4) y grafo (step 5)
        ═══════════════════════════════════════════════════════ -->
-    <section data-step="0" id="timeline-section">
+    <section id="timeline-section">
 
       <div class="timeline-layout">
 
@@ -690,7 +671,7 @@
      BLOQUE 3 — Estrategia Militar y Modelo de Guerra
      Va después de #timeline-section y antes de #conflict-section
      ════════════════════════════════════════════════════════════════ -->
-    <section data-step="0" id="strategy-section">
+    <section id="strategy-section">
 
       <!-- ── Portada del capítulo ── -->
       <div class="st-cover">
@@ -710,7 +691,7 @@
        PANTALLA 1 · Doctrinas + Matemática asimétrica
        Sin mapa · Tabla de costos triple
        ══════════════════════════════════════════════════════════ -->
-      <div class="st-screen st-screen--solid" data-screen="st-screen-01">
+      <div class="st-screen st-screen--solid" data-map-step="off">
         <div class="st-editorial">
           <div class="st-screen-num">01</div>
           <div class="st-screen-tag">Doctrinas en conflicto</div>
@@ -798,7 +779,7 @@
        PANTALLA 2 · Arquitectura defensiva
        CON MAPA (c07) · Irán interior: montañas + instalaciones
        ══════════════════════════════════════════════════════════ -->
-      <div class="st-screen st-screen--map st-screen--reverse" data-screen="st-screen-02">
+      <div class="st-screen st-screen--map st-screen--reverse" data-map-step="c07">
         <!-- Columna transparente: mapa visible -->
         <div class="st-visual st-visual--transparent"></div>
         <div class="st-editorial">
@@ -834,7 +815,7 @@
        PANTALLA 3 · La respuesta iraní: guerra indirecta por diseño
        CON MAPA (c03) · Objetivos iraníes en el Golfo
        ══════════════════════════════════════════════════════════ -->
-      <div class="st-screen st-screen--map st-screen--reverse" data-screen="st-screen-03">
+      <div class="st-screen st-screen--map st-screen--reverse" data-map-step="c03">
         <!-- Columna transparente: mapa visible -->
         <div class="st-visual st-visual--transparent"></div>
         <div class="st-editorial">
@@ -868,7 +849,7 @@
        PANTALLA 4 · Eje de Resistencia + Red de proxies
        CON MAPA (c08) · Red de proxies desde Teherán
        ══════════════════════════════════════════════════════════ -->
-      <div class="st-screen st-screen--map" data-screen="st-screen-04">
+      <div class="st-screen st-screen--map" data-map-step="c08">
         <div class="st-editorial">
           <div class="st-screen-num">04</div>
           <div class="st-screen-tag">El eje de resistencia</div>
@@ -931,7 +912,7 @@
      CAPÍTULO III — El Estrecho de Ormuz
      Insertar en index.html DESPUÉS de #strategy-section
      ══════════════════════════════════════════════════════ -->
-    <section data-step="0" id="ormuz-section">
+    <section id="ormuz-section">
 
       <!-- ── Portada del capítulo ── -->
       <div class="oz-cover">
@@ -947,7 +928,7 @@
       </div>
 
       <!-- Pantalla 01: Dimensiones físicas + volumen -->
-      <div class="oz-screen oz-screen--map" data-screen="oz-screen-01">
+      <div class="oz-screen oz-screen--map" data-map-step="oz01">
         <div class="oz-editorial">
           <div class="oz-screen-num">01</div>
           <p class="oz-screen-tag">El cuello de botella</p>
@@ -976,7 +957,7 @@
       </div>
 
       <!-- Pantalla 02: Dependencia por país -->
-      <div class="oz-screen oz-screen--data oz-screen--reverse" data-screen="oz-screen-02">
+      <div class="oz-screen oz-screen--data oz-screen--reverse" data-map-step="oz01">
         <div class="oz-editorial">
           <div class="oz-screen-num">02</div>
           <p class="oz-screen-tag">Dependencia energética</p>
@@ -1059,7 +1040,7 @@
       </div>
 
       <!-- Pantalla 03: Peajes en yuanes / petroyuan -->
-      <div class="oz-screen oz-screen--map" data-screen="oz-screen-03">
+      <div class="oz-screen oz-screen--map" data-map-step="oz02">
         <div class="oz-editorial">
           <div class="oz-screen-num">03</div>
           <p class="oz-screen-tag">El arma financiera</p>
@@ -1086,7 +1067,7 @@
       </div>
 
       <!-- Pantalla 04: Isla Kharg — punto crítico -->
-      <div class="oz-screen oz-screen--map" data-screen="oz-screen-04">
+      <div class="oz-screen oz-screen--map" data-map-step="oz03">
         <div class="oz-editorial">
           <div class="oz-screen-num">04</div>
           <p class="oz-screen-tag">El talón de Aquiles iraní</p>
@@ -1120,7 +1101,7 @@
       </div>
 
       <!-- Pantalla 05: Síntesis final del capítulo -->
-      <div class="oz-screen oz-screen--data" data-screen="oz-screen-05">
+      <div class="oz-screen oz-screen--data" data-map-step="oz04">
         <div class="oz-editorial">
           <div class="oz-screen-num">05</div>
           <p class="oz-screen-tag">El equilibrio del terror</p>
@@ -1179,7 +1160,7 @@
     <!-- ══════════════════════════════════════════════════════
      CAPÍTULO IV — Impacto Económico Global
      ══════════════════════════════════════════════════════ -->
-    <section data-step="0" id="economic-section">
+    <section id="economic-section" data-map-step="off">
 
       <!-- ── Portada del capítulo ── -->
       <div class="ec-cover">
@@ -1245,7 +1226,7 @@
      CAPÍTULO V — ACTORES
      ══════════════════════════════════════════════════════ -->
 
-    <section data-step="0" id="actors-section">
+    <section id="actors-section">
 
       <!-- Portada del capítulo -->
       <div class="ac-cover">
@@ -1430,7 +1411,7 @@
      ══════════════════════════════════════════════════════ -->
 
 
-    <section data-step="0" id="scenarios-section">
+    <section id="scenarios-section">
 
       <div class="sc-cover">
         <div class="sc-cover-bg-num">VI</div>
@@ -1554,7 +1535,7 @@
     <!-- ══════════════════════════════════════════════════════
      8. CONCLUSIONES
      ══════════════════════════════════════════════════════ -->
-    <section data-step="0" id="conclusions-section">
+    <section id="conclusions-section">
 
       <div class="cn-cover">
         <div class="cn-cover-bg-num">VII</div>
@@ -1567,7 +1548,7 @@
 
     </section>
 
-    <section data-step="0" id="conclusions-section_content">
+    <section id="conclusions-section_content">
       <div class="cn-content">
         <div class="cn-points">
 
@@ -1646,35 +1627,10 @@
           </a>
         </div>
 
-        <!-- Botón El conflicto hoy -->
-        <a href="news.html" class="au-news-btn">
-          <span>El conflicto hoy</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
       </div>
     </section>
   </div><!-- /#scroll-wrapper -->
-  <section id="news-timeline" aria-labelledby="news-title">
-    <div class="news-header">
-      <div class="news-header-content">
-        <h2 class="news-title">Timeline de Eventos</h2>
-        <p class="news-subtitle">Documentación cronológica del conflicto EE.UU.–Irán</p>
-      </div>
-      <div class="news-header-right">
-        <div class="news-counter">
-          <span class="news-count">${this.filteredNews.length}</span>
-          <span class="news-label">noticias</span>
-        </div>
-        <!-- Los filtros se generan aquí -->
-      </div>
-    </div>
-  </section>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/leaflet.geodesic/dist/leaflet.geodesic.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script type="module" src="js/main.js"></script>
-  <script src="js/news-timeline.js"></script>
+  <script type="module" src="/js/main.js"></script>
 </body>
 
-</html>
+</html>

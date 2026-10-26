@@ -3,6 +3,8 @@
  * Visualización de red de influencia iraní con D3 v7
  * Con filtrado interactivo por tipo de relación desde la leyenda
  */
+import * as d3 from "d3"
+import graphData from "../data/graph.json"
 
 // ── Paleta coherente con el sistema de diseño ──────────────────────────────
 const NODE_COLOR = {
@@ -91,147 +93,18 @@ const FIXED = {
   "IRGC-Quds Force":  { fx: null, fy: null, _anchor: [ 0.42,  0.0 ] }
 }
 
-export async function initGraph(jsonPath) {
+export function initGraph() {
   const wrap = document.getElementById("graph-svg")
   if (!wrap) return
 
-  let data
-  try {
-    const res = await fetch(jsonPath)
-    data = await res.json()
-  } catch (e) {
-    console.error("graph.js: no se pudo cargar", jsonPath, e)
-    return
-  }
-
-  injectGraphFilterCSS()
-
+  // Render cuando el contenedor tenga tamaño real
   const ro = new ResizeObserver(() => {
     ro.disconnect()
-    renderGraph(data)
+    renderGraph(graphData)
   })
   ro.observe(wrap)
 }
 
-// ── Inyectar CSS para los controles de filtro ─────────────────────────────
-function injectGraphFilterCSS() {
-  if (document.getElementById('graph-filter-css')) return
-  const style = document.createElement('style')
-  style.id = 'graph-filter-css'
-  style.textContent = `
-    /* Legend filter controls */
-    #graph-filter-legend {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .filter-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      color: rgba(245,240,232,0.55);
-      font-family: 'Source Serif 4', serif;
-      font-weight: 300;
-      cursor: pointer;
-      padding: 5px 8px;
-      border-radius: 3px;
-      border: 1px solid transparent;
-      transition: all 0.25s ease;
-      user-select: none;
-    }
-
-    .filter-item:hover {
-      background: rgba(255,255,255,0.04);
-      color: rgba(245,240,232,0.85);
-    }
-
-    .filter-item.active {
-      border-color: rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.05);
-      color: rgba(245,240,232,0.9);
-    }
-
-    .filter-item.dimmed {
-      opacity: 0.38;
-    }
-
-    .filter-swatch {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-
-    .filter-toggle {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 2px solid currentColor;
-      margin-left: auto;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    .filter-item.active .filter-toggle::after {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: currentColor;
-      display: block;
-    }
-
-    /* Filter mode indicator */
-    #filter-mode-badge {
-      margin-top: 10px;
-      font-size: 10px;
-      font-family: 'Source Serif 4', serif;
-      font-style: italic;
-      color: rgba(212,160,23,0.6);
-      letter-spacing: 0.05em;
-      min-height: 16px;
-      transition: opacity 0.3s ease;
-    }
-
-    /* Reset button */
-    #filter-reset {
-      margin-top: 8px;
-      padding: 5px 12px;
-      background: transparent;
-      border: 1px solid rgba(212,160,23,0.3);
-      border-radius: 2px;
-      color: rgba(212,160,23,0.6);
-      font-family: 'Source Serif 4', serif;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: none;
-    }
-
-    #filter-reset:hover {
-      border-color: rgba(212,160,23,0.7);
-      color: rgba(212,160,23,0.9);
-      background: rgba(212,160,23,0.06);
-    }
-
-    #filter-reset.visible { display: block; }
-
-    /* Edge transition */
-    .links line {
-      transition: stroke-opacity 0.35s ease, stroke-width 0.35s ease;
-    }
-  `
-  document.head.appendChild(style)
-}
 
 function renderGraph(data) {
   const svgEl  = document.getElementById("graph-svg")
@@ -726,4 +599,4 @@ function drag(simulation) {
       if (!event.active) simulation.alphaTarget(0)
       if (!FIXED[d.id]) { d.fx = null; d.fy = null }
     })
-}
+}

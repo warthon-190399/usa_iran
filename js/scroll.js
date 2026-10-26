@@ -1,97 +1,61 @@
-const TOTAL_MAP_STEPS = 3   // pasos 1-3 controlan el mapa
-const TOTAL_STEPS     = 3   // dots: solo pasos con mapa
-let heroLocked = false
-export function initScroll(updateMap) {
-  const sections      = document.querySelectorAll("section[data-step]")
-  const progressBar   = document.getElementById("progress-bar")
-  const hero          = document.getElementById("hero")
-  const counter       = document.getElementById("chapter-counter")
+/**
+ * scroll.js — Director del scroll.
+ *
+ * Todo elemento con `data-map-step="..."` en el HTML es un paso: cuando cruza
+ * la mitad de la pantalla, el mapa cambia a ese paso. Para mover el mapa basta
+ * con editar el atributo en index.html (y la tabla STEPS en map/index.js).
+ *
+ * Los pasos de la intro (`data-step` 0-3) además controlan la barra de
+ * progreso, los dots del contador y la tarjeta activa.
+ */
+import scrollama from 'scrollama'
 
-  // Construir dots (1 por cada capítulo real)
-  for (let i = 1; i <= TOTAL_STEPS; i++) {
-    const dot = document.createElement("div")
-    dot.className   = "counter-dot"
-    dot.dataset.step = i
-    dot.addEventListener("click", () => {
-      const target = document.querySelector(`section[data-step="${i}"]`)
-      if (target) target.scrollIntoView({ behavior: "smooth" })
-    })
+const INTRO_STEPS = 3
+
+export function initScroll(updateMap) {
+  const hero = document.getElementById('hero')
+  const counter = document.getElementById('chapter-counter')
+  const progressBar = document.getElementById('progress-bar')
+  let heroLocked = false
+
+  // Dots del contador (uno por paso de la intro)
+  for (let i = 1; i <= INTRO_STEPS; i++) {
+    const dot = document.createElement('div')
+    dot.className = 'counter-dot'
+    dot.addEventListener('click', () =>
+      document.querySelector(`section[data-step="${i}"]`)?.scrollIntoView({ behavior: 'smooth' }))
     counter.appendChild(dot)
   }
 
-  function setCounterDot(step) {
-    document.querySelectorAll(".counter-dot").forEach((dot, i) => {
-      dot.classList.toggle("active", i + 1 === step)
-    })
+  function hideHero() {
+    hero.classList.add('hidden')
+    counter.classList.add('visible')
+    heroLocked = true
   }
 
-  function setActiveCard(step) {
-    document.querySelectorAll(".card").forEach(c => c.classList.remove("active"))
-    if (step >= 1 && step <= TOTAL_MAP_STEPS) {
-      const card = document.getElementById(`card-${step}`)
-      if (card) card.classList.add("active")
-    }
-  }
-
-  // ── Bridge: oculta el hero cuando entra, no interfiere con el observer principal ──
-  let bridgeVisible = false
-  const bridgeSection = document.getElementById("bridge-section")
-  if (bridgeSection) {
-    const bridgeObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        bridgeVisible = entry.isIntersecting
-        if (entry.isIntersecting) {
-          hero.classList.add("hidden")
-          counter.classList.add("visible")
-          updateMap("off")
-        }
-      })
-    }, { threshold: 0.1 })
-    bridgeObs.observe(bridgeSection)
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return
-
-      const step = parseInt(entry.target.dataset.step)
-
-      // Barra de progreso
-      progressBar.style.width = step === 0
-        ? "0%"
-        : (step / TOTAL_STEPS) * 100 + "%"
-
-      // Hero y contador — solo mostrar hero en step 0 si bridge NO está visible
-      // if (step === 0) {
-      //   if (!bridgeVisible) {
-      //     hero.classList.remove("hidden")
-      //     counter.classList.remove("visible")
-      //   }
-      
-      // } else {
-      //   hero.classList.add("hidden")
-      //   counter.classList.add("visible")
-      // }
-      if (step === 0) {
-  if (!heroLocked) {
-    hero.classList.remove("hidden")
-    counter.classList.remove("visible")
-  }
-} else {
-  hero.classList.add("hidden")
-  counter.classList.add("visible")
-  heroLocked = true
-}
-      // El mapa reacciona a pasos 0-3
-      if (step <= TOTAL_MAP_STEPS) {
-        updateMap(step)
+  function onIntroStep(step) {
+    progressBar.style.width = `${(step / INTRO_STEPS) * 100}%`
+    if (step === 0) {
+      if (!heroLocked) {
+        hero.classList.remove('hidden')
+        counter.classList.remove('visible')
       }
+    } else {
+      hideHero()
+    }
+    document.querySelectorAll('.card').forEach((c) => c.classList.remove('active'))
+    document.getElementById(`card-${step}`)?.classList.add('active')
+    counter.querySelectorAll('.counter-dot').forEach((d, i) => d.classList.toggle('active', i + 1 === step))
+  }
 
-      setActiveCard(step)
-      setCounterDot(step)
+  scrollama()
+    .setup({ step: '[data-map-step]', offset: 0.5 })
+    .onStepEnter(({ element }) => {
+      const raw = element.dataset.mapStep
+      const step = /^\d+$/.test(raw) ? Number(raw) : raw
+      updateMap(step)
+
+      if (element.dataset.step !== undefined) onIntroStep(Number(element.dataset.step))
+      else if (element.id === 'bridge-section') hideHero()
     })
-  }, { threshold: 0.25 })
-
-  sections.forEach(s => observer.observe(s))
 }
-

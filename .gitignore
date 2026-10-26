@@ -2,3 +2,5 @@ audio/
 *.wav
 *.mp3
 *.docx
+node_modules/
+dist/
