@@ -48,14 +48,29 @@ export function initScroll(updateMap) {
     counter.querySelectorAll('.counter-dot').forEach((d, i) => d.classList.toggle('active', i + 1 === step))
   }
 
+  function enterStep(element) {
+    const raw = element.dataset.mapStep
+    updateMap(/^\d+$/.test(raw) ? Number(raw) : raw)
+
+    if (element.dataset.step !== undefined) onIntroStep(Number(element.dataset.step))
+    else hideHero() // cualquier paso después de la intro oculta la portada
+  }
+
   scrollama()
     .setup({ step: '[data-map-step]', offset: 0.5 })
-    .onStepEnter(({ element }) => {
-      const raw = element.dataset.mapStep
-      const step = /^\d+$/.test(raw) ? Number(raw) : raw
-      updateMap(step)
+    .onStepEnter(({ element }) => enterStep(element))
 
-      if (element.dataset.step !== undefined) onIntroStep(Number(element.dataset.step))
-      else if (element.id === 'bridge-section') hideHero()
-    })
+  // Al recargar a mitad de página el navegador restaura el scroll, pero
+  // ningún paso "entra": aplicamos el último paso que ya quedó por encima
+  // de la mitad de la pantalla para que portada y mapa queden correctos.
+  // La restauración puede llegar tarde (cuando ya cargó todo), así que se
+  // sincroniza al iniciar y otra vez en el evento load.
+  function syncToScroll() {
+    const mid = window.innerHeight / 2
+    const passed = [...document.querySelectorAll('[data-map-step]')]
+      .filter((el) => el.getBoundingClientRect().top < mid)
+    if (passed.length) enterStep(passed[passed.length - 1])
+  }
+  requestAnimationFrame(syncToScroll)
+  window.addEventListener('load', () => requestAnimationFrame(syncToScroll), { once: true })
 }
