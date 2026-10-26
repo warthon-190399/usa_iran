@@ -202,3 +202,12 @@
 #map {
   transition: opacity 0.6s ease;
 }
+
+/* Atribución del mapa base (requerida por CARTO/OSM) — discreta y oscura */
+#map .leaflet-control-attribution {
+  background: rgba(10, 10, 10, 0.6);
+  color: rgba(245, 240, 232, 0.35);
+  font-family: 'Source Serif 4', serif;
+  font-size: 9px;
+}
+#map .leaflet-control-attribution a { color: rgba(245, 240, 232, 0.5); }

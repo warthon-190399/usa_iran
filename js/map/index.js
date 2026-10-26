@@ -38,7 +38,6 @@ let currentStep = null
 export function initMap() {
   map = L.map('map', {
     zoomControl: false,
-    attributionControl: false,
     scrollWheelZoom: false,
     dragging: false,
     doubleClickZoom: false,
@@ -46,7 +45,16 @@ export function initMap() {
     keyboard: false,
   }).setView([28, 50], 4)
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 18 }).addTo(map)
+  // CARTO exige una key gratuita (carto.com/basemaps/apikey); sin ella las
+  // tiles salen con marca de agua. Se lee de .env → VITE_CARTO_KEY.
+  const key = import.meta.env.VITE_CARTO_KEY
+  if (!key) console.warn('Falta VITE_CARTO_KEY en .env: el mapa base saldrá con marca de agua')
+  L.tileLayer(`https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png${key ? `?key=${key}` : ''}`, {
+    maxZoom: 18,
+    // CARTO pide mantener la atribución visible a cambio del plan gratuito
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  }).addTo(map)
+  map.attributionControl.setPrefix(false)
 
   layers = buildLayers()
   return map
