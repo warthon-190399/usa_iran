@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="styles/actors.css">
   <link rel="stylesheet" href="styles/scenarios.css">
   <link rel="stylesheet" href="styles/conclusions.css">
+  <link rel="stylesheet" href="styles/news-timeline.css">
+  <link rel="stylesheet" href="styles/hero-cta.css">
   <link rel="stylesheet" href="styles/mobile.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -59,6 +61,35 @@
         militar regional y los intereses de las grandes potencias. A lo largo del presente editorial revisaremos 7
         aspectos clave que debemos tener en cuenta a la hora de analizar su evolución.
       </p>
+    </div>
+
+    <!-- CTA — Anatomía del conflicto -->
+    <div class="hero-cta">
+      <div class="hero-cta-divider">
+        <div class="hero-cta-divider-dot"></div>
+      </div>
+      <p class="hero-cta-label">Accesos directos</p>
+      <div class="hero-cta-buttons">
+        <a href="#bridge-section" class="hero-btn hero-btn--primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+          Explorar el análisis
+        </a>
+        <a href="news.html" class="hero-btn hero-btn--secondary">
+          El conflicto hoy
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <span class="hero-btn-live">
+          <span class="hero-btn-live-dot"></span>
+          En curso
+        </span>
+      </div>
+      <div class="hero-cta-chips">
+        <span class="hero-chip">Geopolítica</span>
+        <span class="hero-chip">Energía global</span>
+        <span class="hero-chip">Guerra asimétrica</span>
+        <span class="hero-chip">Estrecho de Ormuz</span>
+        <span class="hero-chip">Multipolaridad</span>
+      </div>
     </div>
 
     <div class="hero-scroll">
@@ -1589,7 +1620,6 @@
 
     </section>
 
-
     <!-- ══════════════════════════════════════════════════════
      9. AUTOR
      Insertar DESPUÉS de #conclusions-section, ANTES del cierre de #scroll-wrapper
@@ -1615,16 +1645,36 @@
             <span class="au-link-icon">✍️</span> Medium
           </a>
         </div>
+
+        <!-- Botón El conflicto hoy -->
+        <a href="news.html" class="au-news-btn">
+          <span>El conflicto hoy</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
     </section>
   </div><!-- /#scroll-wrapper -->
-
+  <section id="news-timeline" aria-labelledby="news-title">
+    <div class="news-header">
+      <div class="news-header-content">
+        <h2 class="news-title">Timeline de Eventos</h2>
+        <p class="news-subtitle">Documentación cronológica del conflicto EE.UU.–Irán</p>
+      </div>
+      <div class="news-header-right">
+        <div class="news-counter">
+          <span class="news-count">${this.filteredNews.length}</span>
+          <span class="news-label">noticias</span>
+        </div>
+        <!-- Los filtros se generan aquí -->
+      </div>
+    </div>
+  </section>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/leaflet.geodesic/dist/leaflet.geodesic.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script type="module" src="js/main.js"></script>
-
+  <script src="js/news-timeline.js"></script>
 </body>
 
 </html>
